@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
-namespace Domain.Models 
+namespace Domain.Models
 { 
-    public class Environment
+    public class StoreModel
     {
-        private int environmentId;
-        private String name;
+        private int storeId;
+        private string name;
         private int state;
 
-        public int EnvironmentId { get => environmentId; set => environmentId = value; }
+        [JsonProperty("store_id")]
+        public int StoreId { get => storeId; set => storeId = value; }
         public string Name { get => name; set => name = value; }
         public int State { get => state; set => state = value; }
     }

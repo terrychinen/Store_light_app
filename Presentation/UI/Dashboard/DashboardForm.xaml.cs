@@ -14,7 +14,12 @@ using System.Windows.Shapes;
 using Domain;
 using Domain.Models;
 using Domain.Controllers;
+using Presentation.UI.Provider;
+using Presentation.UI.Environment;
 using Presentation.UI.Category;
+using Presentation.UI.Home;
+using Presentation.UI.Store;
+
 
 namespace Presentation.UI.Dashboard
 {
@@ -28,8 +33,27 @@ namespace Presentation.UI.Dashboard
         public DashboardForm()
         {
             InitializeComponent();
+
+            tokenController = new TokenController();
+
+            HomePage homePage = new HomePage();
+            parent_frame.Navigate(homePage);
+
         }
 
+
+
+        private async void Home_Click(object sender, RoutedEventArgs e)
+        {
+            if (!ValidateToken())
+            {
+                var refreshToken = await tokenController.RefreshToken(UserData.getToken(), UserData.getEmployee().EmployeeId);
+                UserData.setToken(refreshToken["result"]);
+            }
+
+            HomePage homePage = new HomePage();
+            parent_frame.Navigate(homePage);
+        }
 
         private async void Category_Click(object sender, RoutedEventArgs e)
         {
@@ -39,19 +63,53 @@ namespace Presentation.UI.Dashboard
                 UserData.setToken(refreshToken["result"]);
             }
 
-            CategoryForm categoryForm = new CategoryForm();
-            categoryForm.ShowDialog();
+            CategoryPage categoryPage = new CategoryPage();
+            parent_frame.Navigate(categoryPage);
+        }
+
+
+        private async void Environment_Click(object sender, RoutedEventArgs e)
+        {
+            if (!ValidateToken())
+            {
+                var refreshToken = await tokenController.RefreshToken(UserData.getToken(), UserData.getEmployee().EmployeeId);
+                UserData.setToken(refreshToken["result"]);
+            }
+
+            EnvironmentPage environmentPage = new EnvironmentPage();
+            parent_frame.Navigate(environmentPage);
+        }
+
+
+        private async void Store_Click(object sender, RoutedEventArgs e)
+        {
+            if (!ValidateToken())
+            {
+                var refreshToken = await tokenController.RefreshToken(UserData.getToken(), UserData.getEmployee().EmployeeId);
+                UserData.setToken(refreshToken["result"]);
+            }
+
+            StorePage storePage = new StorePage();
+            parent_frame.Navigate(storePage);
+        }
+
+
+        private async void Provider_Click(object sender, RoutedEventArgs e)
+        {
+            if (!ValidateToken())
+            {
+                var refreshToken = await tokenController.RefreshToken(UserData.getToken(), UserData.getEmployee().EmployeeId);
+                UserData.setToken(refreshToken["result"]);
+            }
+
+            ProviderPage providerPage = new ProviderPage();
+            parent_frame.Navigate(providerPage);
         }
 
 
         private bool ValidateToken()
         {
-            Token token = UserData.getToken();
-            tokenController = new TokenController();
-            var checkToken = tokenController.ValidateToken(token);
-
-            if (checkToken) {return true;} 
-            return false;       
+            return true;
         }
     }
 }

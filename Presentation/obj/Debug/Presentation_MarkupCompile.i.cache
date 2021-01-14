@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Tery\source\repos\StoreApp\Presentation\App.xaml
-31263015060
+7-1124925395
 8-554976
-81573068649
+121644045872
 16-853481931
-UI\Category\CategoryForm.xaml;UI\Dashboard\DashboardForm.xaml;UI\SignIn\SignInForm.xaml;
+UI\Category\CategoryPage.xaml;UI\Dashboard\DashboardForm.xaml;UI\Environment\EnvironmentPage.xaml;UI\Home\HomePage.xaml;UI\Provider\ProviderPage.xaml;UI\SignIn\SignInForm.xaml;UI\Store\StorePage.xaml;
 
 True
 

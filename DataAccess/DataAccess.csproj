@@ -50,6 +50,9 @@
   <ItemGroup>
     <Compile Include="Api\AuthAPI.cs" />
     <Compile Include="Api\CategoryAPI.cs" />
+    <Compile Include="Api\EnvironmentAPI.cs" />
+    <Compile Include="Api\ProviderAPI.cs" />
+    <Compile Include="Api\StoreAPI.cs" />
     <Compile Include="Api\TokenAPI.cs" />
     <Compile Include="Connection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

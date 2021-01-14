@@ -31,5 +31,13 @@ C:\Users\Tery\source\repos\StoreApp\Presentation\bin\Debug\Domain.pdb
 C:\Users\Tery\source\repos\StoreApp\Presentation\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Tery\source\repos\StoreApp\Presentation\bin\Debug\DataAccess.pdb
 C:\Users\Tery\source\repos\StoreApp\Presentation\bin\Debug\RestSharp.xml
-C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Category\CategoryForm.g.cs
-C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Category\CategoryForm.baml
+C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Category\CategoryPage.g.cs
+C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Environment\EnvironmentPage.g.cs
+C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Category\CategoryPage.baml
+C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Environment\EnvironmentPage.baml
+C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Home\HomePage.g.cs
+C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Home\HomePage.baml
+C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Store\StorePage.g.cs
+C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Store\StorePage.baml
+C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Provider\ProviderPage.g.cs
+C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Provider\ProviderPage.baml

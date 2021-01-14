@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataAccess.Api;
 using Domain.Models;
+using Domain.Models.Responses;
 using Newtonsoft.Json;
 
 namespace Domain.Controllers

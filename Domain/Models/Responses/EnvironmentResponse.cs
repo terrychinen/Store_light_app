@@ -3,18 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Domain.Models;
+using Newtonsoft.Json;
 
-namespace Domain.Models
+namespace Domain.Models.Responses
 {
-    public class AuthResponse
+    public class EnvironmentResponse
     {
         private bool ok;
         private string message;
-        private Employee user;
+        private List<EnvironmentModel> environmentList;
 
         public bool Ok { get => ok; set => ok = value; }
         public string Message { get => message; set => message = value; }
-        public Employee User { get => user; set => user = value; }
+
+        [JsonProperty("result")]
+        public List<EnvironmentModel> EnvironmentList { get => environmentList; set => environmentList = value; }
     }
 }

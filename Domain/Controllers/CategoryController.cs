@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using DataAccess.Api;
 using Domain.Models;
+using Domain.Models.Responses;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 
@@ -32,7 +33,6 @@ namespace Domain.Controllers
                     if (dataResponse.Ok)
                     {
                         CategoryResponse categoryListResponse = JsonConvert.DeserializeObject<CategoryResponse>(response["result"].Content);
-
                         data.Add("result", categoryListResponse);
                     }
                     else

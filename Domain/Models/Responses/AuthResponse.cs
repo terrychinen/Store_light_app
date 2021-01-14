@@ -5,16 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using Domain.Models;
 
-namespace Domain.Models
+namespace Domain.Models.Responses
 {
-    public class CategoryResponse
+    public class AuthResponse
     {
         private bool ok;
         private string message;
-        private List<CategoryModel> categoryList;
+        private Employee user;
 
         public bool Ok { get => ok; set => ok = value; }
         public string Message { get => message; set => message = value; }
-        public List<CategoryModel> CategoryList { get => categoryList; set => categoryList = value; }
+        public Employee User { get => user; set => user = value; }
     }
 }

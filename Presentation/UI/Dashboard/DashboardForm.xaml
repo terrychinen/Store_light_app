@@ -20,60 +20,60 @@
             <Grid Height="150" Background="Gray" />
             <ListView>
 
-                <ListViewItem>
+                <ListViewItem Selected="Home_Click">
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="Home" Margin="5" />
-                        <TextBlock Text="INICIO" VerticalAlignment="Center" Margin="5" />
+                        <materialDesign:PackIcon Kind="Home" Margin="10" />
+                        <TextBlock Text="INICIO" VerticalAlignment="Center" Margin="10" />
+                    </StackPanel>
+                </ListViewItem>
+
+                <ListViewItem Selected="Category_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="ViewDashboard" Margin="10" />
+                        <TextBlock Text="CATEGORÍA" VerticalAlignment="Center" Margin="10" />
+                    </StackPanel>
+                </ListViewItem>
+
+                <ListViewItem Selected="Provider_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Store24Hour" Margin="10" />
+                        <TextBlock Text="PROVEEDOR" VerticalAlignment="Center" Margin="10" />
+                    </StackPanel>
+                </ListViewItem>
+
+                <ListViewItem Selected="Store_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Store" Margin="10" />
+                        <TextBlock Text="ALMACÉN" VerticalAlignment="Center" Margin="10" />
+                    </StackPanel>
+                </ListViewItem>
+
+                <ListViewItem Selected="Environment_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="HomeExportOutline" Margin="10" />
+                        <TextBlock Text="AMBIENTE" VerticalAlignment="Center" Margin="10" />
                     </StackPanel>
                 </ListViewItem>
 
                 <ListViewItem>
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="ViewDashboard" Margin="5" />
-                        <TextBlock Text="CATEGORÍA" VerticalAlignment="Center" Margin="5" />
+                        <materialDesign:PackIcon Kind="CartPlus" Margin="10" />
+                        <TextBlock Text="INGRESAR STOCK" VerticalAlignment="Center" Margin="10" />
                     </StackPanel>
                 </ListViewItem>
 
                 <ListViewItem>
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="Store24Hour" Margin="5" />
-                        <TextBlock Text="PROVEEDOR" VerticalAlignment="Center" Margin="5" />
-                    </StackPanel>
-                </ListViewItem>
-
-                <ListViewItem>
-                    <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="Store" Margin="5" />
-                        <TextBlock Text="ALMACÉN" VerticalAlignment="Center" Margin="5" />
-                    </StackPanel>
-                </ListViewItem>
-
-                <ListViewItem>
-                    <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="HomeExportOutline" Margin="5" />
-                        <TextBlock Text="AMBIENTE" VerticalAlignment="Center" Margin="5" />
-                    </StackPanel>
-                </ListViewItem>
-
-                <ListViewItem>
-                    <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="CartPlus" Margin="5" />
-                        <TextBlock Text="INGRESAR STOCK" VerticalAlignment="Center" Margin="5" />
-                    </StackPanel>
-                </ListViewItem>
-
-                <ListViewItem>
-                    <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="FormSelect" Margin="5" />
-                        <TextBlock Text="ÓRDEN DE PEDIDO" VerticalAlignment="Center" Margin="5" />
+                        <materialDesign:PackIcon Kind="FormSelect" Margin="10" />
+                        <TextBlock Text="ÓRDEN DE PEDIDO" VerticalAlignment="Center" Margin="10" />
                     </StackPanel>
                 </ListViewItem>
 
             </ListView>
         </StackPanel>
 
-        <DockPanel Grid.Column="1">s
-            <Frame Name="ParentFrame"/>
+        <DockPanel Grid.Column="1">
+            <Frame Name="parent_frame" NavigationUIVisibility="Hidden" />
         </DockPanel>
 
     </Grid>
