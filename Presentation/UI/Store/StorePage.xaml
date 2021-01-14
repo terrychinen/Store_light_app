@@ -52,8 +52,8 @@
                                 <ColumnDefinition Width="2*"/>
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="0" FontSize="20" Text="{Binding StoreId}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <TextBlock Grid.Column="1" FontSize="20" Text="{Binding Name}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            <TextBlock Grid.Column="0" FontSize="20" Text="{Binding StoreId}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="1" FontSize="20" Text="{Binding Name}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

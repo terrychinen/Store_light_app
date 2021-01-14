@@ -57,5 +57,35 @@ namespace Domain.Controllers
                 return data;
             }
         }
+
+        public async Task<Dictionary<string, dynamic>> CreateCategory(string categoryName, int state, string token)
+        {
+            Dictionary<string, dynamic> data;
+            CategoryAPI categoryAPI;
+
+            try
+            {
+                data = new Dictionary<string, dynamic>();
+                categoryAPI = new CategoryAPI();
+                Dictionary<string, dynamic> response = await categoryAPI.CreateCategory(categoryName, state, token);
+                
+                Response dataResponse = JsonConvert.DeserializeObject<Response>(response["result"].Content);
+
+                data.Add("ok", dataResponse.Ok);
+                data.Add("result", dataResponse.Message);
+  
+                return data;        
+            }
+            catch (Exception error)
+            {
+                data = new Dictionary<string, dynamic>
+                {
+                    { "ok", false },
+                    { "result", error }
+                };
+
+                return data;
+            }
+        }
     }
 }

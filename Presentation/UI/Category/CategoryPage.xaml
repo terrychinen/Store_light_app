@@ -49,8 +49,8 @@
                                 <ColumnDefinition Width="2*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="0" FontSize="20" Text="{Binding CategoryId}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-                            <TextBlock Grid.Column="1" FontSize="20" Text="{Binding Name}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Grid.Column="0" FontSize="20" Text="{Binding CategoryId}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Grid.Column="1" FontSize="20" Text="{Binding Name}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
@@ -65,11 +65,10 @@
         <Grid Grid.Row="1" VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Width="250" Height="50" Content="Nuevo"  Margin="10" ></Button>
-            <Button Grid.Column="1" Width="250" Height="50" Content="Actualizar"  Margin="10" ></Button>
+            <Button Grid.Column="0" Width="250" Height="50" Content="Nuevo" Margin="10" Click="CreateCategory_Click"></Button>
+
         </Grid>
         <!-- =============================== -->
 

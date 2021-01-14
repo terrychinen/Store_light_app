@@ -41,6 +41,9 @@
     <StartupObject>Presentation.App</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FontAwesome.WPF, Version=4.7.0.37774, Culture=neutral, PublicKeyToken=0758b07a11a4f466, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome.WPF.4.7.0.9\lib\net40\FontAwesome.WPF.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialDesignColors, Version=1.2.7.1979, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.2.7\lib\net45\MaterialDesignColors.dll</HintPath>
     </Reference>
@@ -73,6 +76,9 @@
     </Compile>
     <Compile Include="UI\Category\CategoryPage.xaml.cs">
       <DependentUpon>CategoryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Category\CreateCategoryForm.xaml.cs">
+      <DependentUpon>CreateCategoryForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Dashboard\DashboardForm.xaml.cs">
       <DependentUpon>DashboardForm.xaml</DependentUpon>
@@ -128,6 +134,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="UI\Category\CategoryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Category\CreateCategoryForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

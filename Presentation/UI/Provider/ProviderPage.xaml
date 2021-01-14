@@ -57,9 +57,9 @@
                                 <ColumnDefinition Width="2*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="0" FontSize="20" Text="{Binding ProviderId}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-                            <TextBlock Grid.Column="1" FontSize="20" Text="{Binding Name}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-                            <TextBlock Grid.Column="2" FontSize="20" Text="{Binding Ruc}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Grid.Column="0" FontSize="20" Text="{Binding ProviderId}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Grid.Column="1" FontSize="20" Text="{Binding Name}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Grid.Column="2" FontSize="20" Text="{Binding Ruc}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
                             <TextBlock Grid.Column="3" FontSize="20" Text="{Binding Address}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center"></TextBlock>
                         </Grid>
                     </DataTemplate>

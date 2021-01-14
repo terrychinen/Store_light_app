@@ -41,3 +41,7 @@ C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Store\StorePage.g.
 C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Store\StorePage.baml
 C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Provider\ProviderPage.g.cs
 C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Provider\ProviderPage.baml
+C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Category\CreateCategoryForm.g.cs
+C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Category\CreateCategoryForm.baml
+C:\Users\Tery\source\repos\StoreApp\Presentation\bin\Debug\FontAwesome.WPF.dll
+C:\Users\Tery\source\repos\StoreApp\Presentation\bin\Debug\FontAwesome.WPF.xml

@@ -44,5 +44,12 @@ namespace Presentation.UI.Category
             }
         }
 
+
+
+        private void CreateCategory_Click(object sender, RoutedEventArgs e)
+        {
+            CreateCategoryForm createCategoryForm = new CreateCategoryForm();
+            createCategoryForm.ShowDialog();
+        }
     }
 }

@@ -53,9 +53,15 @@ namespace Presentation.SignIn
 
         private async void Login(string username, string password)
         {
+            spin.Spin = true;
+            spin.Opacity = 100;
+
             DashboardForm dashBoardForm = new DashboardForm();
             EmployeeController employeeController = new EmployeeController();
             var login = await employeeController.SignIn(username, password);
+
+            spin.Opacity = 0;
+            spin.Spin = false;
 
             if (login["ok"] == true)
             {
