@@ -1,0 +1,13 @@
+C:\Users\Tery\source\repos\StoreApp\Domain\obj\Debug\Domain.csprojAssemblyReference.cache
+C:\Users\Tery\source\repos\StoreApp\Domain\obj\Debug\Domain.csproj.CoreCompileInputs.cache
+C:\Users\Tery\source\repos\StoreApp\Domain\bin\Debug\Domain.dll
+C:\Users\Tery\source\repos\StoreApp\Domain\bin\Debug\Domain.pdb
+C:\Users\Tery\source\repos\StoreApp\Domain\bin\Debug\DataAccess.dll
+C:\Users\Tery\source\repos\StoreApp\Domain\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Tery\source\repos\StoreApp\Domain\bin\Debug\RestSharp.dll
+C:\Users\Tery\source\repos\StoreApp\Domain\bin\Debug\DataAccess.pdb
+C:\Users\Tery\source\repos\StoreApp\Domain\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Tery\source\repos\StoreApp\Domain\bin\Debug\RestSharp.xml
+C:\Users\Tery\source\repos\StoreApp\Domain\obj\Debug\Domain.csproj.CopyComplete
+C:\Users\Tery\source\repos\StoreApp\Domain\obj\Debug\Domain.dll
+C:\Users\Tery\source\repos\StoreApp\Domain\obj\Debug\Domain.pdb
