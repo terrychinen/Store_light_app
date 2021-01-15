@@ -23,24 +23,80 @@ namespace Presentation.UI.Provider
     /// </summary>
     public partial class ProviderPage : Page
     {
+        ProviderController providerController;
+        List<ProviderModel> providerList;
+
         public ProviderPage()
         {
             InitializeComponent();
 
             LoadProviders();
+
+            rb_name.IsChecked = true;
         }
 
         private async void LoadProviders()
         {
-            ProviderController providerController = new ProviderController();
+            providerController = new ProviderController();
 
             var dataResponse = await providerController.GetProviders(UserData.getToken().TokenKey, 0, 1);
 
 
             if (dataResponse["ok"])
             {
-                List<ProviderModel> providerList = dataResponse["result"].ProviderList;
+                providerList = dataResponse["result"].ProviderList;
                 providerListBox.ItemsSource = providerList;
+            }
+        }
+
+        private void CreateProvider_Click(object sender, RoutedEventArgs e)
+        {
+            CreateProviderForm createProviderForm = new CreateProviderForm();
+            createProviderForm.ShowDialog();
+            LoadProviders();
+        }
+
+        private void Search_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            int radioActive = 1;
+            bool rbId = rb_id.IsChecked.Value; // rbID=true (0)
+            bool rbName = rb_name.IsChecked.Value; //rbName=true (1)
+            bool rbRuc = rb_ruc.IsChecked.Value; //rRuc=true (2)
+            bool rbAddress = rb_address.IsChecked.Value; //rbAddress=true (3)
+            bool rbPhone = rb_phone.IsChecked.Value; //rbPhone=true (4)
+
+            if (rbId)
+            {
+                radioActive = 0;
+            }else if (rbName)
+            {
+                radioActive = 1;
+            }else if (rbRuc)
+            {
+                radioActive = 2;
+            }else if (rbAddress)
+            {
+                radioActive = 3;
+            }else if (rbPhone)
+            {
+                radioActive = 4;
+            }
+
+            string search = txt_search.Text.ToLower();
+            List<ProviderModel> providerListFiltered = providerController.SearchProviders(providerList, search, radioActive);
+            providerListBox.ItemsSource = providerListFiltered;
+        }
+
+
+        private void ProviderListBox_Click(object sender, MouseButtonEventArgs e)
+        {
+            if (sender != null)
+            {
+                ProviderModel provider = providerListBox.SelectedItem as ProviderModel;
+
+                UpdateProviderForm updateProviderForm = new UpdateProviderForm(provider);
+                updateProviderForm.ShowDialog();
+                LoadProviders();
             }
         }
     }

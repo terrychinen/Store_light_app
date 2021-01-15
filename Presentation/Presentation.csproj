@@ -80,23 +80,44 @@
     <Compile Include="UI\Category\CreateCategoryForm.xaml.cs">
       <DependentUpon>CreateCategoryForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Category\UpdateCategoryForm.xaml.cs">
+      <DependentUpon>UpdateCategoryForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Dashboard\DashboardForm.xaml.cs">
       <DependentUpon>DashboardForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Environment\CreateEnvironmentForm.xaml.cs">
+      <DependentUpon>CreateEnvironmentForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Environment\EnvironmentPage.xaml.cs">
       <DependentUpon>EnvironmentPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Environment\UpdateEnvironmentForm.xaml.cs">
+      <DependentUpon>UpdateEnvironmentForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Home\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Provider\CreateProviderForm.xaml.cs">
+      <DependentUpon>CreateProviderForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Provider\ProviderPage.xaml.cs">
       <DependentUpon>ProviderPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Provider\UpdateProviderForm.xaml.cs">
+      <DependentUpon>UpdateProviderForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\SignIn\SignInForm.xaml.cs">
       <DependentUpon>SignInForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Store\CreateStoreForm.xaml.cs">
+      <DependentUpon>CreateStoreForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Store\StorePage.xaml.cs">
       <DependentUpon>StorePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Store\UpdateStoreForm.xaml.cs">
+      <DependentUpon>UpdateStoreForm.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -141,7 +162,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\Category\UpdateCategoryForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Dashboard\DashboardForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Environment\CreateEnvironmentForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -149,7 +178,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\Environment\UpdateEnvironmentForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Home\HomePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Provider\CreateProviderForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -157,11 +194,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\Provider\UpdateProviderForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\SignIn\SignInForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\Store\CreateStoreForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Store\StorePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Store\UpdateStoreForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

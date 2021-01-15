@@ -65,6 +65,7 @@
     <Compile Include="Models\ProviderModel.cs" />
     <Compile Include="Models\purchaseOrder.cs" />
     <Compile Include="Models\Response.cs" />
+    <Compile Include="Models\Responses\CommodityResponse.cs" />
     <Compile Include="Models\Responses\EnvironmentResponse.cs" />
     <Compile Include="Models\Responses\ProviderResponse.cs" />
     <Compile Include="Models\Responses\StoreResponse.cs" />

@@ -58,7 +58,8 @@ namespace Domain.Controllers
             }
         }
 
-        public async Task<Dictionary<string, dynamic>> CreateCategory(string categoryName, int state, string token)
+
+        public async Task<Dictionary<string, dynamic>> CreateCategory(CategoryModel category, string token)
         {
             Dictionary<string, dynamic> data;
             CategoryAPI categoryAPI;
@@ -67,7 +68,7 @@ namespace Domain.Controllers
             {
                 data = new Dictionary<string, dynamic>();
                 categoryAPI = new CategoryAPI();
-                Dictionary<string, dynamic> response = await categoryAPI.CreateCategory(categoryName, state, token);
+                Dictionary<string, dynamic> response = await categoryAPI.CreateCategory(category.Name, category.State, token);
                 
                 Response dataResponse = JsonConvert.DeserializeObject<Response>(response["result"].Content);
 
@@ -86,6 +87,64 @@ namespace Domain.Controllers
 
                 return data;
             }
+        }
+
+
+        public async Task<Dictionary<string, dynamic>> UpdateCategory(CategoryModel category, string token)
+        {
+            Dictionary<string, dynamic> data;
+            CategoryAPI categoryAPI;
+
+            try
+            {
+                data = new Dictionary<string, dynamic>();
+                categoryAPI = new CategoryAPI();
+                Dictionary<string, dynamic> response = await categoryAPI.UpdateCategory(category.CategoryId, category.Name, category.State, token);
+
+                Response dataResponse = JsonConvert.DeserializeObject<Response>(response["result"].Content);
+
+                data.Add("ok", dataResponse.Ok);
+                data.Add("result", dataResponse.Message);
+
+                return data;
+            }
+            catch (Exception error)
+            {
+                data = new Dictionary<string, dynamic>
+                {
+                    { "ok", false },
+                    { "result", error }
+                };
+
+                return data;
+            }
+        }
+
+
+
+        public List<CategoryModel> SearchCategories(List<CategoryModel> categoryList, string search, int radioActive)
+        {
+            List<CategoryModel> categoryListFiltered = new List<CategoryModel>();
+
+            for (int i = 0; i < categoryList.Count(); i++)
+            {
+                if(radioActive == 1)
+                {
+                    if (categoryList[i].Name.ToLower().Contains(search.ToLower()))
+                    {
+                        categoryListFiltered.Add(categoryList[i]);
+                    }
+                } else if(radioActive == 0)
+                {
+                    if (categoryList[i].CategoryId.ToString().Contains(search))
+                    {
+                        categoryListFiltered.Add(categoryList[i]);
+                    }
+                }
+                
+            }          
+
+            return categoryListFiltered;
         }
     }
 }

@@ -76,5 +76,40 @@ namespace DataAccess.Api
             }
         }
 
+        public async Task<Dictionary<string, dynamic>> UpdateCategory(int categoryID, string categoryName, int state, string token)
+        {
+            Dictionary<string, dynamic> data;
+
+            try
+            {
+                data = new Dictionary<string, dynamic>();
+
+                var url = Connection.CONNECTION + "/category/" + categoryID;
+                var client = new RestClient(url);
+
+                var request = new RestRequest(Method.PUT);
+                request.AddHeader("token", token);
+                request.AddParameter("application/x-www-form-urlencoded", $"name={categoryName}&state={state}", ParameterType.RequestBody);
+
+                IRestResponse response = await client.ExecuteAsync(request);
+
+                data.Add("ok", true);
+                data.Add("result", response);
+
+                return data;
+            }
+            catch (Exception error)
+            {
+                data = new Dictionary<string, dynamic>
+                {
+                    { "ok", false },
+                    { "result", error }
+                };
+
+                return data;
+            }
+        }
+
+
     }
 }

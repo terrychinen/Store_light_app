@@ -45,3 +45,17 @@ C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Category\CreateCat
 C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Category\CreateCategoryForm.baml
 C:\Users\Tery\source\repos\StoreApp\Presentation\bin\Debug\FontAwesome.WPF.dll
 C:\Users\Tery\source\repos\StoreApp\Presentation\bin\Debug\FontAwesome.WPF.xml
+C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Provider\CreateProviderForm.g.cs
+C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Provider\CreateProviderForm.baml
+C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Store\CreateStoreForm.g.cs
+C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Store\CreateStoreForm.baml
+C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Environment\CreateEnvironmentForm.g.cs
+C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Environment\CreateEnvironmentForm.baml
+C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Category\UpdateCategoryForm.g.cs
+C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Category\UpdateCategoryForm.baml
+C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Environment\UpdateEnvironmentForm.g.cs
+C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Store\UpdateStoreForm.g.cs
+C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Environment\UpdateEnvironmentForm.baml
+C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Store\UpdateStoreForm.baml
+C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Provider\UpdateProviderForm.g.cs
+C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Provider\UpdateProviderForm.baml

@@ -23,6 +23,9 @@ namespace Presentation.UI.Environment
     /// </summary>
     public partial class EnvironmentPage : Page
     {
+        EnvironmentController environmentController;
+        List<EnvironmentModel> environmentList;
+
         public EnvironmentPage()
         {
             InitializeComponent();
@@ -32,15 +35,55 @@ namespace Presentation.UI.Environment
 
         private async void LoadEnvironments()
         {
-            EnvironmentController environmentController = new EnvironmentController();
+            environmentController = new EnvironmentController();
 
             var dataResponse = await environmentController.GetEnviroments(UserData.getToken().TokenKey, 0, 1);
 
 
             if (dataResponse["ok"])
             {
-                List<EnvironmentModel> environmentList = dataResponse["result"].EnvironmentList;
+                environmentList = dataResponse["result"].EnvironmentList;
                 environmentListBox.ItemsSource = environmentList;
+            }
+        }
+
+        private void CreateEnvironment_Click(object sender, RoutedEventArgs e)
+        {
+            CreateEnvironmentForm createEnvironmentForm = new CreateEnvironmentForm();
+            createEnvironmentForm.ShowDialog();
+            LoadEnvironments();
+        }
+
+        private void Search_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            int radioActive = 1;
+            bool rbId = rb_id.IsChecked.Value; // rbID=true (0)
+            bool rbName = rb_name.IsChecked.Value; //rbName=true (1)
+
+            if (rbId)
+            {
+                radioActive = 0;
+            }
+            else if (rbName)
+            {
+                radioActive = 1;
+            }
+
+            string search = txt_search.Text.ToLower();
+            List<EnvironmentModel> environmentListFiltered = environmentController.SearchEnvironments(environmentList, search, radioActive);
+            environmentListBox.ItemsSource = environmentListFiltered;
+        }
+
+
+        private void EnvironmentListBox_Click(object sender, MouseButtonEventArgs e)
+        {
+            if (sender != null)
+            {
+                EnvironmentModel store = environmentListBox.SelectedItem as EnvironmentModel;
+
+                UpdateEnvironmentForm updateEnvironmentForm = new UpdateEnvironmentForm(store);
+                updateEnvironmentForm.ShowDialog();
+                LoadEnvironments();
             }
         }
     }

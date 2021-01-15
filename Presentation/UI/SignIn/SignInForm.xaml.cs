@@ -36,7 +36,7 @@ namespace Presentation.SignIn
 
             if (username.TrimEnd() == "" || password.TrimEnd() == "") 
             {
-                _ = MessageBox.Show("Por favor complete todos los campos!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Por favor complete todos los campos!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             } else
             {
                 Login(username, password);

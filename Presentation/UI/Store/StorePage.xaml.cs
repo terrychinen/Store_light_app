@@ -23,6 +23,9 @@ namespace Presentation.UI.Store
     /// </summary>
     public partial class StorePage : Page
     {
+        StoreController storeController;
+        List<StoreModel> storeList;
+
         public StorePage()
         {
             InitializeComponent();
@@ -32,16 +35,58 @@ namespace Presentation.UI.Store
 
         private async void LoadStores()
         {
-            StoreController storeController = new StoreController();
+            storeController = new StoreController();
 
             var dataResponse = await storeController.getStores(UserData.getToken().TokenKey, 0, 1);
 
 
             if (dataResponse["ok"])
             {
-                List<StoreModel> storeList = dataResponse["result"].StoreList;
+                storeList = dataResponse["result"].StoreList;
                 storeListBox.ItemsSource = storeList;
             }
         }
+
+        private void CreateStore_Click(object sender, RoutedEventArgs e)
+        {
+            CreateStoreForm createStoreForm = new CreateStoreForm();
+            createStoreForm.ShowDialog();
+            LoadStores();
+        }
+
+
+        private void Search_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            int radioActive = 1;
+            bool rbId = rb_id.IsChecked.Value; // rbID=true (0)
+            bool rbName = rb_name.IsChecked.Value; //rbName=true (1)
+
+            if (rbId)
+            {
+                radioActive = 0;
+            }
+            else if (rbName)
+            {
+                radioActive = 1;
+            }
+
+            string search = txt_search.Text.ToLower();
+            List<StoreModel> storeListFiltered = storeController.SearchStores(storeList, search, radioActive);
+            storeListBox.ItemsSource = storeListFiltered;
+        }
+
+
+        private void StoreListBox_Click(object sender, MouseButtonEventArgs e)
+        {
+            if (sender != null)
+            {
+                StoreModel store = storeListBox.SelectedItem as StoreModel;
+
+                UpdateStoreForm updateStoreForm = new UpdateStoreForm(store);
+                updateStoreForm.ShowDialog();
+                LoadStores();
+            }
+        }
+
     }
 }

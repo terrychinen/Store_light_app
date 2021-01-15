@@ -31,10 +31,14 @@ namespace Presentation.UI.Category
         private async void CreateCategory_Click(object sender, RoutedEventArgs e)
         {
             CategoryController categoryController = new CategoryController();
+            CategoryModel category = new CategoryModel();
 
             string categoryName = txt_category_name.Text;
 
-            var dataResponse = await categoryController.CreateCategory(categoryName, 1, UserData.getToken().TokenKey);
+            category.Name = categoryName;
+            category.State = 1;
+
+            var dataResponse = await categoryController.CreateCategory(category, UserData.getToken().TokenKey);
 
 
             if (dataResponse["ok"])

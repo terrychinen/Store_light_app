@@ -4,56 +4,76 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Presentation.UI.Store"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="StorePage">
 
     <Grid>
+
+
         <Grid.RowDefinitions>
-            <RowDefinition Height="4*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.9*"/><!-- Title -->
+            <RowDefinition Height="*"/><!-- Search-->
+            <RowDefinition Height="4*"/><!-- ListBox -->
+            <RowDefinition Height="*"/><!-- Create Button -->
         </Grid.RowDefinitions>
 
 
-        <!-- DATA GRID-->
-        <Grid Grid.Row="0">
+        <!-- TITLE -->
+        <Label Grid.Row="0" Content="ALMACENES" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <!-- ========= -->
+
+
+        <!-- SEARCH-->
+        <Grid Grid.Row="1" HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox x:Name="txt_search" Grid.Column="0" Margin="0, 20, 0, 10" Width="400" Height="30" HorizontalAlignment="Center"  materialDesign:HintAssist.Hint="Buscar" TextChanged="Search_TextChanged"></TextBox>
+            <RadioButton Content="ID" Name="rb_id" Grid.Column="1" Margin="50, 0, 0, 0"></RadioButton>
+            <RadioButton Content="Nombre" Name="rb_name" Grid.Column="2" IsChecked="True" Margin="50, 0, 0, 0"></RadioButton>
+        </Grid>
+        <!-- ========= -->
+
+
+
+        <!-- LISTBOX TEMPLATE -->
+        <Grid Grid.Row="2" Margin="0" PreviewMouseLeftButtonUp="StoreListBox_Click">
             <Grid.RowDefinitions>
-                <RowDefinition Height ="*" />
-                <RowDefinition Height ="*" />
-                <RowDefinition Height ="0.1*" />
-                <RowDefinition Height="5*" />
+                <RowDefinition Height =".18*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Label Grid.Row="0" Content="AMBIENTES" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
             <!-- CABECERA DEL LISTBOX -->
-            <Grid Grid.Row="1" Margin="0, 20, 0, 0">
+            <Grid Grid.Row="0" Margin="50, 0" Background="DarkGray">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Column="0" Content="ID" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <Label Grid.Column="1" Content="Nombre" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
+                <Label Grid.Column="0" Content="ID" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label Grid.Column="1" Content="Nombre" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Grid>
             <!-- ================================ -->
 
-            <Separator Grid.Row="2" Margin="100, 0, 100, 0"/>
 
-
-            <!-- DATA DEL LISTBOX -->
-            <ListBox Name="storeListBox" Grid.Row="3" HorizontalContentAlignment ="Stretch">
+            <!-- DATA OF LISTBOX -->
+            <ListBox Name="storeListBox" Grid.Row="1"  Margin="50, 0, 50, 0" HorizontalContentAlignment ="Stretch" Background="AliceBlue">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="2">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="0" FontSize="20" Text="{Binding StoreId}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <TextBlock Grid.Column="1" FontSize="20" Text="{Binding Name}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            <TextBlock Grid.Column="0" FontSize="20" Text="{Binding StoreId}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Grid.Column="1" FontSize="20" Text="{Binding Name}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
@@ -64,20 +84,17 @@
         </Grid>
         <!-- =============================== -->
 
-        
-        <!-- OPTIONS -->
-        <Grid Grid.Row="1" VerticalAlignment="Center">
+        <!-- Create Button -->
+        <Grid Grid.Row="3" VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Width="250" Height="50" Content="Nuevo"  Margin="10" />
-            <Button Grid.Column="1" Width="250" Height="50" Content="Actualizar"  Margin="10" />
+            <Button Grid.Column="0" Width="250" Height="50" Content="Nuevo" Margin="10" Click="CreateStore_Click"></Button>
+
         </Grid>
         <!-- =============================== -->
+        
 
     </Grid>
-    
-
 </Page>
