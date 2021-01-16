@@ -40,26 +40,33 @@ namespace Presentation.UI.Provider
             ProviderController providerController = new ProviderController();
             ProviderModel provider = new ProviderModel();
 
-            provider.Name = txt_provider_name.Text;
-            provider.Ruc = txt_ruc.Text;
-            provider.Address = txt_address.Text;
-            provider.Phone = txt_phone.Text;
-            provider.State = 1;
-
-
-            var dataResponse = await providerController.CreateProvider(provider, UserData.getToken().TokenKey);
-
-
-            if (dataResponse["ok"])
+            if (txt_provider_name.Text.Trim() != "")
             {
-                MessageBox.Show("El proveedor se creó correctamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
-                this.Close();
+                provider.Name = txt_provider_name.Text;
+                provider.Ruc = txt_ruc.Text;
+                provider.Address = txt_address.Text;
+                provider.Phone = txt_phone.Text;
+                provider.State = 1;
 
-            }
-            else
+
+                var dataResponse = await providerController.CreateProvider(provider, UserData.getToken().TokenKey);
+
+
+                if (dataResponse["ok"])
+                {
+                    MessageBox.Show("El proveedor se creó correctamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                    this.Close();
+
+                }
+                else
+                {
+                    MessageBox.Show("Error: " + dataResponse["result"], "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }else
             {
-                MessageBox.Show("Error: " + dataResponse["result"], "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Por favor complete el campo 'Nombre' !", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
         }
 
     }

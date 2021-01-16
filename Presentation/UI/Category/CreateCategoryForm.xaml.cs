@@ -33,23 +33,29 @@ namespace Presentation.UI.Category
             CategoryController categoryController = new CategoryController();
             CategoryModel category = new CategoryModel();
 
-            string categoryName = txt_category_name.Text;
-
-            category.Name = categoryName;
-            category.State = 1;
-
-            var dataResponse = await categoryController.CreateCategory(category, UserData.getToken().TokenKey);
-
-
-            if (dataResponse["ok"])
+           if(txt_category_name.Text.Trim() != "")
             {
-                MessageBox.Show("La categoría se creó correctamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
-                this.Close();
+                category.Name = txt_category_name.Text;
+                category.State = 1;
 
-            }else
+                var dataResponse = await categoryController.CreateCategory(category, UserData.getToken().TokenKey);
+
+
+                if (dataResponse["ok"])
+                {
+                    MessageBox.Show("La categoría se creó correctamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Error: " + dataResponse["result"], "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            } else
             {
-                MessageBox.Show("Error: " +dataResponse["result"], "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Por favor complete el campo 'Nombre' !", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
+
         }
     }
 }

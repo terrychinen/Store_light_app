@@ -33,23 +33,27 @@ namespace Presentation.UI.Environment
             EnvironmentController enviromentController = new EnvironmentController();
             EnvironmentModel environment = new EnvironmentModel();
 
-            string environmentName = txt_environment_name.Text;
-
-            environment.Name = environmentName;
-            environment.State = 1;
-
-            var dataResponse = await enviromentController.CreateEnvironment(environment, UserData.getToken().TokenKey);
-
-
-            if (dataResponse["ok"])
+            if (txt_environment_name.Text.Trim() != "")
             {
-                MessageBox.Show("El ambiente se creó correctamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
-                this.Close();
+                environment.Name = txt_environment_name.Text;
+                environment.State = 1;
 
-            }
-            else
+                var dataResponse = await enviromentController.CreateEnvironment(environment, UserData.getToken().TokenKey);
+
+
+                if (dataResponse["ok"])
+                {
+                    MessageBox.Show("El ambiente se creó correctamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                    this.Close();
+
+                }
+                else
+                {
+                    MessageBox.Show("Error: " + dataResponse["result"], "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }else
             {
-                MessageBox.Show("Error: " + dataResponse["result"], "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Por favor complete el campo 'Nombre' !", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

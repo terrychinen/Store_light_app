@@ -77,11 +77,11 @@ namespace Presentation.UI.Environment
 
         private void EnvironmentListBox_Click(object sender, MouseButtonEventArgs e)
         {
-            if (sender != null)
-            {
-                EnvironmentModel store = environmentListBox.SelectedItem as EnvironmentModel;
+            EnvironmentModel environment = environmentListBox.SelectedItem as EnvironmentModel;
 
-                UpdateEnvironmentForm updateEnvironmentForm = new UpdateEnvironmentForm(store);
+            if (environment != null)
+            {
+                UpdateEnvironmentForm updateEnvironmentForm = new UpdateEnvironmentForm(environment);
                 updateEnvironmentForm.ShowDialog();
                 LoadEnvironments();
             }

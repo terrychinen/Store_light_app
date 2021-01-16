@@ -42,22 +42,28 @@ namespace Presentation.UI.Store
             StoreController storeController = new StoreController();
             StoreModel store = new StoreModel();
 
-            store.StoreId = this.store.StoreId;
-            store.Name = txt_store_name.Text;
-            store.State = 1;
-
-            var dataResponse = await storeController.UpdateStore(store, UserData.getToken().TokenKey);
-
-
-            if (dataResponse["ok"])
+            if (txt_store_name.Text.Trim() != "")
             {
-                MessageBox.Show("El almacén se actualizó correctamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
-                this.Close();
+                store.StoreId = this.store.StoreId;
+                store.Name = txt_store_name.Text;
+                store.State = 1;
 
-            }
-            else
+                var dataResponse = await storeController.UpdateStore(store, UserData.getToken().TokenKey);
+
+
+                if (dataResponse["ok"])
+                {
+                    MessageBox.Show("El almacén se actualizó correctamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                    this.Close();
+
+                }
+                else
+                {
+                    MessageBox.Show("Error: " + dataResponse["result"], "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }else
             {
-                MessageBox.Show("Error: " + dataResponse["result"], "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Por favor complete el campo 'Nombre' !", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

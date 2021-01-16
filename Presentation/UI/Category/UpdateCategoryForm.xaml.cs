@@ -34,10 +34,7 @@ namespace Presentation.UI.Category
             InitializeComponent();
             this.category = category;
 
-            if(category.Name != null || category.Name != "")
-            {
-                txt_category_name.Text = category.Name;
-            }
+            txt_category_name.Text = category.Name;
         }
 
         private async void UpdateCategory_Click(object sender, RoutedEventArgs e)
@@ -45,25 +42,30 @@ namespace Presentation.UI.Category
             CategoryController categoryController = new CategoryController();
             CategoryModel category = new CategoryModel();
 
-            string categoryName = txt_category_name.Text;
-
-            category.CategoryId = this.category.CategoryId;
-            category.Name = categoryName;
-            category.State = 1;
-
-            var dataResponse = await categoryController.UpdateCategory(category, UserData.getToken().TokenKey);
-
-
-            if (dataResponse["ok"])
+            if (txt_category_name.Text.Trim() != "")
             {
-                MessageBox.Show("La categoría se actualizó correctamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
-                this.Close();
+                category.CategoryId = this.category.CategoryId;
+                category.Name = txt_category_name.Text;
+                category.State = 1;
 
-            }
-            else
+                var dataResponse = await categoryController.UpdateCategory(category, UserData.getToken().TokenKey);
+
+
+                if (dataResponse["ok"])
+                {
+                    MessageBox.Show("La categoría se actualizó correctamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                    this.Close();
+
+                }
+                else
+                {
+                    MessageBox.Show("Error: " + dataResponse["result"], "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }else
             {
-                MessageBox.Show("Error: " + dataResponse["result"], "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Por favor complete el campo 'Nombre' !", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
         }
     }
 }

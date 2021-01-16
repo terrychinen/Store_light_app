@@ -90,10 +90,10 @@ namespace Presentation.UI.Provider
 
         private void ProviderListBox_Click(object sender, MouseButtonEventArgs e)
         {
-            if (sender != null)
-            {
-                ProviderModel provider = providerListBox.SelectedItem as ProviderModel;
+            ProviderModel provider = providerListBox.SelectedItem as ProviderModel;
 
+            if (provider != null)
+            {
                 UpdateProviderForm updateProviderForm = new UpdateProviderForm(provider);
                 updateProviderForm.ShowDialog();
                 LoadProviders();

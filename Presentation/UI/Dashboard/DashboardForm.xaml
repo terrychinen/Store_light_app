@@ -18,70 +18,89 @@
 
         <StackPanel Background="#FF363636" Grid.Column="0">
             <Grid Height="150" Background="Gray" />
-            <ListView>
 
-                <ListViewItem Selected="Home_Click">
+            <ListView>
+                               
+                
+                <ListViewItem Name="home_item" Selected="Home_Click" >
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="Home" Margin="10" Foreground="White" />
                         <TextBlock Text="INICIO" Foreground="White" VerticalAlignment="Center" Margin="10" />
                     </StackPanel>
                 </ListViewItem>
 
-                <ListViewItem Selected="Category_Click">
+                <ListViewItem Name="commodity_store_item" Selected="CommodityStore_Click">
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="ViewDashboard" Margin="10" Foreground="White" />
-                        <TextBlock Text="CATEGORÍA" Foreground="White" VerticalAlignment="Center" Margin="10" />
+                        <TextBlock Text="ASOCIAR MERCANCÍA - ALMACÉN" Foreground="White" VerticalAlignment="Center" Margin="10" />
                     </StackPanel>
                 </ListViewItem>
-
-                <ListViewItem Selected="Provider_Click">
-                    <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="Store24Hour" Margin="10" Foreground="White" />
-                        <TextBlock Text="PROVEEDOR" Foreground="White" VerticalAlignment="Center" Margin="10" />
-                    </StackPanel>
-                </ListViewItem>
-
-                <ListViewItem Selected="Environment_Click">
-                    <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="Dropbox" Margin="10" Foreground="White" />
-                        <TextBlock Text="MERCANCÍA" Foreground="White" VerticalAlignment="Center" Margin="10" />
-                    </StackPanel>
-                </ListViewItem>
-
-                <ListViewItem Selected="Store_Click">
-                    <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="Store" Margin="10" Foreground="White" />
-                        <TextBlock Text="ALMACÉN" Foreground="White" VerticalAlignment="Center" Margin="10" />
-                    </StackPanel>
-                </ListViewItem>
-
-                <ListViewItem Selected="Environment_Click">
-                    <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="HomeExportOutline" Margin="10" Foreground="White" />
-                        <TextBlock Text="AMBIENTE" Foreground="White" VerticalAlignment="Center" Margin="10" />
-                    </StackPanel>
-                </ListViewItem>
-
-                <ListViewItem>
-                    <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="CartPlus" Margin="10" Foreground="White" />
-                        <TextBlock Text="INGRESAR STOCK" Foreground="White" VerticalAlignment="Center" Margin="10" />
-                    </StackPanel>
-                </ListViewItem>
-
-                <ListViewItem>
-                    <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="FormSelect" Margin="10" Foreground="White" />
-                        <TextBlock Text="ÓRDEN DE PEDIDO" Foreground="White" VerticalAlignment="Center" Margin="10" />
-                    </StackPanel>
-                </ListViewItem>
-
+               
+               
             </ListView>
+
+
+            <Expander Header="CREAR - EDITAR" Foreground="White"  Background="#FF363636" MouseLeftButtonUp="Expander_MouseLeftButtonUp">
+                <ListView Margin="25, 0, 0, 0">
+
+
+                    <ListViewItem Name="commodity_item" Selected="Commodity_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Dropbox" Margin="10" Foreground="White" />
+                            <TextBlock Text="MERCANCÍA" Foreground="White" VerticalAlignment="Center" Margin="10" />
+                        </StackPanel>
+                    </ListViewItem>
+
+                    <ListViewItem Name="category_item" Selected="Category_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="ViewDashboard" Margin="10" Foreground="White" />
+                            <TextBlock Text="CATEGORÍA" Foreground="White" VerticalAlignment="Center" Margin="10" />
+                        </StackPanel>
+                    </ListViewItem>
+
+                    <ListViewItem Name="provider_item" Selected="Provider_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Store24Hour" Margin="10" Foreground="White" />
+                            <TextBlock Text="PROVEEDOR" Foreground="White" VerticalAlignment="Center" Margin="10" />
+                        </StackPanel>
+                    </ListViewItem>
+
+                    <ListViewItem Name="employee_item" Selected="Employee_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="User" Margin="10" Foreground="White" />
+                            <TextBlock Text="EMPLEADO" Foreground="White" VerticalAlignment="Center" Margin="10" />
+                        </StackPanel>
+                    </ListViewItem>
+
+                    <ListViewItem Name="store_item" Selected="Store_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Store" Margin="10" Foreground="White" />
+                            <TextBlock Text="ALMACÉN" Foreground="White" VerticalAlignment="Center" Margin="10" />
+                        </StackPanel>
+                    </ListViewItem>
+
+                    <ListViewItem Name="environment_item" Selected="Environment_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="HomeExportOutline" Margin="10" Foreground="White" />
+                            <TextBlock Text="AMBIENTE" Foreground="White" VerticalAlignment="Center" Margin="10" />
+                        </StackPanel>
+                    </ListViewItem>
+
+                </ListView>
+            </Expander>
+
+
+            <ListViewItem>
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="FormSelect" Margin="10" Foreground="White" />
+                    <TextBlock Text="ÓRDEN DE PEDIDO" Foreground="White" VerticalAlignment="Center" Margin="10" />
+                </StackPanel>
+            </ListViewItem>
+
+         
+
         </StackPanel>
 
         <DockPanel Grid.Column="1">
             <Frame Name="parent_frame" NavigationUIVisibility="Hidden" />
         </DockPanel>
-
     </Grid>
 </Window>

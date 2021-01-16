@@ -78,10 +78,10 @@ namespace Presentation.UI.Store
 
         private void StoreListBox_Click(object sender, MouseButtonEventArgs e)
         {
-            if (sender != null)
-            {
-                StoreModel store = storeListBox.SelectedItem as StoreModel;
+            StoreModel store = storeListBox.SelectedItem as StoreModel;
 
+            if (store != null)
+            {
                 UpdateStoreForm updateStoreForm = new UpdateStoreForm(store);
                 updateStoreForm.ShowDialog();
                 LoadStores();

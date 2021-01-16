@@ -57,8 +57,8 @@ namespace Presentation.SignIn
             spin.Opacity = 100;
 
             DashboardForm dashBoardForm = new DashboardForm();
-            EmployeeController employeeController = new EmployeeController();
-            var login = await employeeController.SignIn(username, password);
+            AuthController authController = new AuthController();
+            var login = await authController.SignIn(username, password);
 
             spin.Opacity = 0;
             spin.Spin = false;

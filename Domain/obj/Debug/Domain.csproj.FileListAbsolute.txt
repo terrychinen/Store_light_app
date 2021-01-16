@@ -11,3 +11,8 @@ C:\Users\Tery\source\repos\StoreApp\Domain\bin\Debug\RestSharp.xml
 C:\Users\Tery\source\repos\StoreApp\Domain\obj\Debug\Domain.csproj.CopyComplete
 C:\Users\Tery\source\repos\StoreApp\Domain\obj\Debug\Domain.dll
 C:\Users\Tery\source\repos\StoreApp\Domain\obj\Debug\Domain.pdb
+C:\Users\Tery\source\repos\StoreApp\Domain\bin\Debug\MaterialDesignColors.dll
+C:\Users\Tery\source\repos\StoreApp\Domain\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\Tery\source\repos\StoreApp\Domain\bin\Debug\MaterialDesignColors.pdb
+C:\Users\Tery\source\repos\StoreApp\Domain\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\Users\Tery\source\repos\StoreApp\Domain\bin\Debug\MaterialDesignThemes.Wpf.xml

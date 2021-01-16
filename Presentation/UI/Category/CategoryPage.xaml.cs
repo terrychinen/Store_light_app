@@ -87,7 +87,7 @@ namespace Presentation.UI.Category
             {
                 CategoryModel category = categoryListBox.SelectedItem as CategoryModel;
 
-                if (sender != null || category.Name != "" || category.Name != null)
+                if (category != null)
                 {
                     UpdateCategoryForm updateCategoryForm = new UpdateCategoryForm(category);
                     updateCategoryForm.ShowDialog();

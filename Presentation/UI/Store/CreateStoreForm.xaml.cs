@@ -32,22 +32,31 @@ namespace Presentation.UI.Store
             StoreController storeController = new StoreController();
             StoreModel store = new StoreModel();
 
-            store.Name = txt_store_name.Text;
-            store.State = 1;
 
-            var dataResponse = await storeController.CreateStore(store, UserData.getToken().TokenKey);
-
-
-            if (dataResponse["ok"])
+            if (txt_store_name.Text.Trim() != "")
             {
-                MessageBox.Show("El almacén se creó correctamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
-                this.Close();
+                store.Name = txt_store_name.Text;
+                store.State = 1;
 
-            }
-            else
+                var dataResponse = await storeController.CreateStore(store, UserData.getToken().TokenKey);
+
+
+                if (dataResponse["ok"])
+                {
+                    MessageBox.Show("El almacén se creó correctamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                    this.Close();
+
+                }
+                else
+                {
+                    MessageBox.Show("Error: " + dataResponse["result"], "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }else
             {
-                MessageBox.Show("Error: " + dataResponse["result"], "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Por favor complete el campo 'Nombre' !", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
+
         }
 
     }

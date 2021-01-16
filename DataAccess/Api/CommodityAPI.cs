@@ -78,7 +78,7 @@ namespace DataAccess.Api
         }
 
 
-        public async Task<Dictionary<string, dynamic>> UpdateCommodity(int commodityID, string commodityName, int categoryID, int state, string token)
+        public async Task<Dictionary<string, dynamic>> UpdateCommodity(int commodityID, int categoryID, string commodityName, int state, string token)
         {
             Dictionary<string, dynamic> data;
 
@@ -91,7 +91,7 @@ namespace DataAccess.Api
 
                 var request = new RestRequest(Method.PUT);
                 request.AddHeader("token", token);
-                request.AddParameter("application/x-www-form-urlencoded", $"name={commodityName}&category_id=${categoryID}&state={state}", ParameterType.RequestBody);
+                request.AddParameter("application/x-www-form-urlencoded", $"name={commodityName}&category_id={categoryID}&state={state}", ParameterType.RequestBody);
 
                 IRestResponse response = await client.ExecuteAsync(request);
 

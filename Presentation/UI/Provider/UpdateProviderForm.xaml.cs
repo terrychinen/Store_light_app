@@ -50,10 +50,7 @@ namespace Presentation.UI.Provider
 
         private async void UpdateProvider_Click(object sender, RoutedEventArgs e)
         {
-            if(txt_provider_name.Text.TrimEnd() == "")
-            {
-                MessageBox.Show("Por favor complete el campo 'Nombre' !", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }else
+            if(txt_provider_name.Text.TrimEnd() != "")
             {
                 ProviderController providerController = new ProviderController();
                 ProviderModel provider = new ProviderModel();
@@ -79,6 +76,10 @@ namespace Presentation.UI.Provider
                 {
                     MessageBox.Show("Error: " + dataResponse["result"], "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
+            }
+            else
+            {
+                MessageBox.Show("Por favor complete el campo 'Nombre' !", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }           
         }
     }

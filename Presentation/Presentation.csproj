@@ -83,8 +83,33 @@
     <Compile Include="UI\Category\UpdateCategoryForm.xaml.cs">
       <DependentUpon>UpdateCategoryForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Commodity\CommodityPage.xaml.cs">
+      <DependentUpon>CommodityPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Commodity\CreateCommodityForm.xaml.cs">
+      <DependentUpon>CreateCommodityForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Commodity\UpdateCommodityForm.xaml.cs">
+      <DependentUpon>UpdateCommodityForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Commodity_Store\CommodityStore_Page.xaml.cs">
+      <DependentUpon>CommodityStore_Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Dashboard\DashboardControl.xaml.cs">
+      <DependentUpon>DashboardControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Dashboard\DashboardForm.xaml.cs">
       <DependentUpon>DashboardForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Dashboard\DashboardModel.cs" />
+    <Compile Include="UI\Employee\CreateEmployeeForm.xaml.cs">
+      <DependentUpon>CreateEmployeeForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Employee\EmployeePage.xaml.cs">
+      <DependentUpon>EmployeePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Employee\UpdateEmployeeForm.xaml.cs">
+      <DependentUpon>UpdateEmployeeForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Environment\CreateEnvironmentForm.xaml.cs">
       <DependentUpon>CreateEnvironmentForm.xaml</DependentUpon>
@@ -166,7 +191,39 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\Commodity\CommodityPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Commodity\CreateCommodityForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Commodity\UpdateCommodityForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Commodity_Store\CommodityStore_Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Dashboard\DashboardControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Dashboard\DashboardForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Employee\CreateEmployeeForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Employee\EmployeePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Employee\UpdateEmployeeForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

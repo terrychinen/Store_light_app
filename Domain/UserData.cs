@@ -9,7 +9,7 @@ namespace Domain
 {
     public class UserData
     {
-        private static Employee employeeInstance = null;
+        private static EmployeeModel employeeInstance = null;
         private static Token tokenInstance = null;
 
         public static Token getToken()
@@ -24,12 +24,12 @@ namespace Domain
         }
 
 
-        public static Employee getEmployee()
+        public static EmployeeModel getEmployee()
         {
             return employeeInstance;
         }
 
-        public static Employee setEmployee(Employee employee)
+        public static EmployeeModel setEmployee(EmployeeModel employee)
         {
             employeeInstance = employee;
             return employeeInstance;
