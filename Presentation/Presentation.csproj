@@ -95,13 +95,9 @@
     <Compile Include="UI\Commodity_Store\CommodityStore_Page.xaml.cs">
       <DependentUpon>CommodityStore_Page.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Dashboard\DashboardControl.xaml.cs">
-      <DependentUpon>DashboardControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UI\Dashboard\DashboardForm.xaml.cs">
       <DependentUpon>DashboardForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Dashboard\DashboardModel.cs" />
     <Compile Include="UI\Employee\CreateEmployeeForm.xaml.cs">
       <DependentUpon>CreateEmployeeForm.xaml</DependentUpon>
     </Compile>
@@ -204,10 +200,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Commodity_Store\CommodityStore_Page.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Dashboard\DashboardControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

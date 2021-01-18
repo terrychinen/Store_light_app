@@ -73,5 +73,3 @@ C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Employee\EmployeeP
 C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Employee\UpdateEmployeeForm.baml
 C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Commodity_Store\CommodityStore_Page.g.cs
 C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Commodity_Store\CommodityStore_Page.baml
-C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Dashboard\DashboardControl.g.cs
-C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Dashboard\DashboardControl.baml

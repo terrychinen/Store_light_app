@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using Domain.Controllers;
 using Domain;
 using Domain.Models;
+using Domain.Models.DataGridModel;
 
 namespace Presentation.UI.Commodity_Store
 {
@@ -23,54 +24,68 @@ namespace Presentation.UI.Commodity_Store
     /// </summary>
     public partial class Commodity_Store_Page : Page
     {
-        CommodityController commodityController;
-        List<CommodityModel> commodityList;
+        StoreCommodityController storeCommodityController;
+        List<StoreCommodityModel> storeCommodityList;
 
         public Commodity_Store_Page()
         {
             InitializeComponent();
-            LoadCommodities();
+            LoadStoresCommodities();
         }
 
-        private async void LoadCommodities()
+        private async void LoadStoresCommodities()
         {
-            commodityController = new CommodityController();
+            storeCommodityController = new StoreCommodityController();
 
-            var dataResponse = await commodityController.GetCommodities(UserData.getToken().TokenKey, 0, 1);
+            var dataResponse = await storeCommodityController.GetStoresCommodities(UserData.getToken().TokenKey, 0, 1);
 
 
             if (dataResponse["ok"])
             {
-                commodityList = dataResponse["result"].CommodityList;
-                commodityListBox.ItemsSource = commodityList;
+                storeCommodityList = dataResponse["result"].StoreCommodityList;
+                List<StoreCommodityModel> storeCommodityNotRepeatList = new List<StoreCommodityModel>();
+                List<string> nameList = new List<string>();
+
+                for(int i=0; i<storeCommodityList.Count(); i++)
+                {
+                    StoreCommodityModel storeCommodity = storeCommodityList[i];
+
+
+                    if (nameList.Contains(storeCommodity.CommodityName))
+                    {
+                        int index = storeCommodityNotRepeatList.FindIndex((sc) =>
+                            storeCommodity.CommodityName.Contains(sc.CommodityName)
+                        );
+
+                        storeCommodityNotRepeatList[index].StoreName += ", " +storeCommodity.StoreName;
+                    }
+                    else
+                    {
+                        nameList.Add(storeCommodity.CommodityName);
+                        storeCommodityNotRepeatList.Add(storeCommodity);
+                    }              
+                }
+
+                /*           storeCommodityList.ForEach((storeCommodity) => {
+                               if (nameList.Contains(storeCommodity.CommodityName)) {
+
+                               }else
+                               {
+                                   nameList.Add(storeCommodity.CommodityName);
+                                   newList.Add(storeCommodity);
+                               }
+                           });    */
+
+                storeCommodityListBox.ItemsSource = storeCommodityNotRepeatList;
             }
         }
 
 
         private void Search_TextChanged(object sender, TextChangedEventArgs e)
         {
-            int radioActive = 1;
-            bool rbId = rb_id.IsChecked.Value; // rbID=true (0)
-            bool rbName = rb_name.IsChecked.Value; //rbName=true (1)
-            bool rbCategory = rb_category.IsChecked.Value; //rbCategory=true (2)
-
-
-            if (rbId)
-            {
-                radioActive = 0;
-            }
-            else if (rbName)
-            {
-                radioActive = 1;
-            }
-            else if (rbCategory)
-            {
-                radioActive = 2;
-            }
-
             string search = txt_search.Text.ToLower();
-            List<CommodityModel> commodityListFiltered = commodityController.SearchCommodities(commodityList, search, radioActive);
-            commodityListBox.ItemsSource = commodityListFiltered;
+           // List<CommodityModel> commodityListFiltered = storeCommodityController.SearchCommodities(commodityList, search, radioActive);
+            // commodityListBox.ItemsSource = commodityListFiltered;
         }
 
 
@@ -78,14 +93,14 @@ namespace Presentation.UI.Commodity_Store
         {
             try
             {
-                CommodityModel commodity = commodityListBox.SelectedItem as CommodityModel;
+                CommodityModel commodity = storeCommodityListBox.SelectedItem as CommodityModel;
 
                 if (commodity != null)
                 {
 /*                    await LoadCategories();
                     UpdateCommodityForm updateCommodityForm = new UpdateCommodityForm(commodity, categoryList);
                     updateCommodityForm.ShowDialog();*/
-                    LoadCommodities();
+                    LoadStoresCommodities();
                 }
             }
             catch (Exception error)
