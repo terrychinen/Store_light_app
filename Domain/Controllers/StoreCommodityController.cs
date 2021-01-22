@@ -59,29 +59,16 @@ namespace Domain.Controllers
         }
 
 
-        public async Task<Dictionary<string, dynamic>> CreateStoreCommodity(List<StoreCommodityModel> storeCommodityList, string token)
+        public async Task<Dictionary<string, dynamic>> CreateStoreCommodity(StoreCommodityModel storeCommodity, string token)
         {
             Dictionary<string, dynamic> data;
             StoreCommodityAPI storeCommodityAPI;
-
-            string storeCommodityString = "";
-
-            for(int i=0; i< storeCommodityList.Count(); i++)
-            {
-                storeCommodityString += "store_id[" + i + "]=" + storeCommodityList[i] +
-                    "&commodity_id[" + i + "]=" + storeCommodityList[i].CommodityId +
-                    "&stock[" + i + "]=" + storeCommodityList[i].Stock +
-                    "&state[" + i + "]=" + storeCommodityList[i].State +
-                    "&";
-            }
-
-            storeCommodityString.Remove(storeCommodityString.Length - 1);
 
             try
             {
                 data = new Dictionary<string, dynamic>();
                 storeCommodityAPI = new StoreCommodityAPI();
-                Dictionary<string, dynamic> response = await storeCommodityAPI.CreateStoreCommodity(storeCommodityString, token);
+                Dictionary<string, dynamic> response = await storeCommodityAPI.CreateStoreCommodity(storeCommodity.StoreId, storeCommodity.CommodityId, storeCommodity.Stock, storeCommodity.State, token);
 
                 Response dataResponse = JsonConvert.DeserializeObject<Response>(response["result"].Content);
 
@@ -103,5 +90,69 @@ namespace Domain.Controllers
         }
 
 
+        public async Task<Dictionary<string, dynamic>> UpdateStoreCommodity(StoreCommodityModel storeCommodity, string token)
+        {
+            Dictionary<string, dynamic> data;
+            StoreCommodityAPI storeCommodityAPI;
+
+            try
+            {
+                data = new Dictionary<string, dynamic>();
+                storeCommodityAPI = new StoreCommodityAPI();
+                Dictionary<string, dynamic> response = await storeCommodityAPI.UpdateStoreCommodity(storeCommodity.StoreId, storeCommodity.CommodityId, storeCommodity.Stock, storeCommodity.State, token);
+
+                Response dataResponse = JsonConvert.DeserializeObject<Response>(response["result"].Content);
+
+                data.Add("ok", dataResponse.Ok);
+                data.Add("result", dataResponse.Message);
+
+                return data;
+            }
+            catch (Exception error)
+            {
+                data = new Dictionary<string, dynamic>
+                {
+                    { "ok", false },
+                    { "result", error }
+                };
+
+                return data;
+            }
+        }
+
+
+
+        public List<StoreCommodityModel> SearchStoreCommodity(List<StoreCommodityModel> storeCommodityList, string search, int radioActive)
+        {
+            List<StoreCommodityModel> storeCommodityListFiltered = new List<StoreCommodityModel>();
+
+            for (int i = 0; i < storeCommodityList.Count(); i++)
+            {
+                if (radioActive == 1)
+                {
+                    if (storeCommodityList[i].CommodityName.ToLower().Contains(search.ToLower()))
+                    {
+                        storeCommodityListFiltered.Add(storeCommodityList[i]);
+                    }
+                }
+                else if (radioActive == 0)
+                {
+                    if (storeCommodityList[i].CommodityId.ToString().Contains(search))
+                    {
+                        storeCommodityListFiltered.Add(storeCommodityList[i]);
+                    }
+                }
+                else if (radioActive == 2)
+                {
+                    if (storeCommodityList[i].StoreName.ToLower().ToString().Contains(search.ToLower()))
+                    {
+                        storeCommodityListFiltered.Add(storeCommodityList[i]);
+                    }
+                }
+
+            }
+
+            return storeCommodityListFiltered;
+        }
     }
 }

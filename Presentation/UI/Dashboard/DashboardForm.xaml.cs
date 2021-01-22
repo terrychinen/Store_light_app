@@ -22,6 +22,7 @@ using Presentation.UI.Store;
 using Presentation.UI.Commodity;
 using Presentation.UI.Employee;
 using Presentation.UI.Commodity_Store;
+using Presentation.UI.Order;
 
 namespace Presentation.UI.Dashboard
 {
@@ -51,6 +52,7 @@ namespace Presentation.UI.Dashboard
                 UserData.setToken(refreshToken["result"]);
             }
 
+            purchase_order_item.IsSelected = false;
             CategoryPage categoryPage = new CategoryPage();
             parent_frame.Navigate(categoryPage);
         }
@@ -63,9 +65,11 @@ namespace Presentation.UI.Dashboard
                  UserData.setToken(refreshToken["result"]);
              }
 
+            purchase_order_item.IsSelected = false;
             CommodityPage commodityPage = new CommodityPage();
             parent_frame.Navigate(commodityPage);
          }
+
 
          private async void Environment_Click(object sender, RoutedEventArgs e)
          {
@@ -75,6 +79,7 @@ namespace Presentation.UI.Dashboard
                  UserData.setToken(refreshToken["result"]);
              }
 
+            purchase_order_item.IsSelected = false;
             EnvironmentPage environmentPage = new EnvironmentPage();
             parent_frame.Navigate(environmentPage);
          }
@@ -88,6 +93,7 @@ namespace Presentation.UI.Dashboard
                  UserData.setToken(refreshToken["result"]);
              }
 
+            purchase_order_item.IsSelected = false;
             StorePage storePage = new StorePage();
             parent_frame.Navigate(storePage);
          }
@@ -100,7 +106,8 @@ namespace Presentation.UI.Dashboard
                  var refreshToken = await tokenController.RefreshToken(UserData.getToken(), UserData.getEmployee().EmployeeId);
                  UserData.setToken(refreshToken["result"]);
              }
-            
+
+            purchase_order_item.IsSelected = false;
             ProviderPage providerPage = new ProviderPage();
             parent_frame.Navigate(providerPage);
          }
@@ -114,6 +121,7 @@ namespace Presentation.UI.Dashboard
                  UserData.setToken(refreshToken["result"]);
              }
 
+            purchase_order_item.IsSelected = false;
             EmployeePage employeePage = new EmployeePage();
             parent_frame.Navigate(employeePage);
          }
@@ -128,6 +136,8 @@ namespace Presentation.UI.Dashboard
                 UserData.setToken(refreshToken["result"]);
             }
 
+            purchase_order_item.IsSelected = false;
+            commodity_store_item.IsSelected = false;
             cleanSelectSubItems();
 
             HomePage homePage = new HomePage();
@@ -144,12 +154,30 @@ namespace Presentation.UI.Dashboard
                  UserData.setToken(refreshToken["result"]);
              }
 
+            home_item.IsSelected = false;
+            purchase_order_item.IsSelected = false;
             cleanSelectSubItems();
 
             Commodity_Store_Page commodityStorePage = new Commodity_Store_Page();
             parent_frame.Navigate(commodityStorePage);
          }
 
+
+        private async void PurchaseOrder_Click(object sender, RoutedEventArgs e)
+        {
+            if (!ValidateToken())
+            {
+                var refreshToken = await tokenController.RefreshToken(UserData.getToken(), UserData.getEmployee().EmployeeId);
+                UserData.setToken(refreshToken["result"]);
+            }
+
+            commodity_store_item.IsSelected = false;
+            home_item.IsSelected = false; 
+            cleanSelectSubItems();
+
+            OrderPage orderPage = new OrderPage();
+            parent_frame.Navigate(orderPage);
+        }
 
 
         private void cleanSelectSubItems()
@@ -163,6 +191,8 @@ namespace Presentation.UI.Dashboard
         }
 
 
+
+
         private bool ValidateToken()
         {
             return true;
@@ -172,6 +202,7 @@ namespace Presentation.UI.Dashboard
         {
             commodity_store_item.IsSelected = false;
             home_item.IsSelected = false;
+            purchase_order_item.IsSelected = false;
         }
     }
 }

@@ -20,8 +20,8 @@
                     <PasswordBox x:Name="txt_password" Margin="15" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" materialDesign:HintAssist.Hint="clave"></PasswordBox>
                     
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Button Margin="10 40" Content="Salir" Click="ButtonSignInClose_Click"/>
-                        <Button Margin="10 40" Content="Ingresar" Click="ButtonSignInLogin_Click"/>
+                        <Button Margin="10 40" Name="btn_close"  Content="Salir" Click="ButtonSignInClose_Click"/>
+                        <Button Margin="10 40" Name="btn_signin" Content="Ingresar" Click="ButtonSignInLogin_Click"/>
                     </StackPanel>
 
                     <fa:ImageAwesome Icon="Spinner" Name="spin" Spin="False" Width="30" Height="30" Opacity="0" SpinDuration="4" />

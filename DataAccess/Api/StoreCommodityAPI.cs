@@ -42,7 +42,8 @@ namespace DataAccess.Api
             }
         }
 
-        public async Task<Dictionary<string, dynamic>> CreateStoreCommodity(string storeCommodityString, string token)
+
+        public async Task<Dictionary<string, dynamic>> CreateStoreCommodity(int storeID, int commodityID, double stock, int state, string token)
         {
             Dictionary<string, dynamic> data;
 
@@ -55,7 +56,7 @@ namespace DataAccess.Api
 
                 var request = new RestRequest(Method.POST);
                 request.AddHeader("token", token);
-                request.AddParameter("application/x-www-form-urlencoded", $"{storeCommodityString}", ParameterType.RequestBody);
+                request.AddParameter("application/x-www-form-urlencoded", $"store_id={storeID}&commodity_id={commodityID}&stock={stock}&state={state}", ParameterType.RequestBody);
 
                 IRestResponse response = await client.ExecuteAsync(request);
 
@@ -75,5 +76,41 @@ namespace DataAccess.Api
                 return data;
             }
         }
+
+
+        public async Task<Dictionary<string, dynamic>> UpdateStoreCommodity(int storeID, int commodityID, double stock, int state, string token)
+        {
+            Dictionary<string, dynamic> data;
+
+            try
+            {
+                data = new Dictionary<string, dynamic>();
+
+                var url = Connection.CONNECTION + "/store_commodity/";
+                var client = new RestClient(url);
+
+                var request = new RestRequest(Method.PUT);
+                request.AddHeader("token", token);
+                request.AddParameter("application/x-www-form-urlencoded", $"store_id={storeID}&commodity_id={commodityID}&stock={stock}&state={state}", ParameterType.RequestBody);
+
+                IRestResponse response = await client.ExecuteAsync(request);
+
+                data.Add("ok", true);
+                data.Add("result", response);
+
+                return data;
+            }
+            catch (Exception error)
+            {
+                data = new Dictionary<string, dynamic>
+                {
+                    { "ok", false },
+                    { "result", error }
+                };
+
+                return data;
+            }
+        }
+
     }
 }

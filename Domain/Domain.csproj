@@ -62,10 +62,10 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\EnvironmentController.cs" />
     <Compile Include="Controllers\ProviderController.cs" />
+    <Compile Include="Controllers\PurchaseOrderController.cs" />
     <Compile Include="Controllers\StoreCommodityController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Controllers\TokenController.cs" />
-    <Compile Include="Models\DataGridModel\StoreCommodityGrid.cs" />
     <Compile Include="Models\Responses\AuthResponse.cs" />
     <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\Responses\CategoryResponse.cs" />
@@ -75,12 +75,13 @@
     <Compile Include="Models\Input.cs" />
     <Compile Include="Models\Output.cs" />
     <Compile Include="Models\ProviderModel.cs" />
-    <Compile Include="Models\purchaseOrder.cs" />
+    <Compile Include="Models\PurchaseOrder.cs" />
     <Compile Include="Models\Response.cs" />
     <Compile Include="Models\Responses\CommodityResponse.cs" />
     <Compile Include="Models\Responses\EmployeeResponse.cs" />
     <Compile Include="Models\Responses\EnvironmentResponse.cs" />
     <Compile Include="Models\Responses\ProviderResponse.cs" />
+    <Compile Include="Models\Responses\PurchaseOrderResponse.cs" />
     <Compile Include="Models\Responses\StoreCommodityResponse.cs" />
     <Compile Include="Models\StoreCommodityModel.cs" />
     <Compile Include="Models\Responses\StoreResponse.cs" />

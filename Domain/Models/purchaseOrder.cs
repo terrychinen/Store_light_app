@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Models
 {
-    public class purchaseOrder
+    public class PurchaseOrder
     {
         private int purchaseOrderId; 
         private int providerId;

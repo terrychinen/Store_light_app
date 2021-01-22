@@ -95,6 +95,12 @@
     <Compile Include="UI\Commodity_Store\CommodityStore_Page.xaml.cs">
       <DependentUpon>CommodityStore_Page.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Commodity_Store\CreateStoreCommodityForm.xaml.cs">
+      <DependentUpon>CreateStoreCommodityForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Commodity_Store\UpdateStoreCommodityForm.xaml.cs">
+      <DependentUpon>UpdateStoreCommodityForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Dashboard\DashboardForm.xaml.cs">
       <DependentUpon>DashboardForm.xaml</DependentUpon>
     </Compile>
@@ -118,6 +124,9 @@
     </Compile>
     <Compile Include="UI\Home\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Order\OrderPage.xaml.cs">
+      <DependentUpon>OrderPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Provider\CreateProviderForm.xaml.cs">
       <DependentUpon>CreateProviderForm.xaml</DependentUpon>
@@ -203,6 +212,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\Commodity_Store\CreateStoreCommodityForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Commodity_Store\UpdateStoreCommodityForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Dashboard\DashboardForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -232,6 +249,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Home\HomePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Order\OrderPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

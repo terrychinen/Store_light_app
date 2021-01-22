@@ -78,9 +78,7 @@ namespace Presentation.UI.Store
 
         private void StoreListBox_Click(object sender, MouseButtonEventArgs e)
         {
-            StoreModel store = storeListBox.SelectedItem as StoreModel;
-
-            if (store != null)
+            if (storeListBox.SelectedItem is StoreModel store)
             {
                 UpdateStoreForm updateStoreForm = new UpdateStoreForm(store);
                 updateStoreForm.ShowDialog();

@@ -15,7 +15,6 @@ using System.Windows.Shapes;
 using Domain.Controllers;
 using Domain;
 using Domain.Models;
-using Domain.Models.DataGridModel;
 
 namespace Presentation.UI.Commodity_Store
 {
@@ -25,6 +24,8 @@ namespace Presentation.UI.Commodity_Store
     public partial class Commodity_Store_Page : Page
     {
         StoreCommodityController storeCommodityController;
+
+
         List<StoreCommodityModel> storeCommodityList;
 
         public Commodity_Store_Page()
@@ -32,6 +33,7 @@ namespace Presentation.UI.Commodity_Store
             InitializeComponent();
             LoadStoresCommodities();
         }
+
 
         private async void LoadStoresCommodities()
         {
@@ -42,41 +44,20 @@ namespace Presentation.UI.Commodity_Store
 
             if (dataResponse["ok"])
             {
-                storeCommodityList = dataResponse["result"].StoreCommodityList;
-                List<StoreCommodityModel> storeCommodityNotRepeatList = new List<StoreCommodityModel>();
-                List<string> nameList = new List<string>();
-
-                for(int i=0; i<storeCommodityList.Count(); i++)
+                storeCommodityList = dataResponse["result"].StoreCommodityList;     
+                
+                for(int i=0; i<storeCommodityList.Count; i++)
                 {
-                    StoreCommodityModel storeCommodity = storeCommodityList[i];
-
-
-                    if (nameList.Contains(storeCommodity.CommodityName))
+                    if(storeCommodityList[i].State == 1)
                     {
-                        int index = storeCommodityNotRepeatList.FindIndex((sc) =>
-                            storeCommodity.CommodityName.Contains(sc.CommodityName)
-                        );
-
-                        storeCommodityNotRepeatList[index].StoreName += ", " +storeCommodity.StoreName;
+                        storeCommodityList[i].StateString = "Activo";
+                    }else
+                    {
+                        storeCommodityList[i].StateString = "Inactivo";
                     }
-                    else
-                    {
-                        nameList.Add(storeCommodity.CommodityName);
-                        storeCommodityNotRepeatList.Add(storeCommodity);
-                    }              
                 }
 
-                /*           storeCommodityList.ForEach((storeCommodity) => {
-                               if (nameList.Contains(storeCommodity.CommodityName)) {
-
-                               }else
-                               {
-                                   nameList.Add(storeCommodity.CommodityName);
-                                   newList.Add(storeCommodity);
-                               }
-                           });    */
-
-                storeCommodityListBox.ItemsSource = storeCommodityNotRepeatList;
+                storeCommodityListBox.ItemsSource = storeCommodityList;
             }
         }
 
@@ -84,29 +65,58 @@ namespace Presentation.UI.Commodity_Store
         private void Search_TextChanged(object sender, TextChangedEventArgs e)
         {
             string search = txt_search.Text.ToLower();
-           // List<CommodityModel> commodityListFiltered = storeCommodityController.SearchCommodities(commodityList, search, radioActive);
-            // commodityListBox.ItemsSource = commodityListFiltered;
+
+            int radioActive = 1;
+            bool rbId = rb_id.IsChecked.Value; // rbID=true (0)
+            bool rbCommodityName = rb_commodity.IsChecked.Value; //rbCommodityName=true (1)
+            bool rbStoreName = rb_store.IsChecked.Value; //rbStore=true (2)
+
+
+            if (rbId)
+            {
+                radioActive = 0;
+            }
+            else if (rbCommodityName)
+            {
+                radioActive = 1;
+            }
+            else if (rbStoreName)
+            {
+                radioActive = 2;
+            }
+
+            List<StoreCommodityModel> storeCommodityListFiltered = storeCommodityController.SearchStoreCommodity(storeCommodityList, search, radioActive);
+            storeCommodityListBox.ItemsSource = storeCommodityListFiltered;
+
         }
 
 
-        private async void CommodityListBox_Click(object sender, MouseButtonEventArgs e)
+        private void CommodityListBox_Click(object sender, MouseButtonEventArgs e)
         {
             try
             {
-                CommodityModel commodity = storeCommodityListBox.SelectedItem as CommodityModel;
+                StoreCommodityModel storeCommodity = storeCommodityListBox.SelectedItem as StoreCommodityModel;
 
-                if (commodity != null)
-                {
-/*                    await LoadCategories();
-                    UpdateCommodityForm updateCommodityForm = new UpdateCommodityForm(commodity, categoryList);
-                    updateCommodityForm.ShowDialog();*/
+                if (storeCommodity != null)
+                {    
+                    UpdateCommodityStoreForm updateCommodityStoreForm = new UpdateCommodityStoreForm(storeCommodity);
+                    updateCommodityStoreForm.ShowDialog();
                     LoadStoresCommodities();
                 }
+                  
             }
             catch (Exception error)
             {
                 MessageBox.Show(error.Message.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+
+        private void CreateStoreCommodity_Click(object sender, RoutedEventArgs e)
+        {
+            CreateStoreCommodityForm createStoreCommodityForm = new CreateStoreCommodityForm();
+            createStoreCommodityForm.ShowDialog();
+            LoadStoresCommodities();
         }
     }
 }

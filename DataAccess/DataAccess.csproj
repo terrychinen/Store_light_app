@@ -54,6 +54,7 @@
     <Compile Include="Api\EmployeeAPI.cs" />
     <Compile Include="Api\EnvironmentAPI.cs" />
     <Compile Include="Api\ProviderAPI.cs" />
+    <Compile Include="Api\PurchaseOrderAPI.cs" />
     <Compile Include="Api\StoreAPI.cs" />
     <Compile Include="Api\StoreCommodityAPI.cs" />
     <Compile Include="Api\TokenAPI.cs" />

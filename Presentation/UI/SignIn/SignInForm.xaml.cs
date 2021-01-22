@@ -56,6 +56,9 @@ namespace Presentation.SignIn
             spin.Spin = true;
             spin.Opacity = 100;
 
+            btn_signin.IsEnabled = false;
+            btn_close.IsEnabled = false;
+
             DashboardForm dashBoardForm = new DashboardForm();
             AuthController authController = new AuthController();
             var login = await authController.SignIn(username, password);
@@ -76,6 +79,9 @@ namespace Presentation.SignIn
                 var message = login["result"];
                 _ = MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
+            btn_signin.IsEnabled = true;
+            btn_close.IsEnabled = true;
         }
 
 

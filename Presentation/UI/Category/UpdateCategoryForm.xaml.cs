@@ -33,7 +33,6 @@ namespace Presentation.UI.Category
         {
             InitializeComponent();
             this.category = category;
-
             txt_category_name.Text = category.Name;
         }
 

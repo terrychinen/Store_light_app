@@ -19,7 +19,7 @@
 
 
         <!-- TITLE -->
-        <Label Grid.Row="0" Content="ASOCIAR MERCANCÍA CON ALMACÉN" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Grid.Row="0" Content="ASOCIAR MERCANCÍA CON ALMACÉN" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <!-- ========= -->
 
 
@@ -27,10 +27,15 @@
         <Grid Grid.Row="1" HorizontalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <TextBox x:Name="txt_search" Grid.Column="0" Margin="0, 20, 0, 10" Width="400" Height="30" HorizontalAlignment="Center"  materialDesign:HintAssist.Hint="Buscar" TextChanged="Search_TextChanged"></TextBox>
-
+            <RadioButton Content="Mercancía ID" Name="rb_id" Grid.Column="1" Margin="50, 0, 0, 0"></RadioButton>
+            <RadioButton Content="Mercancía" Name="rb_commodity" Grid.Column="2" IsChecked="True" Margin="50, 0, 0, 0"></RadioButton>
+            <RadioButton Content="Almacén" Name="rb_store" Grid.Column="3" Margin="50, 0, 0, 0"></RadioButton>
         </Grid>
         <!-- ========= -->
 
@@ -47,14 +52,17 @@
             <Grid Grid.Row="0" Margin="50, 0" Background="DarkGray">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="2*"></ColumnDefinition>
-                    <ColumnDefinition Width="2*"></ColumnDefinition>
-                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Content="ID Mercancía" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <Label Grid.Column="1" Content="Nombre" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <Label Grid.Column="2" Content="Almacenes" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <Label Grid.Column="3" Content="Stock Total" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                
+                <Label Grid.Column="0" Content="ID Mercancía" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label Grid.Column="1" Content="Nombre" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label Grid.Column="2" Content="Almacenes" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label Grid.Column="3" Content="Stock" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label Grid.Column="4" Content="Estado" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Grid>
             <!-- ================================ -->
 
@@ -63,18 +71,20 @@
             <ListBox Name="storeCommodityListBox" Grid.Row="1"  Margin="50, 0, 50, 0" HorizontalContentAlignment ="Stretch" Background="AliceBlue" >
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid Margin="2">
+                        <Grid Margin="0, 2, 0, 9">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
-                                <ColumnDefinition Width="2*"></ColumnDefinition>
-                                <ColumnDefinition Width="2*"></ColumnDefinition>
-                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" FontSize="20" Text="{Binding CommodityId}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-                            <TextBlock Grid.Column="1" FontSize="20" Text="{Binding CommodityName}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-                            <TextBlock Grid.Column="2" FontSize="20" Text="{Binding StoreName}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-                            <TextBlock Grid.Column="3" FontSize="20" Text="{Binding StockTotal}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center">
-                            </TextBlock>
+                            
+                            <TextBlock Grid.Column="0" FontSize="18" Text="{Binding CommodityId}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Grid.Column="1" FontSize="18" Text="{Binding CommodityName}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Grid.Column="2" FontSize="18" Text="{Binding StoreName}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Grid.Column="3" FontSize="18" Text="{Binding Stock}" Margin="30, 0, 0, 0" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="4" FontSize="18" Text="{Binding StateString}" Margin="40, 0, 0, 0" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
@@ -91,7 +101,7 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Width="220" Height="40" Content="Nuevo" Margin="10"></Button>
+            <Button Grid.Column="0" Width="220" Height="40" Content="Nuevo" Margin="10" Click="CreateStoreCommodity_Click"></Button>
         </Grid>
         <!-- =============================== -->
         

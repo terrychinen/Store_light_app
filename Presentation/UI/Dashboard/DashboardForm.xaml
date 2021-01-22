@@ -88,14 +88,15 @@
             </Expander>
 
 
-            <ListViewItem>
-                <StackPanel Orientation="Horizontal">
-                    <materialDesign:PackIcon Kind="FormSelect" Margin="10" Foreground="White" />
-                    <TextBlock Text="ÓRDEN DE PEDIDO" Foreground="White" VerticalAlignment="Center" Margin="10" />
-                </StackPanel>
-            </ListViewItem>
+            <ListView>
+                <ListViewItem Name="purchase_order_item" Selected="PurchaseOrder_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="FormSelect" Margin="10" Foreground="White" />
+                        <TextBlock Text="ÓRDEN DE PEDIDO" Foreground="White" VerticalAlignment="Center" Margin="10" />
+                    </StackPanel>
+                </ListViewItem>
+            </ListView>
 
-         
 
         </StackPanel>
 

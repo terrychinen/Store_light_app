@@ -73,3 +73,9 @@ C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Employee\EmployeeP
 C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Employee\UpdateEmployeeForm.baml
 C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Commodity_Store\CommodityStore_Page.g.cs
 C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Commodity_Store\CommodityStore_Page.baml
+C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Commodity_Store\CreateStoreCommodityForm.g.cs
+C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Commodity_Store\CreateStoreCommodityForm.baml
+C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Commodity_Store\UpdateStoreCommodityForm.g.cs
+C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Commodity_Store\UpdateStoreCommodityForm.baml
+C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Order\OrderPage.g.cs
+C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Order\OrderPage.baml
