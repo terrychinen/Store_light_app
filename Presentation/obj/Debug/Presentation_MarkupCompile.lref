@@ -17,7 +17,12 @@ FC:\Users\Tery\source\repos\StoreApp\Presentation\UI\Environment\CreateEnvironme
 FC:\Users\Tery\source\repos\StoreApp\Presentation\UI\Environment\EnvironmentPage.xaml;;
 FC:\Users\Tery\source\repos\StoreApp\Presentation\UI\Environment\UpdateEnvironmentForm.xaml;;
 FC:\Users\Tery\source\repos\StoreApp\Presentation\UI\Home\HomePage.xaml;;
+FC:\Users\Tery\source\repos\StoreApp\Presentation\UI\Order\CreateOrderForm.xaml;;
+FC:\Users\Tery\source\repos\StoreApp\Presentation\UI\Order\EditDeleteCommodityQuantity.xaml;;
+FC:\Users\Tery\source\repos\StoreApp\Presentation\UI\Order\InsertCommodityQuantityForm.xaml;;
 FC:\Users\Tery\source\repos\StoreApp\Presentation\UI\Order\OrderPage.xaml;;
+FC:\Users\Tery\source\repos\StoreApp\Presentation\UI\Order\StateOrder\PendingOrderPage.xaml;;
+FC:\Users\Tery\source\repos\StoreApp\Presentation\UI\Order\UpdatePurchaseOrderForm.xaml;;
 FC:\Users\Tery\source\repos\StoreApp\Presentation\UI\Provider\CreateProviderForm.xaml;;
 FC:\Users\Tery\source\repos\StoreApp\Presentation\UI\Provider\ProviderPage.xaml;;
 FC:\Users\Tery\source\repos\StoreApp\Presentation\UI\Provider\UpdateProviderForm.xaml;;
@@ -25,4 +30,7 @@ FC:\Users\Tery\source\repos\StoreApp\Presentation\UI\SignIn\SignInForm.xaml;;
 FC:\Users\Tery\source\repos\StoreApp\Presentation\UI\Store\CreateStoreForm.xaml;;
 FC:\Users\Tery\source\repos\StoreApp\Presentation\UI\Store\StorePage.xaml;;
 FC:\Users\Tery\source\repos\StoreApp\Presentation\UI\Store\UpdateStoreForm.xaml;;
+FC:\Users\Tery\source\repos\StoreApp\Presentation\UI\Order\StateOrder\CancelOrderPage.xaml;;
+FC:\Users\Tery\source\repos\StoreApp\Presentation\UI\Order\StateOrder\ReceivedOrderPage.xaml;;
+FC:\Users\Tery\source\repos\StoreApp\Presentation\UI\Order\StateOrder\WaitingOrderPage.xaml;;
 

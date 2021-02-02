@@ -29,14 +29,11 @@
                 <ColumnDefinition Width="4*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <TextBox x:Name="txt_search" Grid.Column="0" Margin="0, 20, 0, 10" Width="400" Height="30" HorizontalAlignment="Center"  materialDesign:HintAssist.Hint="Buscar" TextChanged="Search_TextChanged"></TextBox>
             <RadioButton Content="ID" Name="rb_id" Grid.Column="1" Margin="50, 0, 0, 0"></RadioButton>
             <RadioButton Content="Nombre" Name="rb_name" Grid.Column="2" IsChecked="True" Margin="50, 0, 0, 0"></RadioButton>
-            <RadioButton Content="Categoría" Name="rb_category" Grid.Column="3" Margin="50, 0, 0, 0"></RadioButton>
-            
         </Grid>
         <!-- ========= -->
 

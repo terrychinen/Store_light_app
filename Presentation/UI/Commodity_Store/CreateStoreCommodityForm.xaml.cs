@@ -92,7 +92,7 @@ namespace Presentation.UI.Commodity_Store
 
             if (store == null || commodity == null)
             {
-                MessageBox.Show("Ingrese un almaén y mercancía válido", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Ingrese un almaén y una mercancía válida", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }else
             {
                 if (txt_stock.Text.Trim() != "")

@@ -23,6 +23,7 @@ using Presentation.UI.Commodity;
 using Presentation.UI.Employee;
 using Presentation.UI.Commodity_Store;
 using Presentation.UI.Order;
+using Presentation.UI.Order.StateOrder;
 
 namespace Presentation.UI.Dashboard
 {
@@ -52,7 +53,7 @@ namespace Presentation.UI.Dashboard
                 UserData.setToken(refreshToken["result"]);
             }
 
-            purchase_order_item.IsSelected = false;
+            cleanSelectOrderSubItems();
             CategoryPage categoryPage = new CategoryPage();
             parent_frame.Navigate(categoryPage);
         }
@@ -65,7 +66,7 @@ namespace Presentation.UI.Dashboard
                  UserData.setToken(refreshToken["result"]);
              }
 
-            purchase_order_item.IsSelected = false;
+            cleanSelectOrderSubItems();
             CommodityPage commodityPage = new CommodityPage();
             parent_frame.Navigate(commodityPage);
          }
@@ -79,7 +80,7 @@ namespace Presentation.UI.Dashboard
                  UserData.setToken(refreshToken["result"]);
              }
 
-            purchase_order_item.IsSelected = false;
+            cleanSelectOrderSubItems();
             EnvironmentPage environmentPage = new EnvironmentPage();
             parent_frame.Navigate(environmentPage);
          }
@@ -93,7 +94,7 @@ namespace Presentation.UI.Dashboard
                  UserData.setToken(refreshToken["result"]);
              }
 
-            purchase_order_item.IsSelected = false;
+            cleanSelectOrderSubItems();
             StorePage storePage = new StorePage();
             parent_frame.Navigate(storePage);
          }
@@ -107,8 +108,8 @@ namespace Presentation.UI.Dashboard
                  UserData.setToken(refreshToken["result"]);
              }
 
-            purchase_order_item.IsSelected = false;
-            ProviderPage providerPage = new ProviderPage();
+            cleanSelectOrderSubItems();
+             ProviderPage providerPage = new ProviderPage();
             parent_frame.Navigate(providerPage);
          }
 
@@ -121,8 +122,8 @@ namespace Presentation.UI.Dashboard
                  UserData.setToken(refreshToken["result"]);
              }
 
-            purchase_order_item.IsSelected = false;
-            EmployeePage employeePage = new EmployeePage();
+            cleanSelectOrderSubItems();
+             EmployeePage employeePage = new EmployeePage();
             parent_frame.Navigate(employeePage);
          }
 
@@ -136,6 +137,7 @@ namespace Presentation.UI.Dashboard
                 UserData.setToken(refreshToken["result"]);
             }
 
+            pending_order_item.IsSelected = false;
             purchase_order_item.IsSelected = false;
             commodity_store_item.IsSelected = false;
             cleanSelectSubItems();
@@ -154,8 +156,7 @@ namespace Presentation.UI.Dashboard
                  UserData.setToken(refreshToken["result"]);
              }
 
-            home_item.IsSelected = false;
-            purchase_order_item.IsSelected = false;
+            cleanSelectOrderSubItems();
             cleanSelectSubItems();
 
             Commodity_Store_Page commodityStorePage = new Commodity_Store_Page();
@@ -180,6 +181,72 @@ namespace Presentation.UI.Dashboard
         }
 
 
+        private async void PendingOrder_Click(object sender, RoutedEventArgs e)
+        {
+            if (!ValidateToken())
+            {
+                var refreshToken = await tokenController.RefreshToken(UserData.getToken(), UserData.getEmployee().EmployeeId);
+                UserData.setToken(refreshToken["result"]);
+            }
+
+            commodity_store_item.IsSelected = false;
+            home_item.IsSelected = false;
+            cleanSelectSubItems();
+
+            PendingOrderPage orderPage = new PendingOrderPage();
+            parent_frame.Navigate(orderPage);
+        }
+
+        private async void WaitingOrder_Click(object sender, RoutedEventArgs e)
+        {
+            if (!ValidateToken())
+            {
+                var refreshToken = await tokenController.RefreshToken(UserData.getToken(), UserData.getEmployee().EmployeeId);
+                UserData.setToken(refreshToken["result"]);
+            }
+
+            commodity_store_item.IsSelected = false;
+            home_item.IsSelected = false;
+            cleanSelectSubItems();
+
+            WaitingOrderPage orderPage = new WaitingOrderPage();
+            parent_frame.Navigate(orderPage);
+        }
+
+        private async void ReceivedOrder_Click(object sender, RoutedEventArgs e)
+        {
+            if (!ValidateToken())
+            {
+                var refreshToken = await tokenController.RefreshToken(UserData.getToken(), UserData.getEmployee().EmployeeId);
+                UserData.setToken(refreshToken["result"]);
+            }
+
+            commodity_store_item.IsSelected = false;
+            home_item.IsSelected = false;
+            cleanSelectSubItems();
+
+            ReceivedOrderPage orderPage = new ReceivedOrderPage();
+            parent_frame.Navigate(orderPage);
+        }
+
+        private async void CancelOrder_Click(object sender, RoutedEventArgs e)
+        {
+            if (!ValidateToken())
+            {
+                var refreshToken = await tokenController.RefreshToken(UserData.getToken(), UserData.getEmployee().EmployeeId);
+                UserData.setToken(refreshToken["result"]);
+            }
+
+            commodity_store_item.IsSelected = false;
+            home_item.IsSelected = false;
+            cleanSelectSubItems();
+
+            CancelOrderPage orderPage = new CancelOrderPage();
+            parent_frame.Navigate(orderPage);
+        }
+
+
+
         private void cleanSelectSubItems()
         {
             employee_item.IsSelected = false;
@@ -190,6 +257,16 @@ namespace Presentation.UI.Dashboard
             commodity_item.IsSelected = false;
         }
 
+
+        private void cleanSelectOrderSubItems()
+        {
+            cancel_order_item.IsSelected = false;
+            received_order_item.IsSelected = false;
+            waiting_order_item.IsSelected = false;
+            pending_order_item.IsSelected = false;
+            purchase_order_item.IsSelected = false;
+            commodity_store_item.IsSelected = false;
+        }
 
 
 

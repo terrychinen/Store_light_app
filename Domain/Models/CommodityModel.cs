@@ -15,6 +15,11 @@ namespace Domain.Models
         private string name;
         private int state;
 
+        private double quantity;
+        private double unitPrice;
+        private double totalPrice;
+        private int statePurchaseOrderDetail;
+
         [JsonProperty("commodity_id")]
         public int CommodityId { get => commodityId; set => commodityId = value; }
         [JsonProperty("category_id")]
@@ -23,5 +28,16 @@ namespace Domain.Models
         public string CategoryName { get => categoryName; set => categoryName = value; }
         public string Name { get => name; set => name = value; }
         public int State { get => state; set => state = value; }
+
+
+        [JsonProperty("quantity")]
+        public double Quantity { get => quantity; set => quantity = value; }
+
+        [JsonProperty("unit_price")]
+        public double UnitPrice { get => unitPrice; set => unitPrice = value; }
+
+        [JsonProperty("total_price")]
+        public double TotalPrice { get => totalPrice; set => totalPrice = value; }
+        public int StatePurchaseOrderDetail { get => statePurchaseOrderDetail; set => statePurchaseOrderDetail = value; }
     }
 }

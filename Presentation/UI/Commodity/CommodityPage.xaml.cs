@@ -50,11 +50,11 @@ namespace Presentation.UI.Commodity
         }
 
 
-        private async Task LoadCategories()
+        private void LoadCategories()
         {
             categoryController = new CategoryController();
 
-            var dataResponse = await categoryController.GetCategories(UserData.getToken().TokenKey, 0, 1);
+            var dataResponse = categoryController.GetCategories(UserData.getToken().TokenKey, 0, 1);
 
 
             if (dataResponse["ok"])
@@ -64,9 +64,9 @@ namespace Presentation.UI.Commodity
         }
 
 
-        private async void CreateCommodity_Click(object sender, RoutedEventArgs e)
+        private void CreateCommodity_Click(object sender, RoutedEventArgs e)
         {
-            await LoadCategories();
+            LoadCategories();
             CreateCommodityForm createCommodityForm = new CreateCommodityForm(categoryList);
             createCommodityForm.ShowDialog();
             LoadCommodities();
@@ -75,10 +75,10 @@ namespace Presentation.UI.Commodity
 
         private void Search_TextChanged(object sender, TextChangedEventArgs e)
         {
+            string search = txt_search.Text.ToLower();
             int radioActive = 1;
             bool rbId = rb_id.IsChecked.Value; // rbID=true (0)
             bool rbName = rb_name.IsChecked.Value; //rbName=true (1)
-            bool rbCategory = rb_category.IsChecked.Value; //rbCategory=true (2)
 
 
             if (rbId)
@@ -88,18 +88,19 @@ namespace Presentation.UI.Commodity
             else if (rbName)
             {
                 radioActive = 1;
-            }else if (rbCategory)
-            {
-                radioActive = 2;
             }
 
-            string search = txt_search.Text.ToLower();
-            List<CommodityModel> commodityListFiltered = commodityController.SearchCommodities(commodityList, search, radioActive);
-            commodityListBox.ItemsSource = commodityListFiltered;
+            var dataResponse = commodityController.SearchCommoditiesAPI(search, radioActive, 1, UserData.getToken().TokenKey);
+            
+            if(dataResponse["ok"])
+            {
+                List<CommodityModel> commodityListFiltered = dataResponse["result"].CommodityList;
+                commodityListBox.ItemsSource = commodityListFiltered;
+            }           
         }
 
 
-        private async void CommodityListBox_Click(object sender, MouseButtonEventArgs e)
+        private void CommodityListBox_Click(object sender, MouseButtonEventArgs e)
         {
             try
             {
@@ -107,7 +108,7 @@ namespace Presentation.UI.Commodity
 
                 if (commodity != null)
                 {
-                    await LoadCategories();
+                    LoadCategories();
                     UpdateCommodityForm updateCommodityForm = new UpdateCommodityForm(commodity, categoryList);
                     updateCommodityForm.ShowDialog();
                     LoadCommodities();

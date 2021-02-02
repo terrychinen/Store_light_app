@@ -8,6 +8,6 @@ namespace DataAccess
 {
     public static class Connection
     {
-        public static string CONNECTION = "http://localhost:3000";
+        public static string CONNECTION = "http://104.236.5.116:3000";
     }
 }

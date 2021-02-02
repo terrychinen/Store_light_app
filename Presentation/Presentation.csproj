@@ -52,6 +52,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -64,6 +65,72 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WpfControls, Version=1.0.0.7, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WpfControls.AutoCompleteTextBox.1.0.0.7\lib\net35\WpfControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=4.0.20417.14530, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xceed.Wpf.AvalonDock.4.0.20417.1453\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=4.0.20417.14530, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xceed.Wpf.AvalonDock.Themes.Aero.4.0.20417.1453\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=4.0.20417.14530, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xceed.Wpf.AvalonDock.Themes.Metro.4.0.20417.1453\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.MetroAccent, Version=4.0.20417.14530, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xceed.Wpf.AvalonDock.Themes.MetroAccent.4.0.20417.1453\lib\net40\Xceed.Wpf.AvalonDock.Themes.MetroAccent.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Office2007, Version=4.0.20417.14530, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xceed.Wpf.AvalonDock.Themes.Office2007.4.0.20417.1453\lib\net40\Xceed.Wpf.AvalonDock.Themes.Office2007.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Windows10, Version=4.0.20417.14530, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xceed.Wpf.AvalonDock.Themes.Windows10.4.0.20417.1453\lib\net40\Xceed.Wpf.AvalonDock.Themes.Windows10.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid, Version=4.0.20417.14530, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xceed.Wpf.DataGrid.Toolkit.4.0.20417.1453\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid.Themes.Metro, Version=4.0.20417.14530, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xceed.Wpf.DataGrid.Themes.Metro.4.0.20417.1453\lib\net40\Xceed.Wpf.DataGrid.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid.Themes.Office2007, Version=4.0.20417.14530, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xceed.Wpf.DataGrid.Themes.Office2007.4.0.20417.1453\lib\net40\Xceed.Wpf.DataGrid.Themes.Office2007.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid.Themes.Windows10, Version=4.0.20417.14530, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xceed.Wpf.DataGrid.Themes.Windows10.4.0.20417.1453\lib\net40\Xceed.Wpf.DataGrid.Themes.Windows10.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.ListBox, Version=4.0.20417.14530, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xceed.Wpf.ListBox.4.0.20417.1453\lib\net40\Xceed.Wpf.ListBox.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.ListBox.Themes.LiveExplorer, Version=4.0.20417.14530, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xceed.Wpf.ListBox.Themes.LiveExplorer.4.0.20417.1453\lib\net40\Xceed.Wpf.ListBox.Themes.LiveExplorer.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.ListBox.Themes.Metro, Version=4.0.20417.14530, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xceed.Wpf.ListBox.Themes.Metro.4.0.20417.1453\lib\net40\Xceed.Wpf.ListBox.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.ListBox.Themes.Office2007, Version=4.0.20417.14530, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xceed.Wpf.ListBox.Themes.Office2007.4.0.20417.1453\lib\net40\Xceed.Wpf.ListBox.Themes.Office2007.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.ListBox.Themes.Windows10, Version=4.0.20417.14530, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xceed.Wpf.ListBox.Themes.Windows10.4.0.20417.1453\lib\net40\Xceed.Wpf.ListBox.Themes.Windows10.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.ListBox.Themes.WMP11, Version=4.0.20417.14530, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xceed.Wpf.ListBox.Themes.WMP11.4.0.20417.1453\lib\net40\Xceed.Wpf.ListBox.Themes.WMP11.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Themes, Version=4.0.20417.14530, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xceed.Wpf.Themes.4.0.20417.1453\lib\net40\Xceed.Wpf.Themes.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Themes.Metro, Version=4.0.20417.14530, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xceed.Wpf.Themes.Metro.4.0.20417.1453\lib\net40\Xceed.Wpf.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Themes.Office2007, Version=4.0.20417.14530, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xceed.Wpf.Themes.Office2007.4.0.20417.1453\lib\net40\Xceed.Wpf.Themes.Office2007.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Themes.Windows10, Version=4.0.20417.14530, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xceed.Wpf.Themes.Windows10.4.0.20417.1453\lib\net40\Xceed.Wpf.Themes.Windows10.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=4.0.20417.14530, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xceed.Wpf.Toolkit.4.0.20417.1453\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -125,8 +192,32 @@
     <Compile Include="UI\Home\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Order\CreateOrderForm.xaml.cs">
+      <DependentUpon>CreateOrderForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Order\EditDeleteCommodityQuantity.xaml.cs">
+      <DependentUpon>EditDeleteCommodityQuantity.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Order\InsertCommodityQuantityForm.xaml.cs">
+      <DependentUpon>InsertCommodityQuantityForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Order\OrderPage.xaml.cs">
       <DependentUpon>OrderPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Order\StateOrder\CancelOrderPage.xaml.cs">
+      <DependentUpon>CancelOrderPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Order\StateOrder\PendingOrderPage.xaml.cs">
+      <DependentUpon>PendingOrderPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Order\StateOrder\ReceivedOrderPage.xaml.cs">
+      <DependentUpon>ReceivedOrderPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Order\StateOrder\WaitingOrderPage.xaml.cs">
+      <DependentUpon>WaitingOrderPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Order\UpdatePurchaseOrderForm.xaml.cs">
+      <DependentUpon>UpdatePurchaseOrderForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Provider\CreateProviderForm.xaml.cs">
       <DependentUpon>CreateProviderForm.xaml</DependentUpon>
@@ -164,10 +255,20 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Content Include="Scripts\bloodhound.js" />
+    <Content Include="Scripts\bloodhound.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\typeahead.bundle.js" />
+    <Content Include="Scripts\typeahead.bundle.min.js" />
+    <Content Include="Scripts\typeahead.jquery.js" />
+    <Content Include="Scripts\typeahead.jquery.min.js" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Scripts\jquery-1.10.2.min.map" />
     <Resource Include="Assets\logo.png" />
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
@@ -252,7 +353,39 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\Order\CreateOrderForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Order\EditDeleteCommodityQuantity.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Order\InsertCommodityQuantityForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Order\OrderPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Order\StateOrder\CancelOrderPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Order\StateOrder\PendingOrderPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Order\StateOrder\ReceivedOrderPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Order\StateOrder\WaitingOrderPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Order\UpdatePurchaseOrderForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

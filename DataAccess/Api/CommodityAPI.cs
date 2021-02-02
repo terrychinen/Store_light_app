@@ -112,5 +112,41 @@ namespace DataAccess.Api
             }
         }
 
+
+        public Dictionary<string, dynamic> SearchCommodity(string search, int searchBy, int state, string token)
+        {
+            Dictionary<string, dynamic> data;
+
+            try
+            {
+                data = new Dictionary<string, dynamic>();
+
+                var url = Connection.CONNECTION + "/commodity/search";
+                var client = new RestClient(url);
+
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("token", token);
+                request.AddParameter("application/x-www-form-urlencoded", $"search={search}&search_by={searchBy}&state={state}", ParameterType.RequestBody);
+
+                IRestResponse response = client.Execute(request);
+
+                Console.WriteLine("DATA API: " +response.ToString());
+
+                data.Add("ok", true);
+                data.Add("result", response);
+
+                return data;
+            }
+            catch (Exception error)
+            {
+                data = new Dictionary<string, dynamic>
+                {
+                    { "ok", false },
+                    { "result", error }
+                };
+
+                return data;
+            }
+        }
     }
 }

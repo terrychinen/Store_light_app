@@ -9,7 +9,7 @@ namespace DataAccess.Api
 {
     public class CategoryAPI
     {
-        public async Task<Dictionary<string, dynamic>> GetCategories(string token, int offset, int state)
+        public Dictionary<string, dynamic> GetCategories(string token, int offset, int state)
         {
             Dictionary<string, dynamic> data;
 
@@ -23,7 +23,7 @@ namespace DataAccess.Api
                 var request = new RestRequest(Method.GET);
                 request.AddHeader("token", token);
 
-                IRestResponse response = await client.ExecuteAsync(request);
+                IRestResponse response = client.Execute(request);
 
                 data.Add("ok", true);
                 data.Add("result", response);
@@ -110,6 +110,38 @@ namespace DataAccess.Api
             }
         }
 
+        public Dictionary<string, dynamic> SearchCategory(string search, int searchBy, int state, string token)
+        {
+            Dictionary<string, dynamic> data;
 
+            try
+            {
+                data = new Dictionary<string, dynamic>();
+
+                var url = Connection.CONNECTION + "/category/search";
+                var client = new RestClient(url);
+
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("token", token);
+                request.AddParameter("application/x-www-form-urlencoded", $"search={search}&search_by={searchBy}&state={state}", ParameterType.RequestBody);
+
+                IRestResponse response = client.Execute(request);
+
+                data.Add("ok", true);
+                data.Add("result", response);
+
+                return data;
+            }
+            catch (Exception error)
+            {
+                data = new Dictionary<string, dynamic>
+                {
+                    { "ok", false },
+                    { "result", error }
+                };
+
+                return data;
+            }
+        }
     }
 }

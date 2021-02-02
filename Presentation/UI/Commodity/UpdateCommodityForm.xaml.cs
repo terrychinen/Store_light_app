@@ -25,11 +25,6 @@ namespace Presentation.UI.Commodity
         private CommodityModel commodity;
         
 
-        public UpdateCommodityForm()
-        {
-            InitializeComponent();
-        }
-
         public UpdateCommodityForm(CommodityModel commodity, List<CategoryModel> categoryList)
         {
             InitializeComponent();

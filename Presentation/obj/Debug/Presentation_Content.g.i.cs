@@ -8,6 +8,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("scripts/bloodhound.js")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("scripts/bloodhound.min.js")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("scripts/jquery-1.10.2.intellisense.js")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("scripts/jquery-1.10.2.js")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("scripts/jquery-1.10.2.min.js")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("scripts/typeahead.bundle.js")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("scripts/typeahead.bundle.min.js")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("scripts/typeahead.jquery.js")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("scripts/typeahead.jquery.min.js")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("fonts/fontawesome.otf")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("fonts/fontawesome-webfont.ttf")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("fonts/fontawesome-webfont.eot")]

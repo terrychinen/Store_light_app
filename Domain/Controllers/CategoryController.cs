@@ -12,7 +12,7 @@ namespace Domain.Controllers
 {
     public class CategoryController
     {
-        public async Task<Dictionary<string, dynamic>> GetCategories(string token, int offset, int state)
+        public Dictionary<string, dynamic> GetCategories(string token, int offset, int state)
         {
             Dictionary<string, dynamic> data;
             CategoryAPI categoryAPI;
@@ -21,7 +21,7 @@ namespace Domain.Controllers
             {
                 data = new Dictionary<string, dynamic>();
                 categoryAPI = new CategoryAPI();
-                Dictionary<string, dynamic> response = await categoryAPI.GetCategories(token, offset, state);
+                Dictionary<string, dynamic> response = categoryAPI.GetCategories(token, offset, state);
 
                 if (response["ok"])
                 {
@@ -120,6 +120,53 @@ namespace Domain.Controllers
             }
         }
 
+        public Dictionary<string, dynamic> SearchCategoriesAPI(string search, int searchBy, int state, string token)
+        {
+
+            Dictionary<string, dynamic> data;
+            CategoryAPI categoryAPI;
+
+            try
+            {
+                data = new Dictionary<string, dynamic>();
+                categoryAPI = new CategoryAPI();
+                Dictionary<string, dynamic> response = categoryAPI.SearchCategory(search, searchBy, 1, token);
+
+                if (response["ok"])
+                {
+                    Response dataResponse = JsonConvert.DeserializeObject<Response>(response["result"].Content);
+
+                    data.Add("ok", dataResponse.Ok);
+
+
+                    if (dataResponse.Ok)
+                    {
+                        CategoryResponse categoryListResponse = JsonConvert.DeserializeObject<CategoryResponse>(response["result"].Content);
+                        data.Add("result", categoryListResponse);
+                    }
+                    else
+                    {
+                        data.Add("result", dataResponse.Message);
+                    }
+
+                    return data;
+                }
+
+                return response;
+
+            }
+            catch (Exception error)
+            {
+                data = new Dictionary<string, dynamic>
+                {
+                    { "ok", false },
+                    { "result", error }
+                };
+
+                return data;
+            }
+
+        }
 
 
         public List<CategoryModel> SearchCategories(List<CategoryModel> categoryList, string search, int radioActive)

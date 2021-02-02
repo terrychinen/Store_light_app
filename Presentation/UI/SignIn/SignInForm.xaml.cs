@@ -53,35 +53,47 @@ namespace Presentation.SignIn
 
         private async void Login(string username, string password)
         {
-            spin.Spin = true;
-            spin.Opacity = 100;
-
-            btn_signin.IsEnabled = false;
-            btn_close.IsEnabled = false;
-
-            DashboardForm dashBoardForm = new DashboardForm();
-            AuthController authController = new AuthController();
-            var login = await authController.SignIn(username, password);
-
-            spin.Opacity = 0;
-            spin.Spin = false;
-
-            if (login["ok"] == true)
+            try
             {
-                UserData.setEmployee(login["result"].User);
-                UserData.setToken(login["token"]);
+                spin.Spin = true;
+                spin.Opacity = 100;
 
-                dashBoardForm.Show();
-                this.Close();
-            }
-            else
+                btn_signin.IsEnabled = false;
+
+                DashboardForm dashBoardForm = new DashboardForm();
+                AuthController authController = new AuthController();
+                var login = await authController.SignIn(username, password);
+
+                spin.Opacity = 0;
+                spin.Spin = false;
+
+                if (login["ok"] == true)
+                {
+                    UserData.setEmployee(login["result"].User);
+
+                    Token token = new Token();
+
+                    token.State = 1;
+                    token.TokenKey = "";
+                    token.TokenId = 0;
+
+                    UserData.setToken(token);
+
+                    dashBoardForm.Show();
+                    this.Close();
+                }
+                else
+                {
+                    var message = login["result"];
+                    _ = MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+                btn_signin.IsEnabled = true;
+            }catch(Exception error)
             {
-                var message = login["result"];
-                _ = MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                _ = MessageBox.Show(error.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
-            btn_signin.IsEnabled = true;
-            btn_close.IsEnabled = true;
+          
         }
 
 

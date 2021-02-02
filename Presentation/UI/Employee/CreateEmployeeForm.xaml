@@ -6,30 +6,22 @@
         xmlns:local="clr-namespace:Presentation.UI.Employee"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-       Title="Crear empleado" Height="400" Width="500" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+       Title="Crear empleado" Height="450" Width="500" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
 
-            <Label Content="Crear empleado" Grid.Row="0" FontSize="22" HorizontalAlignment="Center" ></Label>
+        <Label Content="Crear empleado" Grid.Row="0" FontSize="22" HorizontalAlignment="Center" ></Label>
 
-        </Grid>
-        <StackPanel Margin="50">
-            <Border Background="White" Margin="10 20" CornerRadius="5">
-                <StackPanel Margin="25">
+        <TextBox Grid.Row="1" x:Name="txt_employee_name" Width="300" Margin="10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Nombre del empleado"></TextBox>
+        <TextBox Grid.Row="2" x:Name="txt_username" Width="300" Margin="10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="usuario"></TextBox>
+        <TextBox Grid.Row="3" x:Name="txt_password" Width="300" Margin="10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="clave"></TextBox>
 
-                    <TextBox x:Name="txt_employee_name" Margin="15" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Nombre del empleado"></TextBox>
-                    <TextBox x:Name="txt_username" Margin="15" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="usuario"></TextBox>
-                    <TextBox x:Name="txt_password" Margin="15" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="clave"></TextBox>
-
-                    <Button Margin="10 40" Content="Crear" Click="CreateEmployee_Click" />
-
-                </StackPanel>
-            </Border>
-        </StackPanel>
+        <Button Grid.Row="4" Margin="10 40" Content="Crear" Width="400" Click="CreateEmployee_Click" />
     </Grid>
 </Window>

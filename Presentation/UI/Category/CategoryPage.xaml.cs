@@ -33,17 +33,24 @@ namespace Presentation.UI.Category
         }
 
 
-        private async void LoadCategories()
+        private void LoadCategories()
         {
-            categoryController = new CategoryController();
-
-            var dataResponse = await categoryController.GetCategories(UserData.getToken().TokenKey, 0, 1);
-
-
-            if (dataResponse["ok"])
+            try
             {
-                categoryList = dataResponse["result"].CategoryList;
-                categoryListBox.ItemsSource = categoryList;
+                categoryController = new CategoryController();
+
+                var dataResponse = categoryController.GetCategories(UserData.getToken().TokenKey, 0, 1);
+
+                if (dataResponse["ok"])
+                {
+                    categoryList = dataResponse["result"].CategoryList;
+                    categoryListBox.ItemsSource = categoryList;
+                }
+                
+            }
+            catch(Exception error)
+            {
+                MessageBox.Show(error.ToString());
             }
         }
 
@@ -57,27 +64,32 @@ namespace Presentation.UI.Category
         }
 
 
-
-
-
         private void Search_TextChanged(object sender, TextChangedEventArgs e)
         {
-            int radioActive = 1;  
+            string search = txt_search.Text.ToLower();
+
+            int radioActive = 1;
             bool rbId = rb_id.IsChecked.Value; // rbID=true (0)
             bool rbName = rb_name.IsChecked.Value; //rbName=true (1)
 
-            if(rbId)
+            if (rbId)
             {
                 radioActive = 0;
             }
-            else if(rbName)
+            else if (rbName)
             {
                 radioActive = 1;
             }
 
-            string search = txt_search.Text.ToLower();
-            List<CategoryModel> categoryListFiltered = categoryController.SearchCategories(categoryList, search, radioActive);
-            categoryListBox.ItemsSource = categoryListFiltered;
+
+            var datatResponse = categoryController.SearchCategoriesAPI(search, radioActive, 1, UserData.getToken().TokenKey);
+
+            if (datatResponse["ok"])
+            {
+                List<CategoryModel> categoryListFiltered = datatResponse["result"].CategoryList;
+                categoryListBox.ItemsSource = categoryListFiltered;
+            }
+
         }
 
 

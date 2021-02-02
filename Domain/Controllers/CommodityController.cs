@@ -121,6 +121,56 @@ namespace Domain.Controllers
         }
 
 
+        public Dictionary<string, dynamic> SearchCommoditiesAPI(string search, int searchBy, int state, string token)
+        {
+            Dictionary<string, dynamic> data;
+            CommodityAPI commodityAPI;
+
+            try
+            {
+                data = new Dictionary<string, dynamic>();
+                commodityAPI = new CommodityAPI();
+                Dictionary<string, dynamic> response = commodityAPI.SearchCommodity(search, searchBy, 1, token);
+
+                if (response["ok"])
+                {
+                    Response dataResponse = JsonConvert.DeserializeObject<Response>(response["result"].Content);
+
+                    data.Add("ok", dataResponse.Ok);
+
+
+                    if (dataResponse.Ok)
+                    {
+                        CommodityResponse commodityListResponse = JsonConvert.DeserializeObject<CommodityResponse>(response["result"].Content);
+                        data.Add("result", commodityListResponse);
+                    }
+                    else
+                    {
+                        data.Add("result", dataResponse.Message);
+                    }
+
+                    return data;
+                }
+
+                return response;
+
+            }
+            catch (Exception error)
+            {
+                data = new Dictionary<string, dynamic>
+                {
+                    { "ok", false },
+                    { "result", error }
+                };
+
+                return data;
+            }
+        }
+
+
+
+
+
         public List<CommodityModel> SearchCommodities(List<CommodityModel> commodityList, string search, int radioActive)
         {
             List<CommodityModel> commodityListFiltered = new List<CommodityModel>();

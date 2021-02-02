@@ -33,7 +33,7 @@ namespace Presentation.UI.Employee
             EmployeeController employeeController = new EmployeeController();
             EmployeeModel employee = new EmployeeModel();
 
-            if (txt_employee_name.Text.Trim() != "")
+            if (txt_employee_name.Text.Trim() != null)
             {
                 employee.Name = txt_employee_name.Text;
                 employee.Username = txt_username.Text;

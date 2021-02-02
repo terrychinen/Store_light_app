@@ -55,6 +55,8 @@ namespace Presentation.UI.Commodity
                     commodity.State = 1;
 
                     var dataResponse = await commodityController.CreateCommodity(commodity, UserData.getToken().TokenKey);
+
+
                     if (dataResponse["ok"])
                     {
                         MessageBox.Show("La mercancía se creó correctamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
