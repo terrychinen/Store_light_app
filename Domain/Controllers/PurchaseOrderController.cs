@@ -73,7 +73,7 @@ namespace Domain.Controllers
                 purchaseOrderAPI = new PurchaseOrderAPI();
 
                 string purchaseData = $"provider_id={purchaseOrder.ProviderId}&employee_id={purchaseOrder.EmployeeId}" +
-                    $"&order_date={purchaseOrder.OrderDate}&expected_date={purchaseOrder.ExpectedDate}&receive_date={purchaseOrder.ReceiveDate}" +
+                    $"&order_date={purchaseOrder.OrderDate}&expected_date={purchaseOrder.ExpectedDate}&receive_date={purchaseOrder.ReceiveDate}&paid_date={purchaseOrder.PaidDate}" +
                     $"&total_price={purchaseOrder.TotalPrice}&message={purchaseOrder.Message}&state={purchaseOrder.State}&";
 
 
@@ -176,7 +176,7 @@ namespace Domain.Controllers
                 purchaseOrderAPI = new PurchaseOrderAPI();
 
                 string purchaseData = $"provider_id={purchaseOrder.ProviderId}&order_date={purchaseOrder.OrderDate}" +
-                $"&expected_date={purchaseOrder.ExpectedDate}&receive_date={purchaseOrder.ReceiveDate}&total_price={purchaseOrder.TotalPrice}" +
+                $"&expected_date={purchaseOrder.ExpectedDate}&receive_date={purchaseOrder.ReceiveDate}&paid_date={purchaseOrder.PaidDate}&total_price={purchaseOrder.TotalPrice}" +
                 $"&message={purchaseOrder.Message}&updated_by={purchaseOrder.UpdatedBy}&state={purchaseOrder.State}&";
 
                 if(commodityList.Count == 0)

@@ -16,7 +16,7 @@ namespace Domain.Models
         double stock;
         double stockTotal;
         int state;       
-        bool selectedStore;
+        bool selectedStore; 
         string stateString;
 
         [JsonProperty("store_id")]

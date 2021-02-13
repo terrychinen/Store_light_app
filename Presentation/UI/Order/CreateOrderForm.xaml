@@ -103,7 +103,8 @@
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="2*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="3*"></RowDefinition>
                     </Grid.RowDefinitions>
 
                     <ComboBox Grid.Row="0" Name="cb_provider" Width="300" IsEditable="True" Text="Seleccione el proveedor"  HorizontalAlignment="Center"/>
@@ -138,20 +139,31 @@
 
                     <Grid Grid.Row="4">
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".5*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Content="Fec. pagado:" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <xctk:DateTimePicker Name="paid_date" Grid.Column="1" TextAlignment="left" Format="Custom" Width="200" Height="30" FormatString="dd/MM/yyyy HH:mm:ss"/>
+                    </Grid>
+
+                    <Grid Grid.Row="5">
+                        <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="90"></ColumnDefinition>
                             <ColumnDefinition Width="90"></ColumnDefinition>
-                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
 
                         <RadioButton Grid.Column="0" Content="Por atender" IsChecked="true"  Name="rb_pending" Margin="0, 0, 0, 0"></RadioButton>
                         <RadioButton Grid.Column="1" Content="En curso"  Name="rb_waiting" Margin="5, 0, 0, 0"></RadioButton>
-                        <RadioButton Grid.Column="2" Content="Recibido/Cancelado"  Name="rb_received" Margin="0, 0, 0, 0"></RadioButton>
-                        <RadioButton Grid.Column="3" Content="Anulado"  Name="rb_cancel" Margin="0, 0, 0, 0"></RadioButton>
+                        <RadioButton Grid.Column="2" Content="Recibido"  Name="rb_received" Margin="0, 0, 0, 0"></RadioButton>
+                        <RadioButton Grid.Column="3" Content="Pagado"  Name="rb_paid" Margin="0, 0, 0, 0"></RadioButton>
+                        <RadioButton Grid.Column="4" Content="Anulado"  Name="rb_cancel" Margin="0, 0, 0, 0"></RadioButton>
                     </Grid>
 
-                    <Label Grid.Row="5" Content="Mensaje:" FontSize="15"  />
-                    <TextBox Grid.Row="6" Background="AntiqueWhite" Margin="0, 0, 20, 0" Width="350" Height="90" x:Name="txt_message" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" />
+                    <Label Grid.Row="6" Content="Nota:" FontSize="15"  />
+                    <TextBox Grid.Row="7" Background="AntiqueWhite" Margin="0, 0, 20, 0" Width="350" Height="90" x:Name="txt_message" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" />
                 </Grid>
 
             </Grid>

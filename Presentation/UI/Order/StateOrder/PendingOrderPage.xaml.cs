@@ -54,14 +54,25 @@ namespace Presentation.UI.Order.StateOrder
 
                         if (purchaseOrdersList[i].ExpectedDate != null)
                         {
-                            if (purchaseOrdersList[i].ExpectedDate != "0000-00-00 00:00:00" && purchaseOrdersList[i].ExpectedDate != "1969-12-31 07:00:00" && purchaseOrdersList[i].ExpectedDate != "1970-01-01 12:00:00")
-                            {
-                                DateTime expectedDate = DateTime.ParseExact(purchaseOrdersList[i].ExpectedDate, "yyyy-MM-dd hh:mm:ss", null);
-                                purchaseOrdersList[i].ExpectedDate = expectedDate.ToString("dd/MM/yyyy hh:mm:ss");
-                            }
-                            else { purchaseOrdersList[i].ExpectedDate = "----"; }
+                            DateTime expectedDate = DateTime.ParseExact(purchaseOrdersList[i].ExpectedDate, "yyyy-MM-dd hh:mm:ss", null);
+                            purchaseOrdersList[i].ExpectedDate = expectedDate.ToString("dd/MM/yyyy hh:mm:ss");
                         }
                         else { purchaseOrdersList[i].ExpectedDate = "----"; }
+
+                        if (purchaseOrdersList[i].ReceiveDate != null)
+                        {
+                            DateTime receiveDate = DateTime.ParseExact(purchaseOrdersList[i].ReceiveDate, "yyyy-MM-dd hh:mm:ss", null);
+                            purchaseOrdersList[i].ReceiveDate = receiveDate.ToString("dd/MM/yyyy hh:mm:ss");
+                        }
+                        else { purchaseOrdersList[i].ReceiveDate = "----"; }
+
+
+                        if (purchaseOrdersList[i].PaidDate != null)
+                        {
+                            DateTime paidDate = DateTime.ParseExact(purchaseOrdersList[i].PaidDate, "yyyy-MM-dd hh:mm:ss", null);
+                            purchaseOrdersList[i].PaidDate = paidDate.ToString("dd/MM/yyyy hh:mm:ss");
+                        }
+                        else { purchaseOrdersList[i].PaidDate = "----"; }
 
 
                         purchaseOrdersList[i].StateColor = "Orange";

@@ -37,7 +37,7 @@ namespace Presentation.UI.Order.StateOrder
             try
             {
                 purchaseOrderController = new PurchaseOrderController();
-                var dataResponse = await purchaseOrderController.GetPurchaseOrderWithState(UserData.getToken().TokenKey, 0, 3);
+                var dataResponse = await purchaseOrderController.GetPurchaseOrderWithState(UserData.getToken().TokenKey, 0, 4);
 
                 if (dataResponse["ok"])
                 {
@@ -53,12 +53,8 @@ namespace Presentation.UI.Order.StateOrder
 
                         if (purchaseOrdersList[i].ExpectedDate != null)
                         {
-                            if (purchaseOrdersList[i].ExpectedDate != "0000-00-00 00:00:00" && purchaseOrdersList[i].ExpectedDate != "1969-12-31 07:00:00" && purchaseOrdersList[i].ExpectedDate != "1970-01-01 12:00:00")
-                            {
-                                DateTime expectedDate = DateTime.ParseExact(purchaseOrdersList[i].ExpectedDate, "yyyy-MM-dd hh:mm:ss", null);
-                                purchaseOrdersList[i].ExpectedDate = expectedDate.ToString("dd/MM/yyyy hh:mm:ss");
-                            }
-                            else { purchaseOrdersList[i].ExpectedDate = "----"; }
+                            DateTime expectedDate = DateTime.ParseExact(purchaseOrdersList[i].ExpectedDate, "yyyy-MM-dd hh:mm:ss", null);
+                            purchaseOrdersList[i].ExpectedDate = expectedDate.ToString("dd/MM/yyyy hh:mm:ss");
                         }
                         else { purchaseOrdersList[i].ExpectedDate = "----"; }
 

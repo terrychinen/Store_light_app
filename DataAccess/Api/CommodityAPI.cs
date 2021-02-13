@@ -130,8 +130,6 @@ namespace DataAccess.Api
 
                 IRestResponse response = client.Execute(request);
 
-                Console.WriteLine("DATA API: " +response.ToString());
-
                 data.Add("ok", true);
                 data.Add("result", response);
 

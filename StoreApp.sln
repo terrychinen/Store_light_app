@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\Da
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "Presentation\Presentation.csproj", "{02ED0F03-2BE2-401E-971D-451D379C4357}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{ED40DBBC-90A6-4CFC-BD7B-1E46A49A165E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,8 @@ Global
 		{02ED0F03-2BE2-401E-971D-451D379C4357}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02ED0F03-2BE2-401E-971D-451D379C4357}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02ED0F03-2BE2-401E-971D-451D379C4357}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED40DBBC-90A6-4CFC-BD7B-1E46A49A165E}.Debug|Any CPU.ActiveCfg = Debug
+		{ED40DBBC-90A6-4CFC-BD7B-1E46A49A165E}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

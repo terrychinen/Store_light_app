@@ -17,6 +17,7 @@ namespace Domain.Models
         private string orderDate;
         private string expectedDate;
         private string receiveDate;
+        private string paidDate;
         private double totalPrice;
         private string message;
         private int? updatedBy;        
@@ -51,6 +52,11 @@ namespace Domain.Models
         [JsonProperty("receive_date")]
         public string ReceiveDate { get => receiveDate; set => receiveDate = value; }
 
+
+        [JsonProperty("paid_date")]
+        public string PaidDate { get => paidDate; set => paidDate = value; }
+
+
         [JsonProperty("total_price")]
         public double TotalPrice { get => totalPrice; set => totalPrice = value; }
 
@@ -68,5 +74,7 @@ namespace Domain.Models
 
         [JsonProperty("updated_name")]
         public string UpdatedName { get => updatedName; set => updatedName = value; }
+
+       
     }
 }

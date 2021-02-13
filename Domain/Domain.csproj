@@ -61,6 +61,8 @@
     <Compile Include="Controllers\CommodityController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\EnvironmentController.cs" />
+    <Compile Include="Controllers\InputController.cs" />
+    <Compile Include="Controllers\OutputController.cs" />
     <Compile Include="Controllers\ProviderController.cs" />
     <Compile Include="Controllers\PurchaseOrderController.cs" />
     <Compile Include="Controllers\StoreCommodityController.cs" />
@@ -72,14 +74,16 @@
     <Compile Include="Models\CommodityModel.cs" />
     <Compile Include="Models\EmployeeModel.cs" />
     <Compile Include="Models\EnvironmentModel.cs" />
-    <Compile Include="Models\Input.cs" />
-    <Compile Include="Models\Output.cs" />
+    <Compile Include="Models\InputModel.cs" />
+    <Compile Include="Models\OutputModel.cs" />
     <Compile Include="Models\ProviderModel.cs" />
     <Compile Include="Models\PurchaseOrder.cs" />
     <Compile Include="Models\Response.cs" />
     <Compile Include="Models\Responses\CommodityResponse.cs" />
     <Compile Include="Models\Responses\EmployeeResponse.cs" />
     <Compile Include="Models\Responses\EnvironmentResponse.cs" />
+    <Compile Include="Models\Responses\InputResponse.cs" />
+    <Compile Include="Models\Responses\OutputResponse.cs" />
     <Compile Include="Models\Responses\ProviderResponse.cs" />
     <Compile Include="Models\Responses\PurchaseOrderResponse.cs" />
     <Compile Include="Models\Responses\StoreCommodityResponse.cs" />

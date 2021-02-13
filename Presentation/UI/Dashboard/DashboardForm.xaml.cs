@@ -24,6 +24,8 @@ using Presentation.UI.Employee;
 using Presentation.UI.Commodity_Store;
 using Presentation.UI.Order;
 using Presentation.UI.Order.StateOrder;
+using Presentation.UI.Input;
+using Presentation.UI.Output;
 
 namespace Presentation.UI.Dashboard
 {
@@ -53,7 +55,9 @@ namespace Presentation.UI.Dashboard
                 UserData.setToken(refreshToken["result"]);
             }
 
+            cleanOutput();
             cleanSelectOrderSubItems();
+            cleanInputOutput();
             CategoryPage categoryPage = new CategoryPage();
             parent_frame.Navigate(categoryPage);
         }
@@ -66,7 +70,9 @@ namespace Presentation.UI.Dashboard
                  UserData.setToken(refreshToken["result"]);
              }
 
+            cleanOutput();
             cleanSelectOrderSubItems();
+            cleanInputOutput();
             CommodityPage commodityPage = new CommodityPage();
             parent_frame.Navigate(commodityPage);
          }
@@ -80,7 +86,9 @@ namespace Presentation.UI.Dashboard
                  UserData.setToken(refreshToken["result"]);
              }
 
+            cleanOutput();
             cleanSelectOrderSubItems();
+            cleanInputOutput();
             EnvironmentPage environmentPage = new EnvironmentPage();
             parent_frame.Navigate(environmentPage);
          }
@@ -94,7 +102,9 @@ namespace Presentation.UI.Dashboard
                  UserData.setToken(refreshToken["result"]);
              }
 
+            cleanOutput();
             cleanSelectOrderSubItems();
+            cleanInputOutput();
             StorePage storePage = new StorePage();
             parent_frame.Navigate(storePage);
          }
@@ -108,8 +118,10 @@ namespace Presentation.UI.Dashboard
                  UserData.setToken(refreshToken["result"]);
              }
 
+            cleanOutput();
             cleanSelectOrderSubItems();
-             ProviderPage providerPage = new ProviderPage();
+            cleanInputOutput();
+            ProviderPage providerPage = new ProviderPage();
             parent_frame.Navigate(providerPage);
          }
 
@@ -122,8 +134,10 @@ namespace Presentation.UI.Dashboard
                  UserData.setToken(refreshToken["result"]);
              }
 
+            cleanOutput();
             cleanSelectOrderSubItems();
-             EmployeePage employeePage = new EmployeePage();
+            cleanInputOutput();
+            EmployeePage employeePage = new EmployeePage();
             parent_frame.Navigate(employeePage);
          }
 
@@ -140,7 +154,9 @@ namespace Presentation.UI.Dashboard
             pending_order_item.IsSelected = false;
             purchase_order_item.IsSelected = false;
             commodity_store_item.IsSelected = false;
+            cleanOutput();
             cleanSelectSubItems();
+            cleanInputOutput();
 
             HomePage homePage = new HomePage();
             parent_frame.Navigate(homePage);
@@ -156,8 +172,12 @@ namespace Presentation.UI.Dashboard
                  UserData.setToken(refreshToken["result"]);
              }
 
-            cleanSelectOrderSubItems();
+            pending_order_item.IsSelected = false;
+            purchase_order_item.IsSelected = false;
+            home_item.IsSelected = false;
+            cleanOutput();
             cleanSelectSubItems();
+            cleanInputOutput();
 
             Commodity_Store_Page commodityStorePage = new Commodity_Store_Page();
             parent_frame.Navigate(commodityStorePage);
@@ -173,12 +193,15 @@ namespace Presentation.UI.Dashboard
             }
 
             commodity_store_item.IsSelected = false;
-            home_item.IsSelected = false; 
+            home_item.IsSelected = false;
+            cleanOutput();
             cleanSelectSubItems();
+            cleanInputOutput();
 
             OrderPage orderPage = new OrderPage();
             parent_frame.Navigate(orderPage);
         }
+
 
 
         private async void PendingOrder_Click(object sender, RoutedEventArgs e)
@@ -191,7 +214,9 @@ namespace Presentation.UI.Dashboard
 
             commodity_store_item.IsSelected = false;
             home_item.IsSelected = false;
+            cleanOutput();
             cleanSelectSubItems();
+            cleanInputOutput();
 
             PendingOrderPage orderPage = new PendingOrderPage();
             parent_frame.Navigate(orderPage);
@@ -207,7 +232,9 @@ namespace Presentation.UI.Dashboard
 
             commodity_store_item.IsSelected = false;
             home_item.IsSelected = false;
+            cleanOutput();
             cleanSelectSubItems();
+            cleanInputOutput();
 
             WaitingOrderPage orderPage = new WaitingOrderPage();
             parent_frame.Navigate(orderPage);
@@ -223,10 +250,30 @@ namespace Presentation.UI.Dashboard
 
             commodity_store_item.IsSelected = false;
             home_item.IsSelected = false;
+            cleanOutput();
             cleanSelectSubItems();
+            cleanInputOutput();
 
             ReceivedOrderPage orderPage = new ReceivedOrderPage();
             parent_frame.Navigate(orderPage);
+        }
+
+        private async void PaidOrder_Click(object sender, RoutedEventArgs e)
+        {
+            if (!ValidateToken())
+            {
+                var refreshToken = await tokenController.RefreshToken(UserData.getToken(), UserData.getEmployee().EmployeeId);
+                UserData.setToken(refreshToken["result"]);
+            }
+
+            commodity_store_item.IsSelected = false;
+            home_item.IsSelected = false;
+            cleanOutput();
+            cleanSelectSubItems();
+            cleanInputOutput();
+
+            PaidOrderPage paidPage = new PaidOrderPage();
+            parent_frame.Navigate(paidPage);
         }
 
         private async void CancelOrder_Click(object sender, RoutedEventArgs e)
@@ -239,11 +286,74 @@ namespace Presentation.UI.Dashboard
 
             commodity_store_item.IsSelected = false;
             home_item.IsSelected = false;
+            cleanOutput();
             cleanSelectSubItems();
+            cleanInputOutput();
 
             CancelOrderPage orderPage = new CancelOrderPage();
             parent_frame.Navigate(orderPage);
         }
+
+
+
+
+        private async void Input_Click(object sender, RoutedEventArgs e)
+        {
+            if (!ValidateToken())
+            {
+                var refreshToken = await tokenController.RefreshToken(UserData.getToken(), UserData.getEmployee().EmployeeId);
+                UserData.setToken(refreshToken["result"]);
+            }
+
+              commodity_store_item.IsSelected = false;
+              home_item.IsSelected = false;
+                cleanOutput();
+              cleanSelectSubItems();
+              cleanSelectOrderSubItems();
+
+             InputPage inputPage = new InputPage();
+             parent_frame.Navigate(inputPage);
+        }
+
+        private async void Create_Input_Click(object sender, RoutedEventArgs e)
+        {
+            if (!ValidateToken())
+            {
+                var refreshToken = await tokenController.RefreshToken(UserData.getToken(), UserData.getEmployee().EmployeeId);
+                UserData.setToken(refreshToken["result"]);
+            }
+
+            commodity_store_item.IsSelected = false;
+            home_item.IsSelected = false;
+            cleanOutput();
+            cleanSelectSubItems();
+            cleanSelectOrderSubItems();
+
+            CreateInputPage createInputPage = new CreateInputPage();
+            parent_frame.Navigate(createInputPage);
+        }
+
+        private async void Output_Click(object sender, RoutedEventArgs e)
+        {
+            if (!ValidateToken())
+            {
+                var refreshToken = await tokenController.RefreshToken(UserData.getToken(), UserData.getEmployee().EmployeeId);
+                UserData.setToken(refreshToken["result"]);
+            }
+
+              commodity_store_item.IsSelected = false;
+              home_item.IsSelected = false;
+            cleanInputOutput();
+              cleanSelectSubItems();
+              cleanSelectOrderSubItems();
+
+             OutputPage outputPage = new OutputPage();
+             parent_frame.Navigate(outputPage);
+        }
+
+
+
+
 
 
 
@@ -264,9 +374,23 @@ namespace Presentation.UI.Dashboard
             received_order_item.IsSelected = false;
             waiting_order_item.IsSelected = false;
             pending_order_item.IsSelected = false;
+            paid_order_item.IsSelected = false;
             purchase_order_item.IsSelected = false;
-            commodity_store_item.IsSelected = false;
         }
+
+
+        private void cleanInputOutput()
+        {
+            input_item.IsSelected = false;
+            create_input_item.IsSelected = false;          
+        }
+
+        private void cleanOutput()
+        {
+            output_item.IsSelected = false;
+        }
+
+
 
 
 

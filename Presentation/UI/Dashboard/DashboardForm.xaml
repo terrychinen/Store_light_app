@@ -69,16 +69,57 @@
                             </StackPanel>
                         </ListViewItem>
 
+                        <ListViewItem Name="paid_order_item" Selected="PaidOrder_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="FormSelect" Margin="10" Foreground="White" />
+                                <TextBlock Text="PEDIDO PAGADO" Foreground="White" VerticalAlignment="Center" Margin="10" />
+                            </StackPanel>
+                        </ListViewItem>
+
                         <ListViewItem Name="cancel_order_item" Selected="CancelOrder_Click">
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="FormSelect" Margin="10" Foreground="White" />
-                                <TextBlock Text="PEDIDO CANCELADO" Foreground="White" VerticalAlignment="Center" Margin="10" />
+                                <TextBlock Text="PEDIDO ANULADO" Foreground="White" VerticalAlignment="Center" Margin="10" />
                             </StackPanel>
                         </ListViewItem>
 
                     </ListView>
                 </Expander>
 
+
+                <Expander Header="ENTRADA" Foreground="White"  Background="#FF363636" MouseLeftButtonUp="Expander_MouseLeftButtonUp">
+                    <ListView Margin="25, 0, 0, 0">
+                        
+                        <ListViewItem Name="input_item" Selected="Input_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="FormSelect" Margin="10" Foreground="White" />
+                                <TextBlock Text="ENTRADA" Foreground="White" VerticalAlignment="Center" Margin="10" />
+                            </StackPanel>
+                        </ListViewItem>
+
+                        <ListViewItem Name="create_input_item" Selected="Create_Input_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="FormSelect" Margin="10" Foreground="White" />
+                                <TextBlock Text="CREAR ENTRADA" Foreground="White" VerticalAlignment="Center" Margin="10" />
+                            </StackPanel>
+                        </ListViewItem>
+
+                    </ListView>
+                </Expander>
+
+
+                <Expander Header="SALIDA" Foreground="White"  Background="#FF363636" MouseLeftButtonUp="Expander_MouseLeftButtonUp">
+                    <ListView Margin="25, 0, 0, 0">
+
+                        <ListViewItem Name="output_item" Selected="Output_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="FormSelect" Margin="10" Foreground="White" />
+                                <TextBlock Text="SALIDA" Foreground="White" VerticalAlignment="Center" Margin="10" />
+                            </StackPanel>
+                        </ListViewItem>
+
+                    </ListView>
+                </Expander>
 
 
                 <Expander Header="CREAR - EDITAR" Foreground="White"  Background="#FF363636" MouseLeftButtonUp="Expander_MouseLeftButtonUp">

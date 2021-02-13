@@ -61,10 +61,6 @@ namespace DataAccess.Api
                 request.AddHeader("token", token);   
                 request.AddParameter("application/x-www-form-urlencoded", dataJson, ParameterType.RequestBody);
 
-                Console.WriteLine($"=============================================");
-                Console.WriteLine($"{dataJson}");
-                Console.WriteLine($"=============================================");
-
                 IRestResponse response = await client.ExecuteAsync(request);
 
                 data.Add("ok", true);

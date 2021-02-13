@@ -40,7 +40,6 @@
 
                     <ColumnDefinition Width="2*"></ColumnDefinition>
                     <ColumnDefinition Width="2*"></ColumnDefinition>
-                    <ColumnDefinition Width="2*"></ColumnDefinition>
 
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="2*"></ColumnDefinition>
@@ -51,11 +50,10 @@
                 <Label Grid.Column="2" Content="Pedido por" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
                 <Label Grid.Column="3" Content="Fec. pedido" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <Label Grid.Column="4" Content="Fec. esperado" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <Label Grid.Column="5" Content="Fec. recibido" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label Grid.Column="4" Content="Fec. recibido" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
-                <Label Grid.Column="6" Content="Costo total" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <Label Grid.Column="7" Content="Estado" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label Grid.Column="5" Content="Costo total" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label Grid.Column="6" Content="Estado" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Grid>
             <!-- ================================ -->
 
@@ -71,7 +69,6 @@
                                 <ColumnDefinition Width="2*"></ColumnDefinition>
                                 <ColumnDefinition Width="2*"></ColumnDefinition>
                                 <ColumnDefinition Width="2*"></ColumnDefinition>
-                                <ColumnDefinition Width="2*"></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                                 <ColumnDefinition Width="2*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
@@ -80,10 +77,9 @@
                             <TextBlock Grid.Column="1" FontSize="15" Text="{Binding ProviderName}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
                             <TextBlock Grid.Column="2" FontSize="15" Text="{Binding EmployeeName}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
                             <TextBlock Grid.Column="3" FontSize="15" Text="{Binding OrderDate}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-                            <TextBlock Grid.Column="4" FontSize="15" Text="{Binding ExpectedDate}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-                            <TextBlock Grid.Column="5" FontSize="15" Text="{Binding ReceiveDate}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-                            <TextBlock Grid.Column="6" FontSize="15" Text="{Binding TotalPrice, StringFormat='S/.'}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-                            <TextBlock Grid.Column="7" FontSize="13" Text="{Binding StateName}" FontWeight="Bold" Foreground="{Binding StateColor}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Grid.Column="4" FontSize="15" Text="{Binding ReceiveDate}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Grid.Column="5" FontSize="15" Text="{Binding TotalPrice, StringFormat='S/.'}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Grid.Column="6" FontSize="13" Text="{Binding StateName}" FontWeight="Bold" Foreground="{Binding StateColor}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

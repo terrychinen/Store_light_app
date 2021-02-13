@@ -77,8 +77,13 @@ namespace Presentation.UI.Order
                 purchaseOrder.ReceiveDate = "";
             }
 
+            if (purchaseOrder.PaidDate == "----")
+            {
+                purchaseOrder.PaidDate = "";
+            }
 
-            if(purchaseOrder.State == 0)
+
+            if (purchaseOrder.State == 0)
             {
                 rb_pending.IsChecked = true;
             }else if(purchaseOrder.State == 1)
@@ -87,14 +92,18 @@ namespace Presentation.UI.Order
             }else if(purchaseOrder.State == 2)
             {
                 rb_received.IsChecked = true;
-            }else
+            }else if(purchaseOrder.State == 4)
             {
                 rb_cancel.IsChecked = true;
+            }else
+            {
+                rb_paid.IsChecked = true;
             }
 
            
             expected_date.Text = purchaseOrder.ExpectedDate;
             receive_date.Text = purchaseOrder.ReceiveDate;
+            paid_date.Text = purchaseOrder.PaidDate;
 
 
             txt_total_price.Content = "TOTAL: S/." +purchaseOrder.TotalPrice;
@@ -230,9 +239,17 @@ namespace Presentation.UI.Order
             {
                 return 2;
             }
-            else
+            else if (rb_paid.IsChecked.Value)
             {
                 return 3;
+            }
+            else if (rb_cancel.IsChecked.Value)
+            {
+                return 4;
+            }
+            else
+            {
+                return 4;
             }
         }
 
@@ -275,6 +292,7 @@ namespace Presentation.UI.Order
                     DateTime orderDateTime;
                     DateTime? receiveDateTime = null;
                     DateTime? expectedDateTime = null;
+                    DateTime? paidDateTime = null;
 
                     if (order_date.Text.Trim() != "")
                     {
@@ -288,7 +306,13 @@ namespace Presentation.UI.Order
                             receiveDateTime = DateTime.ParseExact(receive_date.Text, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);                            
                         }
 
-                        orderDateTime = DateTime.Parse(order_date.Text);
+                        if (!string.IsNullOrEmpty(paid_date.Text))
+                        {
+                            paidDateTime = DateTime.ParseExact(paid_date.Text, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+                        }
+
+                        string data = DateTime.ParseExact(order_date.Text, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture).ToString("MM/dd/yyyy HH:mm:ss");
+                        orderDateTime = DateTime.Parse(data);                        
 
                         if (orderDateTime > expectedDateTime)
                         {
@@ -305,17 +329,32 @@ namespace Presentation.UI.Order
                         else
                         {
                             string convertOrder = orderDateTime.ToString("yyyy-MM-dd HH:mm:ss");
-                            string convertExpected = "";
-                            string convertReceive = "";
+                            string convertExpected = "null";
+                            string convertReceive = "null";
+                            string convertPaid = "null";
 
                             if (expectedDateTime != null)
                             {
                                 convertExpected = expectedDateTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
                             }
+                            else {
+                                convertExpected = "null";
+                            }
 
                             if (receiveDateTime != null)
                             {
                                 convertReceive = receiveDateTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
+                            }
+                            else {
+                                convertReceive = "null";
+                            }
+
+                            if (paidDateTime != null)
+                            {
+                                convertPaid = paidDateTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
+                            }else
+                            {
+                                convertPaid = "null";
                             }
 
 
@@ -323,6 +362,7 @@ namespace Presentation.UI.Order
                             purchaseOrder.OrderDate = convertOrder;
                             purchaseOrder.ExpectedDate = convertExpected;
                             purchaseOrder.ReceiveDate = convertReceive;
+                            purchaseOrder.PaidDate = convertPaid;
                             purchaseOrder.TotalPrice = totalPrice;                            
                             purchaseOrder.Message = txt_message.Text;
                             purchaseOrder.UpdatedBy = UserData.getEmployee().EmployeeId;
@@ -333,7 +373,7 @@ namespace Presentation.UI.Order
 
                             if (dataResponse["ok"])
                             {
-                                MessageBox.Show("El órden se creó correctamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                                MessageBox.Show("El órden se actualizó correctamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
                                 this.Close();
                             }
                             else

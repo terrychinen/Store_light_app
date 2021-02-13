@@ -30,7 +30,7 @@ namespace Presentation.UI.Order.StateOrder
         {
             InitializeComponent();
             LoadPurchaseOrder();
-        }
+        } 
 
         private async void LoadPurchaseOrder()
         {
@@ -53,18 +53,21 @@ namespace Presentation.UI.Order.StateOrder
 
                         if (purchaseOrdersList[i].ExpectedDate != null)
                         {
-                            if (purchaseOrdersList[i].ExpectedDate != "0000-00-00 00:00:00" && purchaseOrdersList[i].ExpectedDate != "1969-12-31 07:00:00" && purchaseOrdersList[i].ExpectedDate != "1970-01-01 12:00:00")
-                            {
-                                DateTime expectedDate = DateTime.ParseExact(purchaseOrdersList[i].ExpectedDate, "yyyy-MM-dd hh:mm:ss", null);
-                                purchaseOrdersList[i].ExpectedDate = expectedDate.ToString("dd/MM/yyyy hh:mm:ss");
-                            }
-                            else { purchaseOrdersList[i].ExpectedDate = "----"; }
+                            DateTime expectedDate = DateTime.ParseExact(purchaseOrdersList[i].ExpectedDate, "yyyy-MM-dd hh:mm:ss", null);
+                            purchaseOrdersList[i].ExpectedDate = expectedDate.ToString("dd/MM/yyyy hh:mm:ss");
                         }
                         else { purchaseOrdersList[i].ExpectedDate = "----"; }
 
 
+                        if (purchaseOrdersList[i].ReceiveDate != null)
+                        {
+                            DateTime expectedDate = DateTime.ParseExact(purchaseOrdersList[i].ReceiveDate, "yyyy-MM-dd hh:mm:ss", null);
+                            purchaseOrdersList[i].ReceiveDate = expectedDate.ToString("dd/MM/yyyy hh:mm:ss");
+                        }
+                        else { purchaseOrdersList[i].ReceiveDate = "----"; }
+
                         purchaseOrdersList[i].StateColor = "Black";
-                        purchaseOrdersList[i].StateName = "RECIBIDO / CANCELADO";
+                        purchaseOrdersList[i].StateName = "RECIBIDO";
                     }
 
                     purchaseOrderListBox.ItemsSource = purchaseOrdersList;

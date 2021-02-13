@@ -106,7 +106,7 @@ namespace Presentation.UI.Commodity_Store
                         storeCommodity.State = 0;
                     }
 
-                    storeCommodity.Stock = Int32.Parse(txt_stock.Text);
+                    storeCommodity.Stock = Double.Parse(txt_stock.Text);
                     storeCommodity.StoreId = store.StoreId;
                     storeCommodity.CommodityId = commodity.CommodityId;
                     var dataResponse = await storeCommodityController.CreateStoreCommodity(storeCommodity, UserData.getToken().TokenKey);

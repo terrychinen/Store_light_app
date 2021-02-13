@@ -120,6 +120,7 @@ namespace Presentation.UI.Order
             }
         }
 
+
         private void cb_commodity_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -141,6 +142,7 @@ namespace Presentation.UI.Order
             }           
         }
 
+
         private void cb_commodity_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Down)
@@ -161,20 +163,22 @@ namespace Presentation.UI.Order
                     DateTime orderDateTime;
                     DateTime? receiveDateTime = null;
                     DateTime? expectedDateTime = null;
-                    
+                    DateTime? paidDateTime = null;
+
+
                     if (order_date.Text != "") {
-                        if(expected_date.Text.Trim() != "")
+                        if (expected_date.Text.Trim() != "")
                         {
                             expectedDateTime = DateTime.ParseExact(expected_date.Text, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
                         }
-
                         if (receive_date.Text.Trim() != "")
                         {
                             receiveDateTime = DateTime.ParseExact(receive_date.Text, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
                         }
 
 
-                        orderDateTime = DateTime.Parse(order_date.Text);
+                        string data = DateTime.ParseExact(order_date.Text, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture).ToString("MM/dd/yyyy HH:mm:ss");
+                        orderDateTime = DateTime.Parse(data);
 
                         if (orderDateTime > expectedDateTime)
                         {
@@ -187,20 +191,36 @@ namespace Presentation.UI.Order
                         else if (expectedDateTime > receiveDateTime)
                         {
                             MessageBox.Show("La fecha recibido tiene que ser mayor que la fecha de llegada!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                        }else
+                        }
+                        else
                         {
                             string convertOrder = orderDateTime.ToString("yyyy-MM-dd HH:mm:ss");
-                            string convertExpected = "";
-                            string convertReceive = "";
-                            
-                            if (expectedDateTime != null)
+                            string convertExpected = "null";
+                            string convertReceive = "null";
+                            string convertPaid = "null";
+
+                            if (expectedDateTime != null || expectedDateTime.HasValue)
                             {
                                 convertExpected = expectedDateTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
                             }
+                            else {
+                                convertExpected = "null";
+                            }
 
-                            if (receiveDateTime != null)
+                            if (receiveDateTime != null || receiveDateTime.HasValue)
                             {
                                 convertReceive = receiveDateTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
+                            }
+                            else {
+                                convertReceive = "null";
+                            }
+
+                            if (paidDateTime != null || paidDateTime.HasValue)
+                            {
+                                convertPaid = paidDateTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
+                            }
+                            else {
+                                convertPaid = "null";
                             }
 
 
@@ -209,6 +229,7 @@ namespace Presentation.UI.Order
                             purchaseOrder.OrderDate = convertOrder;
                             purchaseOrder.ExpectedDate = convertExpected;
                             purchaseOrder.ReceiveDate = convertReceive;
+                            purchaseOrder.PaidDate = convertPaid;
                             purchaseOrder.TotalPrice = totalPrice;
                             purchaseOrder.State = stateOfOrder();
                             purchaseOrder.Message = txt_message.Text;
@@ -224,10 +245,7 @@ namespace Presentation.UI.Order
                             {
                                 MessageBox.Show("Error: " + dataResponse["result"], "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                             }
-                        }
-
-                                           
-
+                        }                                     
 
                     }
                     else
@@ -262,9 +280,16 @@ namespace Presentation.UI.Order
             {
                 return 2;
             }
-            else
+            else if(rb_paid.IsChecked.Value)
             {
                 return 3;
+            }
+            else if (rb_cancel.IsChecked.Value)
+            {
+                return 4;
+            }else
+            {
+                return 4;
             }
         }
 
