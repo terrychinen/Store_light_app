@@ -15,9 +15,11 @@ namespace Domain.Models
         private int employeeId;
         private string employeeName;
         private string orderDate;
+        private string waitingDate;
         private string expectedDate;
         private string receiveDate;
         private string paidDate;
+        private string cancelDate;
         private double totalPrice;
         private string message;
         private int? updatedBy;        
@@ -75,6 +77,10 @@ namespace Domain.Models
         [JsonProperty("updated_name")]
         public string UpdatedName { get => updatedName; set => updatedName = value; }
 
-       
+        [JsonProperty("cancel_date")]
+        public string CancelDate { get => cancelDate; set => cancelDate = value; }
+
+        [JsonProperty("waiting_date")]
+        public string WaitingDate { get => waitingDate; set => waitingDate = value; }
     }
 }

@@ -47,60 +47,100 @@ namespace Presentation.UI.Order
                     {
                         if (purchaseOrdersList[i].OrderDate != null || purchaseOrdersList[i].OrderDate != "")
                         {
-                            DateTime orderDate = DateTime.ParseExact(purchaseOrdersList[i].OrderDate, "yyyy-MM-dd hh:mm:ss", null);
-                            purchaseOrdersList[i].OrderDate = orderDate.ToString("dd/MM/yyyy hh:mm:ss");
+                            DateTime orderDate = DateTime.Parse(purchaseOrdersList[i].OrderDate);
+                            purchaseOrdersList[i].OrderDate = orderDate.ToString("dd/MM/yyyy HH:mm:ss");
+
+                            purchaseOrdersList[i].StateColor = "Orange";
+                            purchaseOrdersList[i].StateName = "POR ATENDER";
                         }
 
 
+                        string waitingDateString = purchaseOrdersList[i].WaitingDate;
+                        string expectedDateString = purchaseOrdersList[i].ExpectedDate;
+                        string receiveDateString = purchaseOrdersList[i].ReceiveDate;
+                        string paidDateString = purchaseOrdersList[i].PaidDate;
+                        string cancelDateString = purchaseOrdersList[i].CancelDate;
 
-                        if (purchaseOrdersList[i].ExpectedDate != null)
+                        if (waitingDateString != null)
                         {
-                            DateTime expectedDate = DateTime.ParseExact(purchaseOrdersList[i].ExpectedDate, "yyyy-MM-dd hh:mm:ss", null);
-                            purchaseOrdersList[i].ExpectedDate = expectedDate.ToString("dd/MM/yyyy hh:mm:ss");
+                            DateTime waitingDate = DateTime.Parse(purchaseOrdersList[i].WaitingDate);
+                            purchaseOrdersList[i].WaitingDate = waitingDate.ToString("dd/MM/yyyy HH:mm:ss");
+
+                            purchaseOrdersList[i].StateColor = "Green";
+                            purchaseOrdersList[i].StateName = "EN CURSO";
+
+                        }
+                        else { purchaseOrdersList[i].WaitingDate = "----"; }
+
+                     
+
+                        if (expectedDateString != null)
+                        {
+                            DateTime expectedDate = DateTime.Parse(purchaseOrdersList[i].ExpectedDate);
+                            purchaseOrdersList[i].ExpectedDate = expectedDate.ToString("dd/MM/yyyy HH:mm:ss");
+
                         }
                         else { purchaseOrdersList[i].ExpectedDate = "----"; }
 
 
-                        if (purchaseOrdersList[i].ReceiveDate != null)
+                     
+
+                        if (receiveDateString != null)
                         {
-                            DateTime receiveDate = DateTime.ParseExact(purchaseOrdersList[i].ReceiveDate, "yyyy-MM-dd hh:mm:ss", null);
-                            purchaseOrdersList[i].ReceiveDate = receiveDate.ToString("dd/MM/yyyy hh:mm:ss");
+                            if (paidDateString != null)
+                            {
+                                purchaseOrdersList[i].StateColor = "Black";
+                                purchaseOrdersList[i].StateName = "RECIBIDO-PAGADO";
+                            }
+                            else
+                            {
+                                purchaseOrdersList[i].StateColor = "Black";
+                                purchaseOrdersList[i].StateName = "RECIBIDO";
+                            }
+                            
+                         
+
+                            DateTime receiveDate = DateTime.Parse(purchaseOrdersList[i].ReceiveDate);
+                            purchaseOrdersList[i].ReceiveDate = receiveDate.ToString("dd/MM/yyyy HH:mm:ss");
                         }
                         else { purchaseOrdersList[i].ReceiveDate = "----"; }
 
 
-                        if (purchaseOrdersList[i].PaidDate != null)
+
+                       
+
+                        if (paidDateString != null)
                         {
-                            DateTime paidDate = DateTime.ParseExact(purchaseOrdersList[i].PaidDate, "yyyy-MM-dd hh:mm:ss", null);
-                            purchaseOrdersList[i].PaidDate = paidDate.ToString("dd/MM/yyyy hh:mm:ss");
+                            if (receiveDateString != null)
+                            {
+                                purchaseOrdersList[i].StateColor = "Black";
+                                purchaseOrdersList[i].StateName = "RECIBIDO-PAGADO";
+                            }else
+                            {
+                                purchaseOrdersList[i].StateColor = "Black";
+                                purchaseOrdersList[i].StateName = "PAGADO";
+                            }
+
+                          
+
+                            DateTime paidDate = DateTime.Parse(purchaseOrdersList[i].PaidDate);
+                            purchaseOrdersList[i].PaidDate = paidDate.ToString("dd/MM/yyyy HH:mm:ss");
                         }
                         else { purchaseOrdersList[i].PaidDate = "----"; }
 
 
-                        if (purchaseOrdersList[i].State == 0)
-                        {
-                            purchaseOrdersList[i].StateColor = "Orange";
-                            purchaseOrdersList[i].StateName = "POR ATENDER";
-                        }
-                        else if (purchaseOrdersList[i].State == 1)
-                        {
-                            purchaseOrdersList[i].StateColor = "Green";
-                            purchaseOrdersList[i].StateName = "EN CURSO";
-                        }
-                        else if (purchaseOrdersList[i].State == 2)
-                        {
-                            purchaseOrdersList[i].StateColor = "Black";
-                            purchaseOrdersList[i].StateName = "RECIBIDO";
-                        }
-                        else if (purchaseOrdersList[i].State == 4)
+                    
+
+
+                        if (cancelDateString != null)
                         {
                             purchaseOrdersList[i].StateColor = "Red";
                             purchaseOrdersList[i].StateName = "ANULADO";
-                        } else
-                        {
-                            purchaseOrdersList[i].StateColor = "Black";
-                            purchaseOrdersList[i].StateName = "PAGADO";
+
+                            DateTime cancelDate = DateTime.Parse(purchaseOrdersList[i].CancelDate);
+                            purchaseOrdersList[i].CancelDate = cancelDate.ToString("dd/MM/yyyy HH:mm:ss");
                         }
+                        else { purchaseOrdersList[i].CancelDate = "----"; }
                     }
 
                     purchaseOrderListBox.ItemsSource = purchaseOrdersList;

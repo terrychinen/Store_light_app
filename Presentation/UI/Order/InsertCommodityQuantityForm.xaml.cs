@@ -61,13 +61,14 @@ namespace Presentation.UI.Order
                     if(quantity >= 0)
                     {
                         if(price >= 0)
-                        {
+                        {                         
+
                             CommodityModel commoditySelected = new CommodityModel();
 
                             commoditySelected.Name = commodityName;
                             commoditySelected.CommodityId = commodityID;
-                            commoditySelected.Quantity = Math.Round(quantity, 2);
-                            commoditySelected.UnitPrice = Math.Round(price, 2);
+                            commoditySelected.Quantity = quantity;
+                            commoditySelected.UnitPrice = price;
                             commoditySelected.TotalPrice = Math.Round(quantity * price, 2);
                        
 

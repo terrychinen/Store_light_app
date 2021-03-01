@@ -14,6 +14,7 @@ namespace Domain.Models
         int commodityId;
         string commodityName;
         double stock;
+        double stockMin;
         double stockTotal;
         int state;       
         bool selectedStore; 
@@ -42,8 +43,8 @@ namespace Domain.Models
         public string StateString { get => stateString; set => stateString = value; }
 
 
+        [JsonProperty("stock_min")]
+        public double StockMin { get => stockMin; set => stockMin = value; }
 
-
-        // public List<string> StoreNameSelectedList { get => storeNameSelectedList; set => storeNameSelectedList = value; }
     }
 }

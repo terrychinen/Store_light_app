@@ -43,8 +43,7 @@ namespace DataAccess.Api
         }
 
 
-        public async Task<Dictionary<string, dynamic>> CreateInput(int orderID, int storeID, int commodityIDInput, int commodityIDProvider,  
-            int employeeID, double quantity, string date, int state, string token)
+        public async Task<Dictionary<string, dynamic>> CreateInput(string dataJson, string token)
         {
             Dictionary<string, dynamic> data;
 
@@ -56,9 +55,7 @@ namespace DataAccess.Api
                 var client = new RestClient(url);
 
                 var request = new RestRequest(Method.POST);
-                request.AddHeader("token", token);
-                request.AddParameter("application/x-www-form-urlencoded", $"order_id={orderID}&store_id={storeID}&commodity_input={commodityIDInput}" +
-                    $"&commodity_provider={commodityIDProvider}&employee_id{employeeID}&quantity={quantity}&date={date}&state={state}", ParameterType.RequestBody);
+                request.AddParameter("application/json", dataJson, ParameterType.RequestBody);
 
                 IRestResponse response = await client.ExecuteAsync(request);
 

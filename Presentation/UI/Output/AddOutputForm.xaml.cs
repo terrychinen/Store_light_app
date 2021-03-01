@@ -48,7 +48,10 @@ namespace Presentation.UI.Output
 
             outputController = new OutputController();
 
-            order_date.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+
+            txt_order.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+
+            //txt_date.Texx = DateTim                
 
             cb_store.DisplayMemberPath = "Name";
             cb_store.SelectedValuePath = "StoreId";
@@ -167,7 +170,7 @@ namespace Presentation.UI.Output
 
         private void cb_commodity_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Down)
+            if (e.Key == Key.Down || e.Key == Key.Up)
             {
                 cb_commodity.IsDropDownOpen = true;
                 cb_commodity.SelectedItem = true;
@@ -199,9 +202,11 @@ namespace Presentation.UI.Output
                 EmployeeModel employeeGives = cb_employee_gives.SelectedItem as EmployeeModel;
                 EmployeeModel employeeReceives = cb_employee_receives.SelectedItem as EmployeeModel;
 
-                string date = order_date.Text.Trim().ToString();
+                string orderDate = txt_order.Text.Trim().ToString();
 
-                if (storeCommodity == null || store == null || environment == null || employeeGives == null || employeeReceives == null || date == null || date == "")
+
+                if (storeCommodity == null || store == null || environment == null || employeeGives == null || employeeReceives == null ||
+                    orderDate == null || orderDate == "")
                 {
                     MessageBox.Show("Ingrese un almaén, mercancía, ambiente, fecha y empleados válidos", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
@@ -210,14 +215,12 @@ namespace Presentation.UI.Output
                     if (txt_quantity.Text != null)
                     {
                         double quantity = Double.Parse(txt_quantity.Text);
-                        if (stock > quantity)
+                        if (stock >= quantity)
                         {
-                            string data = DateTime.ParseExact(order_date.Text, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture).ToString("MM/dd/yyyy HH:mm:ss");
-                            DateTime orderDateTime = DateTime.Parse(data);
-                            string convertOrder = orderDateTime.ToString("yyyy-MM-dd HH:mm:ss");
+                            string data = DateTime.ParseExact($"{txt_order.Text}", "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
 
                             var dataResponse = outputController.CreateOutput(store.StoreId, environment.EnvironmentId, 
-                                    storeCommodity.CommodityId, quantity, employeeGives.EmployeeId, employeeReceives.EmployeeId, convertOrder, 
+                                    storeCommodity.CommodityId, quantity, employeeGives.EmployeeId, employeeReceives.EmployeeId, data, 
                                     txt_message.Text.ToString(), 1, UserData.getToken().TokenKey);
 
                             if (dataResponse["ok"])
@@ -232,7 +235,7 @@ namespace Presentation.UI.Output
                         }
                         else
                         {
-                            MessageBox.Show("La cantidad tiene que ser menor que el stock", "Error", MessageBoxButton.OK, MessageBoxImage.Error);                            
+                            MessageBox.Show("La cantidad tiene que ser menor o igual que el stock", "Error", MessageBoxButton.OK, MessageBoxImage.Error);                            
                         }
 
                     }
@@ -244,7 +247,7 @@ namespace Presentation.UI.Output
             }
             catch(Exception error)
             {
-                MessageBox.Show("Ingrese un formato en el campo cantidad correcto!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"{error.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
         }

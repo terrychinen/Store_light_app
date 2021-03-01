@@ -76,6 +76,13 @@
                             </StackPanel>
                         </ListViewItem>
 
+                        <ListViewItem Name="receive_paid_order_item" Selected="ReceivePaidOrder_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="FormSelect" Margin="10" Foreground="White" />
+                                <TextBlock Text="PEDIDO RECB/PAGDO" FontSize="13" Foreground="White" VerticalAlignment="Center" Margin="10" />
+                            </StackPanel>
+                        </ListViewItem>
+
                         <ListViewItem Name="cancel_order_item" Selected="CancelOrder_Click">
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="FormSelect" Margin="10" Foreground="White" />

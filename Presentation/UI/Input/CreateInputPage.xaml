@@ -19,12 +19,12 @@
 
 
         <!-- TITLE -->
-        <Label Grid.Row="0" Content="CREAR ENTRADAS" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Grid.Row="0" Content="CREAR ENTRADA" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <!-- ========= -->
 
 
         <!-- LISTBOX TEMPLATE -->
-        <Grid Grid.Row="1" Margin="10" PreviewMouseLeftButtonUp="Grid_PreviewMouseLeftButtonUp">
+        <Grid Grid.Row="1" Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height =".18*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
@@ -59,7 +59,7 @@
 
 
             <!-- DATA OF LISTBOX -->
-            <ListBox Name="purchaseOrderListBox" Grid.Row="1"  Margin="50, 0, 50, 0" HorizontalContentAlignment ="Stretch" Background="AliceBlue" >
+            <ListBox Name="purchaseOrderListBox" MouseDoubleClick="Grid_PreviewMouseLeftButtonUp" Grid.Row="1"  Margin="50, 0, 50, 0" HorizontalContentAlignment ="Stretch" Background="AliceBlue" >
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="2">
@@ -78,7 +78,7 @@
                             <TextBlock Grid.Column="2" FontSize="15" Text="{Binding EmployeeName}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
                             <TextBlock Grid.Column="3" FontSize="15" Text="{Binding OrderDate}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
                             <TextBlock Grid.Column="4" FontSize="15" Text="{Binding ExpectedDate}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-                            <TextBlock Grid.Column="5" FontSize="15" Text="{Binding TotalPrice, StringFormat='S/.'}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Grid.Column="5" FontSize="15" Text="{Binding TotalPrice, StringFormat='S/##.00'}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
                             <TextBlock Grid.Column="6" FontSize="13" Text="{Binding StateName}" FontWeight="Bold" Foreground="{Binding StateColor}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
                         </Grid>
                     </DataTemplate>

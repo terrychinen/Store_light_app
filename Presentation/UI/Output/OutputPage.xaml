@@ -32,17 +32,18 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="4*"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <TextBox x:Name="txt_search" Grid.Column="0" Margin="0, 20, 0, 10" Width="400" Height="30" HorizontalAlignment="Center"  materialDesign:HintAssist.Hint="Buscar" TextChanged="Search_TextChanged"></TextBox>
-            <RadioButton Content="ID" Name="rb_id" Grid.Column="1" Margin="50, 0, 0, 0"></RadioButton>
-            <RadioButton Content="Nombre" Name="rb_name" Grid.Column="2" IsChecked="True" Margin="50, 0, 0, 0"></RadioButton>
+            <RadioButton Content="Mercancía" Name="rb_commodity" Grid.Column="1" IsChecked="True" Margin="50, 0, 0, 0"></RadioButton>
+            <RadioButton Content="Ambiente" Name="rb_environment" Grid.Column="2" IsChecked="False" Margin="50, 0, 0, 0"></RadioButton>
         </Grid>
         <!-- ========= -->
 
 
         <!-- LISTBOX TEMPLATE -->
-        <Grid Grid.Row="2" Margin="0" PreviewMouseLeftButtonUp="OutputListBox_Click">
+        <Grid Grid.Row="2" Margin="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height =".18*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
@@ -52,6 +53,7 @@
             <!-- CABECERA DEL LISTBOX -->
             <Grid Grid.Row="0" Margin="50, 0" Background="DarkGray">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="2*"></ColumnDefinition>
                     <ColumnDefinition Width="2*"></ColumnDefinition>
                     <ColumnDefinition Width="2*"></ColumnDefinition>
@@ -62,24 +64,26 @@
                     <ColumnDefinition Width="2*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Column="0" Content="Salida ID" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <Label Grid.Column="1" Content="Almacén" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <Label Grid.Column="2" Content="Ambiente" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <Label Grid.Column="3" Content="Mercancía" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <Label Grid.Column="4" Content="Cantidad" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <Label Grid.Column="5" Content="Entregó" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <Label Grid.Column="6" Content="Recibió" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <Label Grid.Column="7" Content="Fecha" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label Grid.Column="0" Content="ID" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Label Grid.Column="1" Content="Almacén" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label Grid.Column="2" Content="Ambiente" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label Grid.Column="3" Content="Mercancía" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label Grid.Column="4" Content="Cantidad" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label Grid.Column="5" Content="Entregó" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label Grid.Column="6" Content="Recibió" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label Grid.Column="7" Content="Fecha" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label Grid.Column="8" Content="Lote" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Grid>
             <!-- ================================ -->
 
 
             <!-- DATA OF LISTBOX -->
-            <ListBox Name="outputListBox" Grid.Row="1"  Margin="50, 0, 50, 0" HorizontalContentAlignment ="Stretch" Background="AliceBlue" >
+            <ListBox Name="outputListBox" MouseDoubleClick="OutputListBox_Click" Grid.Row="1"  Margin="50, 0, 50, 0" HorizontalContentAlignment ="Stretch" Background="AliceBlue" >
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="2">
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
                                 <ColumnDefinition Width="2*"></ColumnDefinition>
                                 <ColumnDefinition Width="2*"></ColumnDefinition>
                                 <ColumnDefinition Width="2*"></ColumnDefinition>
@@ -90,14 +94,15 @@
                                 <ColumnDefinition Width="2*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="0" FontSize="15" Text="{Binding OutputId}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-                            <TextBlock Grid.Column="1" FontSize="15" Text="{Binding StoreName}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-                            <TextBlock Grid.Column="2" FontSize="15" Text="{Binding EnvironmentName}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-                            <TextBlock Grid.Column="3" FontSize="15" Text="{Binding CommodityName}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-                            <TextBlock Grid.Column="4" FontSize="15" Text="{Binding Quantity}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-                            <TextBlock Grid.Column="5" FontSize="15" Text="{Binding EmployeeGivesName}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-                            <TextBlock Grid.Column="6" FontSize="15" Text="{Binding EmployeeReceivesName}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-                            <TextBlock Grid.Column="7" FontSize="15" Text="{Binding DateOutput}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Grid.Column="0" FontSize="13" Text="{Binding OutputId}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Grid.Column="1" FontSize="13" Text="{Binding StoreName}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Grid.Column="2" FontSize="13" Text="{Binding EnvironmentName}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Grid.Column="3" FontSize="13" Text="{Binding CommodityName}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Grid.Column="4" FontSize="13" Text="{Binding Quantity}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Grid.Column="5" FontSize="13" Text="{Binding EmployeeGivesName}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Grid.Column="6" FontSize="13" Text="{Binding EmployeeReceivesName}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Grid.Column="7" FontSize="13" Text="{Binding DateOutput}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Grid.Column="8" FontSize="13" Text="{Binding Notes}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 using Domain.Controllers;
 using Domain;
 using Domain.Models;
-
+using System.Globalization;
 
 namespace Presentation.UI.Output
 {
@@ -30,15 +30,14 @@ namespace Presentation.UI.Output
         public OutputPage()
         {
             InitializeComponent();
+            outputController = new OutputController();
             LoadOutput();
         }
 
         private void LoadOutput()
         {
             try
-            {
-                outputController = new OutputController();
-
+            {              
                 var dataResponse = outputController.GetOutputs(UserData.getToken().TokenKey, 0, 1);
 
                 if (dataResponse["ok"])
@@ -47,8 +46,8 @@ namespace Presentation.UI.Output
 
                     for (int i = 0; i < outputList.Count; i++)
                     {
-                        DateTime orderDate = DateTime.ParseExact(outputList[i].DateOutput, "yyyy-MM-dd hh:mm:ss", null);
-                        outputList[i].DateOutput = orderDate.ToString("dd/MM/yyyy hh:mm:ss");
+                          DateTime orderDate = DateTime.Parse(outputList[i].DateOutput);
+                          outputList[i].DateOutput = orderDate.ToString("dd/MM/yyyy HH:mm:ss");
                     }  
 
                     outputListBox.ItemsSource = outputList;
@@ -64,30 +63,44 @@ namespace Presentation.UI.Output
 
         private void Search_TextChanged(object sender, TextChangedEventArgs e)
         {
-            /* string search = txt_search.Text.ToLower();
+            string search = txt_search.Text.ToLower();
 
-             int radioActive = 1;
-             bool rbId = rb_id.IsChecked.Value; // rbID=true (0)
-             bool rbName = rb_name.IsChecked.Value; //rbName=true (1)
+            if(search.Trim().Length >= 3)
+            {
+                int radioActive = 1;
+                bool rbCommodity = rb_commodity.IsChecked.Value; // rbCommodity=true (0)
+                bool rbEnvironment = rb_environment.IsChecked.Value; //rbEnvironment=true (1)
 
-             if (rbId)
-             {
-                 radioActive = 0;
-             }
-             else if (rbName)
-             {
-                 radioActive = 1;
-             }
+                if (rbCommodity)
+                {
+                    radioActive = 0;
+                }
+                else if (rbEnvironment)
+                {
+                    radioActive = 1;
+                }
 
 
-             var datatResponse = categoryController.SearchCategoriesAPI(search, radioActive, 1, UserData.getToken().TokenKey);
+                var datatResponse = outputController.SearchOutputAPI(search, radioActive, 1, UserData.getToken().TokenKey);              
 
-             if (datatResponse["ok"])
-             {
-                 List<CategoryModel> categoryListFiltered = datatResponse["result"].CategoryList;
-                 categoryListBox.ItemsSource = categoryListFiltered;
-             }
- */
+                if (datatResponse["ok"])
+                {
+                    List<OutputModel> outputListFiltered = datatResponse["result"].OutputList;
+
+                    for (int i = 0; i < outputListFiltered.Count; i++)
+                    {
+                        DateTime orderDate = DateTime.Parse(outputListFiltered[i].DateOutput);
+                        outputListFiltered[i].DateOutput = orderDate.ToString("dd/MM/yyyy hh:mm:ss");
+                    }
+
+                    outputListBox.ItemsSource = outputListFiltered;
+                }
+            } else if(search.Trim().Length == 0) {
+                LoadOutput();
+            } 
+
+          
+ 
         }
 
 
@@ -95,13 +108,26 @@ namespace Presentation.UI.Output
         {
             try
             {
-                InputModel input = outputListBox.SelectedItem as InputModel;
+                OutputModel output = outputListBox.SelectedItem as OutputModel;
 
-                if (input != null)
+                if (output != null)
                 {
-                    // UpdateCategoryForm updateCategoryForm = new UpdateCategoryForm(category);
-                    // updateCategoryForm.ShowDialog();
-                    // LoadCategories();
+                    StoreModel store = new StoreModel();
+                    store.StoreId = output.StoreId;
+                    store.Name = output.StoreName;
+
+                    EnvironmentModel environment = new EnvironmentModel();
+                    environment.EnvironmentId = output.EnvironmentId;
+                    environment.Name = output.EnvironmentName;
+
+                    CommodityModel commodity = new CommodityModel();
+                    commodity.CommodityId = output.CommodityId;
+                    commodity.Name = output.CommodityName;
+
+
+                    OptionForm optionForm = new OptionForm(output, store, environment, commodity);
+                    optionForm.ShowDialog();
+                    LoadOutput();
                 }
             }
             catch (Exception error)

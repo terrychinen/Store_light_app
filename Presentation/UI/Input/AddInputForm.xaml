@@ -1,12 +1,198 @@
-﻿<Window x:Class="Presentation.UI.Input.addInputForm"
+﻿<Window x:Class="Presentation.UI.Input.AddInputForm"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation.UI.Input"
         mc:Ignorable="d"
-        Title="addInputForm" Height="450" Width="800">
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        Title="Crear entrada" Height="600" Width="1250" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="87*"/>
+            <RowDefinition Height="199*"/>
+        </Grid.RowDefinitions>
+        <Grid Margin="0,0,-0.333,0" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height=".4*" />
+                <RowDefinition Height=".7*" />
+                <RowDefinition Height="5*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Content="CREAR ENTRADA" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+            <Label Grid.Row="1" Content="Haga doble click en una mercancía para ingresarlo al almacén:" FontSize="15" VerticalAlignment="Bottom" Margin="50, 0, 0 ,20" HorizontalAlignment="Left"/>
+            
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <!-- LEFT SIDE-->
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <!-- LISTBOX TEMPLATE -->
+                    <Grid Grid.Row="0" Margin="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height =".25*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+
+                        <!-- CABECERA DEL LISTBOX -->
+                        <Grid Grid.Column="0" Margin="50, 0" Background="DarkGray">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Column="0" Content="Mercancía" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <Label Grid.Column="1" Content="Cantidad" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <Label Grid.Column="2" Content="Costo unit." FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <Label Grid.Column="3" Content="Costo Total." FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                        <!-- ================================ -->
+
+
+                        <!-- DATA OF LISTBOX -->
+                        <ListBox Name="commodityListBox" MouseDoubleClick="commodityListBox_MouseDoubleClick" Grid.Row="1"  Margin="50, 0, 50, 0" Height="300" VerticalAlignment="Top" HorizontalContentAlignment ="Stretch" Background="AliceBlue" >
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Grid.Column="0" FontSize="14" Text="{Binding Name}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                                        <TextBlock Grid.Column="1" FontSize="14" Text="{Binding Quantity}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                                        <TextBlock Grid.Column="2" FontSize="14" Text="{Binding UnitPrice, StringFormat='S/##.00'}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <TextBlock Grid.Column="3" FontSize="14" Text="{Binding TotalPrice, StringFormat='S/##.00'}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <!-- =============================== -->
+
+
+                    </Grid>
+                    <!-- =============================== -->
+
+                    <Grid Grid.Row="1" Margin="5, 0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="3*"></RowDefinition>
+                            <RowDefinition Height="3*"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Label Name="cb_provider" FontSize="16" Margin="50, 0, 0, 0" HorizontalAlignment="Left" Grid.Row="0" Width="200" Height="30" />
+
+
+                        <Grid Grid.Row="1" Margin="50 ,0 ,0, 0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="0.9*"></ColumnDefinition>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Content="Fec. entrada:" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <xctk:DateTimePicker HorizontalAlignment="Center" Name="input_date" Grid.Column="1" TextAlignment="left" Format="Custom" Width="160" Height="30" FormatString="dd/MM/yyyy HH:mm:ss"/>
+
+                            <Label Grid.Column="2" Content="Nota:" FontSize="15"  Margin="90, 0, 0, 0"  />
+                            <TextBox Grid.Column="3" HorizontalAlignment="Left" Background="AntiqueWhite" Margin="0, 0, 50, 0" Width="350" Height="250" x:Name="txt_message" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" />
+                        </Grid>
+
+                       
+                    </Grid>
+
+
+                </Grid>
+
+                
+                <!-- RIGHT SIDE-->
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <!-- LISTBOX TEMPLATE -->
+                    <Grid Grid.Row="0" Margin="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height =".25*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+
+                        <!-- CABECERA DEL LISTBOX -->
+                        <Grid Grid.Row="0" Margin="50, 0" Background="DarkGray">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Column="0" Content="Mercancía" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <Label Grid.Column="1" Content="Cant." FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <Label Grid.Column="2" Content="Almacén" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                        <!-- ================================ -->
+
+
+                        <!-- DATA OF LISTBOX -->
+                        <ListBox Name="commodityStoreListBox" MouseDoubleClick="commodityStoreListBox_MouseDoubleClick" Grid.Row="1"  Margin="50, 0, 50, 0" VerticalAlignment="Top" HorizontalContentAlignment ="Stretch" Background="AliceBlue" >
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Grid.Column="0" FontSize="14" Text="{Binding CommodityName}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                                        <TextBlock Grid.Column="1" FontSize="14" Text="{Binding Stock}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                                        <TextBlock Grid.Column="2" FontSize="14" Text="{Binding StoreName}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <!-- =============================== -->
+
+
+                    </Grid>
+
+
+                </Grid>
+
+            </Grid>
+
+
+
+
+            <!-- CREATE BUTTON -->
+            <Grid Grid.Row="3" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Margin="80, 0, 0, 0" Content="TOTAL: " Name="txt_total_price" FontWeight="Bold" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Button Grid.Column="1" Margin="120, 0, 0, 0"  Width="220" Height="40" Content="Crear órden"  HorizontalAlignment="Left"></Button>
+            </Grid>
+            <!-- =============================== -->
+
+
+        </Grid>
     </Grid>
 </Window>

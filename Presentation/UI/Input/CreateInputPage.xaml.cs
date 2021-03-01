@@ -26,6 +26,8 @@ namespace Presentation.UI.Input
         private PurchaseOrderController purchaseOrderController;
         private List<PurchaseOrder> purchaseOrdersList;
 
+        private List<PurchaseOrder> purchaseOrdersListTemporal;
+
         public CreateInputPage()
         {
             InitializeComponent();
@@ -38,33 +40,79 @@ namespace Presentation.UI.Input
             {
                 purchaseOrderController = new PurchaseOrderController();
                 var dataResponse = await purchaseOrderController.GetPurchaseOrderWithState(UserData.getToken().TokenKey, 0, 2);
+                var dataResponse1 = await purchaseOrderController.GetPurchaseOrderWithState(UserData.getToken().TokenKey, 0, 4);
 
-                if (dataResponse["ok"])
+                if (dataResponse["ok"] && dataResponse1["ok"])
                 {
                     purchaseOrdersList = dataResponse["result"].PurchaseOrderList;
+                    purchaseOrdersListTemporal = dataResponse1["result"].PurchaseOrderList;
+
+                    for(int i = 0; i < purchaseOrdersListTemporal.Count; i++)
+                    {
+                        purchaseOrdersList.Add(purchaseOrdersListTemporal[i]);
+                    }
+
                     for (int i = 0; i < purchaseOrdersList.Count; i++)
                     {
                         if (purchaseOrdersList[i].OrderDate != null)
                         {
-                            DateTime orderDate = DateTime.ParseExact(purchaseOrdersList[i].OrderDate, "yyyy-MM-dd hh:mm:ss", null);
-                            purchaseOrdersList[i].OrderDate = orderDate.ToString("dd/MM/yyyy hh:mm:ss");
+                            DateTime orderDate = DateTime.Parse(purchaseOrdersList[i].OrderDate);
+                            purchaseOrdersList[i].OrderDate = orderDate.ToString("dd/MM/yyyy HH:mm:ss");
                         }
 
 
                         if (purchaseOrdersList[i].ExpectedDate != null)
                         {
-                            if (purchaseOrdersList[i].ExpectedDate != "0000-00-00 00:00:00" && purchaseOrdersList[i].ExpectedDate != "1969-12-31 07:00:00" && purchaseOrdersList[i].ExpectedDate != "1970-01-01 12:00:00")
-                            {
-                                DateTime expectedDate = DateTime.ParseExact(purchaseOrdersList[i].ExpectedDate, "yyyy-MM-dd hh:mm:ss", null);
-                                purchaseOrdersList[i].ExpectedDate = expectedDate.ToString("dd/MM/yyyy hh:mm:ss");
-                            }
-                            else { purchaseOrdersList[i].ExpectedDate = "----"; }
+                            DateTime expectedDate = DateTime.Parse(purchaseOrdersList[i].ExpectedDate);
+                            purchaseOrdersList[i].ExpectedDate = expectedDate.ToString("dd/MM/yyyy HH:mm:ss");
                         }
                         else { purchaseOrdersList[i].ExpectedDate = "----"; }
 
 
-                        purchaseOrdersList[i].StateColor = "Black";
-                        purchaseOrdersList[i].StateName = "RECIBIDO / CANCELADO";
+
+                        if (purchaseOrdersList[i].ReceiveDate != null)
+                        {
+                            DateTime receiveDate = DateTime.Parse(purchaseOrdersList[i].ReceiveDate);
+                            purchaseOrdersList[i].ReceiveDate = receiveDate.ToString("dd/MM/yyyy HH:mm:ss");
+                        }
+                        else { purchaseOrdersList[i].ReceiveDate = "----"; }
+
+
+
+                        if (purchaseOrdersList[i].WaitingDate != null)
+                        {
+                            DateTime waitingDate = DateTime.Parse(purchaseOrdersList[i].WaitingDate);
+                            purchaseOrdersList[i].WaitingDate = waitingDate.ToString("dd/MM/yyyy HH:mm:ss");
+                        }
+                        else { purchaseOrdersList[i].WaitingDate = "----"; }
+
+
+                        if (purchaseOrdersList[i].CancelDate != null)
+                        {
+                            DateTime cancelDate = DateTime.Parse(purchaseOrdersList[i].CancelDate);
+                            purchaseOrdersList[i].CancelDate = cancelDate.ToString("dd/MM/yyyy HH:mm:ss");
+                        }
+                        else { purchaseOrdersList[i].CancelDate = "----"; }
+
+
+                        if (purchaseOrdersList[i].PaidDate != null)
+                        {
+                            DateTime paidDate = DateTime.Parse(purchaseOrdersList[i].PaidDate);
+                            purchaseOrdersList[i].PaidDate = paidDate.ToString("dd/MM/yyyy HH:mm:ss");
+                        }
+                        else { purchaseOrdersList[i].PaidDate = "----"; }
+
+                        if(purchaseOrdersList[i].State == 4)
+                        {
+                            purchaseOrdersList[i].StateColor = "Black";
+                            purchaseOrdersList[i].StateName = "RECIBIDO / PAGADO";
+                        }else
+                        {
+                            purchaseOrdersList[i].StateColor = "Black";
+                            purchaseOrdersList[i].StateName = "RECIBIDO";
+                        }
+
+                        
                     }
 
                     purchaseOrderListBox.ItemsSource = purchaseOrdersList;
@@ -78,7 +126,21 @@ namespace Presentation.UI.Input
 
         private void Grid_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-          
+            try
+            {
+                PurchaseOrder selectedPurchaseOrder = purchaseOrderListBox.SelectedItem as PurchaseOrder;
+
+                if (selectedPurchaseOrder != null)
+                {
+                    AddInputForm addInputForm = new AddInputForm(selectedPurchaseOrder);
+                    addInputForm.ShowDialog();
+                    LoadPurchaseOrder();
+                }
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

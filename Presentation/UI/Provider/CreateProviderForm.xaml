@@ -23,7 +23,7 @@
                 <StackPanel Margin="25">
 
                     <TextBox x:Name="txt_provider_name" Margin="15" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Nombre del proveedor"></TextBox>
-                    <TextBox x:Name="txt_ruc" Margin="15" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="RUC"></TextBox>
+                    <TextBox x:Name="txt_ruc" Margin="15" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Documento"></TextBox>
                     <TextBox x:Name="txt_address" Margin="15" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Dirección"></TextBox>
                     <TextBox x:Name="txt_phone" Margin="15" 
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" 

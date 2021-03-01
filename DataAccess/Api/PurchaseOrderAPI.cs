@@ -58,8 +58,7 @@ namespace DataAccess.Api
                 var client = new RestClient(url);
 
                 var request = new RestRequest(Method.POST);
-                request.AddHeader("token", token);   
-                request.AddParameter("application/x-www-form-urlencoded", dataJson, ParameterType.RequestBody);
+                request.AddParameter("application/json", dataJson, ParameterType.RequestBody);
 
                 IRestResponse response = await client.ExecuteAsync(request);
 
@@ -90,7 +89,7 @@ namespace DataAccess.Api
             {
                 data = new Dictionary<string, dynamic>();
 
-                var url = Connection.CONNECTION + $"/purchase_order/with_state/{state}?offset={offset}";
+                var url = Connection.CONNECTION + $"/purchase_order/with/state?state={state}&offset={offset}";
                 var client = new RestClient(url);
 
                 var request = new RestRequest(Method.GET);
@@ -164,8 +163,7 @@ namespace DataAccess.Api
                 var client = new RestClient(url);
 
                 var request = new RestRequest(Method.PUT);
-                request.AddHeader("token", token);
-                request.AddParameter("application/x-www-form-urlencoded", $"{dataJson}", ParameterType.RequestBody);
+                request.AddParameter("application/json", dataJson, ParameterType.RequestBody);
 
                 IRestResponse response = await client.ExecuteAsync(request);
 

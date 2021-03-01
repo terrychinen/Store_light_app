@@ -3,9 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Presentation.UI.Output"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
+        xmlns:local="clr-namespace:Presentation.UI.Output" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
         mc:Ignorable="d"
         Title="Crear salida" Height="600" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
@@ -49,12 +48,10 @@
             <Label Grid.Column="0" Content="Mercancía:" FontSize="18" Margin="20, 15, 0, 0"></Label>
             <ComboBox Name="cb_commodity" Margin="0, 0, 0, 20" Width="200"  KeyDown="cb_commodity_KeyDown" KeyUp="cb_commodity_KeyUp" KeyboardNavigation.DirectionalNavigation="None" IsTextSearchEnabled="False" Grid.Column="1" IsEditable="True" Height="30"/>
 
-            <Label Name="lb_stock" Grid.Column="3" Content="Stock:" FontSize="18" Margin="30, 15, 0, 0" HorizontalAlignment="Left" />
+            <Label Name="lb_stock" Grid.Column="3" Content="Stock:" FontSize="16" Margin="30, 15, 0, 0" HorizontalAlignment="Left" />
 
             <Label Grid.Column="4" Content="Cantidad:" FontSize="18" Margin="30, 15, 0, 0"  />
-            <TextBox x:Name="txt_quantity" PreviewTextInput="NumberValidationTextBox" Grid.Column="5" Margin="20, 0, 0, 30" Width="50" Height="28" />
-
-          
+            <TextBox Name="txt_quantity" Grid.Column="5" Margin="20, 0, 0, 30" Width="50" Height="28" />
         </Grid>
 
         <Grid Grid.Row="3">
@@ -76,17 +73,19 @@
 
         <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.8*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="2*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="0.5*"></ColumnDefinition>
                 <ColumnDefinition Width="2*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Column="0" Content="Fec. Salida:" FontSize="18" Margin="20, 30, 0, 0"></Label>
-            <xctk:DateTimePicker Name="order_date" Grid.Column="1" TextAlignment="left" Format="Custom" Width="200" Height="30" FormatString="dd/MM/yyyy HH:mm:ss"/>
 
-            <Label Grid.Column="2" Content="Nota:" FontSize="18" Margin="30, 15, 0, 0" />
-            <TextBox Grid.Column="3" Background="AntiqueWhite" Margin="0, 0, 20, 0" Width="350" Height="90" x:Name="txt_message" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" />
+            <Label Grid.Column="0" Content="Fecha Salida: " FontSize="18" Margin="20, 30, 0, 0"></Label>
+
+            <xctk:DateTimePicker Name="txt_order" Grid.Column="1" TextAlignment="left" Format="Custom" Height="30" FormatString="dd/MM/yyyy HH:mm:ss"/>
+
+            <Label Grid.Column="2" Content="Lote:" FontSize="18" Margin="30, 15, 0, 0"  HorizontalAlignment="Left"/>
+            <TextBox Grid.Column="3" Background="AntiqueWhite" Margin="0, 0, 20, 0" Width="400" Height="90" x:Name="txt_message" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" />
         </Grid>
         
         <Button Grid.Row="5" Margin="0, 0, 0, 0"  Width="220" Height="40" Content="Crear"  HorizontalAlignment="Center" Click="Button_Click"></Button>

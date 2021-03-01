@@ -104,13 +104,14 @@
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="3*"></RowDefinition>
                     </Grid.RowDefinitions>
 
                     <ComboBox Grid.Row="0" Name="cb_provider" Width="300" IsEditable="True" Text="Seleccione el proveedor"  HorizontalAlignment="Center"/>
 
 
-                    <Grid Grid.Row="1">
+                    <Grid Grid.Row="1" >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width=".5*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -124,11 +125,21 @@
                             <ColumnDefinition Width=".5*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Content="Fec. en curso:" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <xctk:DateTimePicker Name="waiting_date" Grid.Column="1" TextAlignment="left" Format="Custom" Width="200" Height="30" FormatString="dd/MM/yyyy HH:mm:ss"/>
+
+                    </Grid>
+
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".5*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
                         <Label Grid.Column="0" Content="Fec. llegada:" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         <xctk:DateTimePicker Name="expected_date" Grid.Column="1" TextAlignment="left" Format="Custom" Width="200" Height="30" FormatString="dd/MM/yyyy HH:mm:ss"/>
                     </Grid>
 
-                    <Grid Grid.Row="3">
+                    <Grid Grid.Row="4">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width=".5*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -137,7 +148,7 @@
                         <xctk:DateTimePicker Name="receive_date" Grid.Column="1" TextAlignment="left" Format="Custom" Width="200" Height="30" FormatString="dd/MM/yyyy HH:mm:ss"/>
                     </Grid>
 
-                    <Grid Grid.Row="4">
+                    <Grid Grid.Row="5">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width=".5*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -146,24 +157,18 @@
                         <xctk:DateTimePicker Name="paid_date" Grid.Column="1" TextAlignment="left" Format="Custom" Width="200" Height="30" FormatString="dd/MM/yyyy HH:mm:ss"/>
                     </Grid>
 
-                    <Grid Grid.Row="5">
+                    <Grid Grid.Row="6">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="90"></ColumnDefinition>
-                            <ColumnDefinition Width="90"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width=".5*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-
-                        <RadioButton Grid.Column="0" Content="Por atender" IsChecked="true"  Name="rb_pending" Margin="0, 0, 0, 0"></RadioButton>
-                        <RadioButton Grid.Column="1" Content="En curso"  Name="rb_waiting" Margin="5, 0, 0, 0"></RadioButton>
-                        <RadioButton Grid.Column="2" Content="Recibido"  Name="rb_received" Margin="0, 0, 0, 0"></RadioButton>
-                        <RadioButton Grid.Column="3" Content="Pagado"  Name="rb_paid" Margin="0, 0, 0, 0"></RadioButton>
-                        <RadioButton Grid.Column="4" Content="Anulado"  Name="rb_cancel" Margin="0, 0, 0, 0"></RadioButton>
+                        <Label Grid.Column="0" Content="Fec. anulado:" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <xctk:DateTimePicker Name="cancel_date" Grid.Column="1" TextAlignment="left" Format="Custom" Width="200" Height="30" FormatString="dd/MM/yyyy HH:mm:ss"/>
                     </Grid>
+                
 
-                    <Label Grid.Row="6" Content="Nota:" FontSize="15"  />
-                    <TextBox Grid.Row="7" Background="AntiqueWhite" Margin="0, 0, 20, 0" Width="350" Height="90" x:Name="txt_message" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" />
+                    <Label Grid.Row="7" Content="Nota:" FontSize="15"  />
+                    <TextBox Grid.Row="8" Background="AntiqueWhite" Margin="0, 0, 20, 0" Width="350" Height="90" x:Name="txt_message" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" />
                 </Grid>
 
             </Grid>

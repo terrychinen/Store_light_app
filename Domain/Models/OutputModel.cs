@@ -23,6 +23,7 @@ namespace Domain.Models
         private int employeeReceivesId;
         private string employeeReceivesName;
         private string dateOutput;
+        private string notes;
         private int state;
 
 
@@ -54,7 +55,7 @@ namespace Domain.Models
         [JsonProperty("employee_gives_name")]
         public string EmployeeGivesName { get => employeeGivesName; set => employeeGivesName = value; }
 
-        [JsonProperty("employee_receives_id")]
+        [JsonProperty("employee_receives")]
         public int EmployeeReceivesId { get => employeeReceivesId; set => employeeReceivesId = value; }
 
         [JsonProperty("employee_receives_name")]
@@ -63,5 +64,6 @@ namespace Domain.Models
         [JsonProperty("date_output")]
         public string DateOutput { get => dateOutput; set => dateOutput = value; }
         public int State { get => state; set => state = value; }
+        public string Notes { get => notes; set => notes = value; }
     }
 }

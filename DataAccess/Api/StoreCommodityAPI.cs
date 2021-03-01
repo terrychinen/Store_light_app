@@ -43,7 +43,7 @@ namespace DataAccess.Api
         }
 
 
-        public async Task<Dictionary<string, dynamic>> CreateStoreCommodity(int storeID, int commodityID, double stock, int state, string token)
+        public async Task<Dictionary<string, dynamic>> CreateStoreCommodity(int storeID, int commodityID, double stock, double stockMin, int state, string token)
         {
             Dictionary<string, dynamic> data;
 
@@ -56,7 +56,7 @@ namespace DataAccess.Api
 
                 var request = new RestRequest(Method.POST);
                 request.AddHeader("token", token);
-                request.AddParameter("application/x-www-form-urlencoded", $"store_id={storeID}&commodity_id={commodityID}&stock={stock}&state={state}", ParameterType.RequestBody);
+                request.AddParameter("application/x-www-form-urlencoded", $"store_id={storeID}&commodity_id={commodityID}&stock={stock}&stock_min={stockMin}&state={state}", ParameterType.RequestBody);
 
                 IRestResponse response = await client.ExecuteAsync(request);
 
@@ -78,7 +78,7 @@ namespace DataAccess.Api
         }
 
 
-        public async Task<Dictionary<string, dynamic>> UpdateStoreCommodity(int storeID, int commodityID, double stock, int state, string token)
+        public async Task<Dictionary<string, dynamic>> UpdateStoreCommodity(int storeID, int commodityID, double stock, double stockMin, int state, string token)
         {
             Dictionary<string, dynamic> data;
 
@@ -91,7 +91,7 @@ namespace DataAccess.Api
 
                 var request = new RestRequest(Method.PUT);
                 request.AddHeader("token", token);
-                request.AddParameter("application/x-www-form-urlencoded", $"store_id={storeID}&commodity_id={commodityID}&stock={stock}&state={state}", ParameterType.RequestBody);
+                request.AddParameter("application/x-www-form-urlencoded", $"store_id={storeID}&commodity_id={commodityID}&stock={stock}&stock_min={stockMin}&state={state}", ParameterType.RequestBody);
 
                 IRestResponse response = await client.ExecuteAsync(request);
 
@@ -127,6 +127,41 @@ namespace DataAccess.Api
                 var request = new RestRequest(Method.POST);
                 request.AddHeader("token", token);
                 request.AddParameter("application/x-www-form-urlencoded", $"search={search}&offset={offset}&state={state}", ParameterType.RequestBody);
+
+
+                IRestResponse response = client.Execute(request);
+
+                data.Add("ok", true);
+                data.Add("result", response);
+
+                return data;
+            }
+            catch (Exception error)
+            {
+                data = new Dictionary<string, dynamic>
+                {
+                    { "ok", false },
+                    { "result", error }
+                };
+
+                return data;
+            }
+        }
+
+
+        public Dictionary<string, dynamic> SearchCommoditiesByStoreIdAndCommodityId(int storeID, int commodityID, string token)
+        {
+            Dictionary<string, dynamic> data;
+
+            try
+            {
+                data = new Dictionary<string, dynamic>();
+
+                var url = Connection.CONNECTION + $"/store_commodity/stock/{storeID}/{commodityID}";
+                var client = new RestClient(url);
+
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("token", token);
 
 
                 IRestResponse response = client.Execute(request);

@@ -28,7 +28,7 @@
                              Margin="15" 
                              PreviewTextInput="NumberValidationTextBox" 
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                             materialDesign:HintAssist.Hint="RUC"></TextBox>
+                             materialDesign:HintAssist.Hint="Documento"></TextBox>
                     
                     <TextBox x:Name="txt_address" Margin="15" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Dirección"></TextBox>
                     

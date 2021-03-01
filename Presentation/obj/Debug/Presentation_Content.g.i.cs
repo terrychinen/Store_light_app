@@ -8,11 +8,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("content/fonts/glyphicons-halflings-regular.svg")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("scripts/bloodhound.js")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("scripts/bloodhound.min.js")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("scripts/bootstrap-datetimepicker.js")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("scripts/bootstrap-datetimepicker.min.js")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("scripts/bootstrap.js")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("scripts/bootstrap.min.js")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("scripts/jquery-1.10.2.intellisense.js")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("scripts/jquery-1.10.2.js")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("scripts/jquery-1.10.2.min.js")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("scripts/moment-with-locales.js")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("scripts/moment-with-locales.min.js")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("scripts/moment.js")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("scripts/moment.min.js")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("scripts/typeahead.bundle.js")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("scripts/typeahead.bundle.min.js")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("scripts/typeahead.jquery.js")]

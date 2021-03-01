@@ -68,7 +68,8 @@ namespace Domain.Controllers
             {
                 data = new Dictionary<string, dynamic>();
                 storeCommodityAPI = new StoreCommodityAPI();
-                Dictionary<string, dynamic> response = await storeCommodityAPI.CreateStoreCommodity(storeCommodity.StoreId, storeCommodity.CommodityId, storeCommodity.Stock, storeCommodity.State, token);
+                Dictionary<string, dynamic> response = await storeCommodityAPI.CreateStoreCommodity(storeCommodity.StoreId, 
+                    storeCommodity.CommodityId, storeCommodity.Stock, storeCommodity.StockMin, storeCommodity.State, token);
 
                 Response dataResponse = JsonConvert.DeserializeObject<Response>(response["result"].Content);
 
@@ -99,7 +100,8 @@ namespace Domain.Controllers
             {
                 data = new Dictionary<string, dynamic>();
                 storeCommodityAPI = new StoreCommodityAPI();
-                Dictionary<string, dynamic> response = await storeCommodityAPI.UpdateStoreCommodity(storeCommodity.StoreId, storeCommodity.CommodityId, storeCommodity.Stock, storeCommodity.State, token);
+                Dictionary<string, dynamic> response = await storeCommodityAPI.UpdateStoreCommodity(storeCommodity.StoreId, 
+                    storeCommodity.CommodityId, storeCommodity.Stock, storeCommodity.StockMin, storeCommodity.State, token);
 
                 Response dataResponse = JsonConvert.DeserializeObject<Response>(response["result"].Content);
 
@@ -131,6 +133,54 @@ namespace Domain.Controllers
                 data = new Dictionary<string, dynamic>();
                 storeCommodityAPI = new StoreCommodityAPI();
                 Dictionary<string, dynamic> response = storeCommodityAPI.SearchCommoditiesByStoreId(search, storeID, token, offset, state);
+
+                if (response["ok"])
+                {
+                    Response dataResponse = JsonConvert.DeserializeObject<Response>(response["result"].Content);
+
+                    data.Add("ok", dataResponse.Ok);
+
+
+                    if (dataResponse.Ok)
+                    {
+                        StoreCommodityResponse storeCommodityListResponse = JsonConvert.DeserializeObject<StoreCommodityResponse>(response["result"].Content);
+                        data.Add("result", storeCommodityListResponse);
+                    }
+                    else
+                    {
+                        data.Add("result", dataResponse.Message);
+                    }
+
+                    return data;
+                }
+
+                return response;
+
+            }
+            catch (Exception error)
+            {
+                data = new Dictionary<string, dynamic>
+                {
+                    { "ok", false },
+                    { "result", error }
+                };
+
+                return data;
+            }
+        }
+
+
+
+        public Dictionary<string, dynamic> SearchCommoditiesByStoreIDAndCommodityID(int storeID, int commodityID, string token)
+        {
+            Dictionary<string, dynamic> data;
+            StoreCommodityAPI storeCommodityAPI;
+
+            try
+            {
+                data = new Dictionary<string, dynamic>();
+                storeCommodityAPI = new StoreCommodityAPI();
+                Dictionary<string, dynamic> response = storeCommodityAPI.SearchCommoditiesByStoreIdAndCommodityId(storeID, commodityID, token);
 
                 if (response["ok"])
                 {

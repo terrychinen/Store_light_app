@@ -31,7 +31,7 @@ namespace DataAccess.Api
 
                 return data;
             }
-            catch(Exception error)
+            catch (Exception error)
             {
                 data = new Dictionary<string, dynamic>
                 {

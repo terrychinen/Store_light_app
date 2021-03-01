@@ -45,7 +45,7 @@
 
 
         <!-- LISTBOX TEMPLATE -->
-        <Grid Grid.Row="2" Margin="0" PreviewMouseLeftButtonUp="EmployeeListBox_Click">
+        <Grid Grid.Row="2" Margin="0" >
             <Grid.RowDefinitions>
                 <RowDefinition Height =".18*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
@@ -68,7 +68,7 @@
 
 
             <!-- DATA OF LISTBOX -->
-            <ListBox Name="employeeListBox" Grid.Row="1"  Margin="50, 0, 50, 0" HorizontalContentAlignment ="Stretch" Background="AliceBlue" >
+            <ListBox Name="employeeListBox" MouseDoubleClick="EmployeeListBox_Click" Grid.Row="1"  Margin="50, 0, 50, 0" HorizontalContentAlignment ="Stretch" Background="AliceBlue" >
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="2">

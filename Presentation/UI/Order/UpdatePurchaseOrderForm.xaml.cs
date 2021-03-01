@@ -67,7 +67,19 @@ namespace Presentation.UI.Order
 
             order_date.Text = purchaseOrder.OrderDate;
 
-            if(purchaseOrder.ExpectedDate == "----")
+            receive_date.Text = "";
+            waiting_date.Text = "";
+            expected_date.Text = "";
+            paid_date.Text = "";
+            cancel_date.Text = "";
+
+
+            if (purchaseOrder.WaitingDate == "----")
+            {
+                purchaseOrder.WaitingDate = "";
+            }
+
+            if (purchaseOrder.ExpectedDate == "----")
             {
                 purchaseOrder.ExpectedDate = "";
             }
@@ -81,32 +93,22 @@ namespace Presentation.UI.Order
             {
                 purchaseOrder.PaidDate = "";
             }
-
-
-            if (purchaseOrder.State == 0)
+                
+            if (purchaseOrder.CancelDate == "----")
             {
-                rb_pending.IsChecked = true;
-            }else if(purchaseOrder.State == 1)
-            {
-                rb_waiting.IsChecked = true;
-            }else if(purchaseOrder.State == 2)
-            {
-                rb_received.IsChecked = true;
-            }else if(purchaseOrder.State == 4)
-            {
-                rb_cancel.IsChecked = true;
-            }else
-            {
-                rb_paid.IsChecked = true;
+                purchaseOrder.CancelDate = "";
             }
 
-           
+
+
+            waiting_date.Text = purchaseOrder.WaitingDate;
             expected_date.Text = purchaseOrder.ExpectedDate;
             receive_date.Text = purchaseOrder.ReceiveDate;
             paid_date.Text = purchaseOrder.PaidDate;
+            cancel_date.Text = purchaseOrder.CancelDate;
 
 
-            txt_total_price.Content = "TOTAL: S/." +purchaseOrder.TotalPrice;
+            txt_total_price.Content = "TOTAL: S/" + Math.Round(purchaseOrder.TotalPrice, 2);
         }
 
         private async void LoadProviders()
@@ -224,36 +226,6 @@ namespace Presentation.UI.Order
             }
         }
 
-
-        private int stateOfOrder()
-        {
-            if (rb_pending.IsChecked.Value)
-            {
-                return 0;
-            }
-            else if (rb_waiting.IsChecked.Value)
-            {
-                return 1;
-            }
-            else if (rb_received.IsChecked.Value)
-            {
-                return 2;
-            }
-            else if (rb_paid.IsChecked.Value)
-            {
-                return 3;
-            }
-            else if (rb_cancel.IsChecked.Value)
-            {
-                return 4;
-            }
-            else
-            {
-                return 4;
-            }
-        }
-
-
         private void Grid_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             try
@@ -289,34 +261,55 @@ namespace Presentation.UI.Order
                 ProviderModel providerModel = cb_provider.SelectedItem as ProviderModel;
                 if (providerModel != null)
                 {
-                    DateTime orderDateTime;
+                    DateTime? orderDateTime;
+                    DateTime? waitingDateTime = null;
                     DateTime? receiveDateTime = null;
                     DateTime? expectedDateTime = null;
                     DateTime? paidDateTime = null;
+                    DateTime? cancelDateTime = null;
+
+                    string waitingDateString = waiting_date.Text;
+                    string receiveDateString = receive_date.Text;
+                    string paidDateString = paid_date.Text;
+                    string expectedDateString = expected_date.Text;
+                    string cancelDateString = cancel_date.Text;
 
                     if (order_date.Text.Trim() != "")
                     {
-                        if (!string.IsNullOrEmpty(expected_date.Text))
+                        if (waitingDateString.Trim() != "")
                         {
-                            expectedDateTime = DateTime.ParseExact(expected_date.Text, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);                           
-                        }    
-
-                        if (!string.IsNullOrEmpty(receive_date.Text))
+                            waitingDateTime = DateTime.ParseExact(waiting_date.Text, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+                        }
+                        if (receiveDateString.Trim() != "")
                         {
-                            receiveDateTime = DateTime.ParseExact(receive_date.Text, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);                            
+                            receiveDateTime = DateTime.ParseExact(receive_date.Text, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
                         }
 
-                        if (!string.IsNullOrEmpty(paid_date.Text))
+                        if (paidDateString.Trim() != "")
                         {
                             paidDateTime = DateTime.ParseExact(paid_date.Text, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
                         }
 
-                        string data = DateTime.ParseExact(order_date.Text, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture).ToString("MM/dd/yyyy HH:mm:ss");
-                        orderDateTime = DateTime.Parse(data);                        
+                        if (expectedDateString.Trim() != "")
+                        {
+                            expectedDateTime = DateTime.ParseExact(expected_date.Text, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+                        }
+
+                        if (cancelDateString.Trim() != "")
+                        {
+                            cancelDateTime = DateTime.ParseExact(cancel_date.Text, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+                        }
+
+                        orderDateTime = DateTime.ParseExact(order_date.Text, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
 
                         if (orderDateTime > expectedDateTime)
                         {
                             MessageBox.Show("La fecha de llegada tiene que ser mayor que la fecha de orden!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                        else if(orderDateTime > waitingDateTime)
+                        {
+                            MessageBox.Show("La fecha en curso tiene que ser mayor que la fecha de orden!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
                         }
                         else if (orderDateTime > receiveDateTime)
                         {
@@ -328,45 +321,89 @@ namespace Presentation.UI.Order
                         }
                         else
                         {
-                            string convertOrder = orderDateTime.ToString("yyyy-MM-dd HH:mm:ss");
+                            string convertOrder = orderDateTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
+                            string convertWaiting = "null";
                             string convertExpected = "null";
                             string convertReceive = "null";
                             string convertPaid = "null";
+                            string convertCancel = "null";
+                            int state = 0;
 
-                            if (expectedDateTime != null)
+                            if (waitingDateTime != null || waitingDateTime.HasValue)
+                            {
+                                convertWaiting = waitingDateTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
+                                state = 1;
+                            }
+                            else
+                            {
+                                convertWaiting = "null";
+                            }
+
+                            if (expectedDateTime != null || expectedDateTime.HasValue)
                             {
                                 convertExpected = expectedDateTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
+                                state = 2;
                             }
                             else {
                                 convertExpected = "null";
                             }
+                                                       
 
-                            if (receiveDateTime != null)
+                            if (receiveDateTime != null || receiveDateTime.HasValue)
                             {
+                                if (paidDateTime != null || paidDateTime.HasValue)
+                                {
+                                    state = 5;
+                                }
+                                else
+                                {
+                                    state = 3;
+                                }
                                 convertReceive = receiveDateTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
                             }
                             else {
                                 convertReceive = "null";
                             }
 
-                            if (paidDateTime != null)
+                            if (paidDateTime != null || paidDateTime.HasValue)
                             {
+                                if (receiveDateTime != null || receiveDateTime.HasValue)
+                                {
+                                    state = 5;
+                                }
+                                else
+                                {
+                                    state = 4;
+                                }
                                 convertPaid = paidDateTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
-                            }else
+                            }
+                            else
                             {
                                 convertPaid = "null";
+                            }
+
+                            if (cancelDateTime != null || cancelDateTime.HasValue)
+                            {
+                                convertCancel = cancelDateTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
+                                state = 6;
+                            }
+                            else
+                            {
+                                convertCancel = "null";
                             }
 
 
                             purchaseOrder.ProviderId = providerModel.ProviderId;
                             purchaseOrder.OrderDate = convertOrder;
+                            purchaseOrder.WaitingDate = convertWaiting;
                             purchaseOrder.ExpectedDate = convertExpected;
                             purchaseOrder.ReceiveDate = convertReceive;
                             purchaseOrder.PaidDate = convertPaid;
+                            purchaseOrder.CancelDate = convertCancel;
                             purchaseOrder.TotalPrice = totalPrice;                            
                             purchaseOrder.Message = txt_message.Text;
                             purchaseOrder.UpdatedBy = UserData.getEmployee().EmployeeId;
-                            purchaseOrder.State = stateOfOrder();
+                            purchaseOrder.State = state;
 
 
                             var dataResponse = await purchaseOrderController.UpdatePurchaseOrder(purchaseOrder, selectedUpdateCommodityList, UserData.getToken().TokenKey);
@@ -378,7 +415,7 @@ namespace Presentation.UI.Order
                             }
                             else
                             {
-                                MessageBox.Show(dataResponse["result"], "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                MessageBox.Show(dataResponse["result"].ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                             }
                         }
 

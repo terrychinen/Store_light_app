@@ -84,48 +84,65 @@ namespace Presentation.UI.Commodity_Store
 
 
         private async void Button_Click(object sender, RoutedEventArgs e)
-        {           
-            bool rbActive = rb_active.IsChecked.Value;
-
-            StoreModel store = cb_store.SelectedItem as StoreModel;
-            CommodityModel commodity = cb_commodity.SelectedItem as CommodityModel;
-
-            if (store == null || commodity == null)
+        {
+            try
             {
-                MessageBox.Show("Ingrese un almaén y una mercancía válida", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }else
-            {
-                if (txt_stock.Text.Trim() != "")
+                btn_create.IsEnabled = false;
+
+                bool rbActive = rb_active.IsChecked.Value;
+
+                StoreModel store = cb_store.SelectedItem as StoreModel;
+                CommodityModel commodity = cb_commodity.SelectedItem as CommodityModel;
+
+                if (store == null || commodity == null)
                 {
-                    if (rbActive)
-                    {
-                        storeCommodity.State = 1;
-                    }
-                    else
-                    {
-                        storeCommodity.State = 0;
-                    }
-
-                    storeCommodity.Stock = Double.Parse(txt_stock.Text);
-                    storeCommodity.StoreId = store.StoreId;
-                    storeCommodity.CommodityId = commodity.CommodityId;
-                    var dataResponse = await storeCommodityController.CreateStoreCommodity(storeCommodity, UserData.getToken().TokenKey);
-
-                    if (dataResponse["ok"])
-                    {
-                        MessageBox.Show("La asosiación se creó correctamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
-                        this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Error: " + dataResponse["result"], "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
+                    MessageBox.Show("Ingrese un almaén y una mercancía válida", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    btn_create.IsEnabled = true;
                 }
                 else
                 {
-                    MessageBox.Show("Por favor complete el campo 'Stock' !", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    if (txt_stock.Text.Trim() != "" && txt_stock_min.Text.Trim() != "")
+                    {
+                        if (rbActive)
+                        {
+                            storeCommodity.State = 1;
+                        }
+                        else
+                        {
+                            storeCommodity.State = 0;
+                        }
+
+                        storeCommodity.Stock = Double.Parse(txt_stock.Text);
+                        storeCommodity.StockMin = Double.Parse(txt_stock_min.Text);
+                        storeCommodity.StoreId = store.StoreId;
+                        storeCommodity.CommodityId = commodity.CommodityId;
+                        var dataResponse = await storeCommodityController.CreateStoreCommodity(storeCommodity, UserData.getToken().TokenKey);
+
+                        if (dataResponse["ok"])
+                        {
+                            MessageBox.Show("La asosiación se creó correctamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                            btn_create.IsEnabled = true;
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error: " + dataResponse["result"], "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            btn_create.IsEnabled = true;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Por favor complete el campo 'Stock' - 'Stock min' !", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        btn_create.IsEnabled = true;
+                    }
                 }
-            }              
+            }
+            catch(Exception error)
+            {
+                MessageBox.Show($"{error.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                btn_create.IsEnabled = true;
+            }
+           
         }     
 
     }

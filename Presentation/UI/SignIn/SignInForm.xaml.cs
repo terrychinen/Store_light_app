@@ -85,13 +85,15 @@ namespace Presentation.SignIn
                 else
                 {
                     var message = login["result"];
-                    _ = MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
 
                 btn_signin.IsEnabled = true;
             }catch(Exception error)
             {
-                _ = MessageBox.Show(error.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(error.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                btn_signin.IsEnabled = true;
             }
           
         }

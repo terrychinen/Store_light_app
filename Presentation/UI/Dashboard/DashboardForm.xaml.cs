@@ -276,6 +276,24 @@ namespace Presentation.UI.Dashboard
             parent_frame.Navigate(paidPage);
         }
 
+        private async void ReceivePaidOrder_Click(object sender, RoutedEventArgs e)
+        {
+            if (!ValidateToken())
+            {
+                var refreshToken = await tokenController.RefreshToken(UserData.getToken(), UserData.getEmployee().EmployeeId);
+                UserData.setToken(refreshToken["result"]);
+            }
+
+            commodity_store_item.IsSelected = false;
+            home_item.IsSelected = false;
+            cleanOutput();
+            cleanSelectSubItems();
+            cleanInputOutput();
+
+            ReceivePaidOrderPage receivePaidPage = new ReceivePaidOrderPage();
+            parent_frame.Navigate(receivePaidPage);
+        }
+
         private async void CancelOrder_Click(object sender, RoutedEventArgs e)
         {
             if (!ValidateToken())
@@ -343,7 +361,7 @@ namespace Presentation.UI.Dashboard
 
               commodity_store_item.IsSelected = false;
               home_item.IsSelected = false;
-            cleanInputOutput();
+                cleanInputOutput();
               cleanSelectSubItems();
               cleanSelectOrderSubItems();
 
@@ -375,6 +393,7 @@ namespace Presentation.UI.Dashboard
             waiting_order_item.IsSelected = false;
             pending_order_item.IsSelected = false;
             paid_order_item.IsSelected = false;
+            receive_paid_order_item.IsSelected = false;
             purchase_order_item.IsSelected = false;
         }
 

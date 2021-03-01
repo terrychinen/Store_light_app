@@ -72,34 +72,34 @@ namespace Domain.Controllers
                 data = new Dictionary<string, dynamic>();
                 purchaseOrderAPI = new PurchaseOrderAPI();
 
-                string purchaseData = $"provider_id={purchaseOrder.ProviderId}&employee_id={purchaseOrder.EmployeeId}" +
-                    $"&order_date={purchaseOrder.OrderDate}&expected_date={purchaseOrder.ExpectedDate}&receive_date={purchaseOrder.ReceiveDate}&paid_date={purchaseOrder.PaidDate}" +
-                    $"&total_price={purchaseOrder.TotalPrice}&message={purchaseOrder.Message}&state={purchaseOrder.State}&";
+             
+                string purchaseData = "{" +
+                        $"\"provider_id\": {purchaseOrder.ProviderId}, \"employee_id\": {purchaseOrder.EmployeeId}, \"order_date\": \"{purchaseOrder.OrderDate}\", " +
+                        $"\"waiting_date\": \"{purchaseOrder.WaitingDate}\", \"expected_date\": \"{purchaseOrder.ExpectedDate}\", \"receive_date\": \"{purchaseOrder.ReceiveDate}\", " +
+                        $"\"paid_date\": \"{purchaseOrder.PaidDate}\", \"cancel_date\": \"{purchaseOrder.CancelDate}\", \"total_price\": {purchaseOrder.TotalPrice}, " +
+                        $"\"message\": \"{purchaseOrder.Message}\", \"state\": {purchaseOrder.State}, \"detail\": [";
 
 
                 string commodityArray = "";
                 for (int i = 0; i < commodityList.Count; i++)
-                {
-                    commodityArray += $"commodity_id={commodityList[i].CommodityId}&quantity={commodityList[i].Quantity}" +
-                        $"&unit_price={commodityList[i].UnitPrice}&commodity_total_price={commodityList[i].TotalPrice}&";
+                {                                      
+                    commodityArray += "{" +
+                        $"\"commodity_id\": {commodityList[i].CommodityId}, \"quantity\": {commodityList[i].Quantity}, " +
+                        $"\"unit_price\": {commodityList[i].UnitPrice}, \"commodity_total_price\": {commodityList[i].TotalPrice}" +
+                        "},";
                 }
 
-                commodityArray = commodityArray.Remove(commodityArray.Length - 1);
-
+                commodityArray = commodityArray.Remove(commodityArray.Length - 1) + "]}";
 
                 string parameter = purchaseData + commodityArray;
 
                 Dictionary<string, dynamic> response = await purchaseOrderAPI.CreatePurchaseOrder(parameter, token);
 
 
+                Response dataResponse = JsonConvert.DeserializeObject<Response>(response["result"].Content);
 
-
-
-                //   Response dataResponse = JsonConvert.DeserializeObject<Response>(response["result"].Content);
-
-                data.Add("ok",true);
-               data.Add("result", "wewe");
-
+                data.Add("ok", dataResponse.Ok);
+                data.Add("result", dataResponse.Message);
 
                 return data;
             }
@@ -175,25 +175,33 @@ namespace Domain.Controllers
                 data = new Dictionary<string, dynamic>();
                 purchaseOrderAPI = new PurchaseOrderAPI();
 
-                string purchaseData = $"provider_id={purchaseOrder.ProviderId}&order_date={purchaseOrder.OrderDate}" +
-                $"&expected_date={purchaseOrder.ExpectedDate}&receive_date={purchaseOrder.ReceiveDate}&paid_date={purchaseOrder.PaidDate}&total_price={purchaseOrder.TotalPrice}" +
-                $"&message={purchaseOrder.Message}&updated_by={purchaseOrder.UpdatedBy}&state={purchaseOrder.State}&";
 
-                if(commodityList.Count == 0)
-                {
-                    purchaseData = purchaseData.Remove(purchaseData.Length - 1);
-                }
+                string purchaseData = "{" +
+                        $"\"provider_id\": {purchaseOrder.ProviderId}, \"employee_id\": {purchaseOrder.EmployeeId}, \"order_date\": \"{purchaseOrder.OrderDate}\", " +
+                        $"\"waiting_date\": \"{purchaseOrder.WaitingDate}\", \"expected_date\": \"{purchaseOrder.ExpectedDate}\", \"receive_date\": \"{purchaseOrder.ReceiveDate}\", " +
+                        $"\"paid_date\": \"{purchaseOrder.PaidDate}\", \"cancel_date\": \"{purchaseOrder.CancelDate}\", \"total_price\": {purchaseOrder.TotalPrice}, " +
+                        $"\"updated_by\": \"{purchaseOrder.UpdatedBy}\", \"message\": \"{purchaseOrder.Message}\", \"state\": {purchaseOrder.State}, \"detail\": [";
 
 
                 string commodityArray = "";
                 for (int i = 0; i < commodityList.Count; i++)
                 {
-                    commodityArray += $"commodity_id={commodityList[i].CommodityId}&quantity={commodityList[i].Quantity}" +
-                        $"&unit_price={commodityList[i].UnitPrice}&commodity_total_price={commodityList[i].TotalPrice}&state_active={commodityList[i].StatePurchaseOrderDetail}&";
+                    commodityArray += "{" +
+                        $"\"commodity_id\": {commodityList[i].CommodityId}, \"quantity\": {commodityList[i].Quantity}, " +
+                        $"\"unit_price\": {commodityList[i].UnitPrice}, \"commodity_total_price\": {commodityList[i].TotalPrice}" +
+                        "},";
                 }
 
+                if (commodityList.Count != 0)
+                {
+                    commodityArray = commodityArray.Remove(commodityArray.Length - 1) + "]}";
+                }
+                else
+                {
+                    commodityArray = commodityArray + "]}";
+                }
+              
 
-                commodityArray = commodityArray.Remove(commodityArray.Length - 1);
                 string parameter = purchaseData + commodityArray;
 
 

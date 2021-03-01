@@ -1,0 +1,61 @@
+﻿<Window x:Class="Presentation.UI.Input.EditAddInputForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Presentation.UI.Input"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Actualizar mercancía" Height="500" Width="700" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid Margin="0, 20, 0 ,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0" Content="Seleccione el almacén donde almacenará: " FontSize="16" Margin="10, 20, 0, 0"/>
+            <ComboBox Name="cb_store" SelectionChanged="cb_store_SelectionChanged" Grid.Column="1" Margin="0, 20, 0, 10" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left"  materialDesign:HintAssist.Hint="Almacen"></ComboBox>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.3*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0" Content="Ingrese la conversión de la conversión mercancía: " FontSize="16" Margin="10, 20, 0, 0"/>
+            <ComboBox Name="cb_commodity" Grid.Column="1" Margin="0, 20, 0, 10" IsEditable="True"  Width="240" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left"  materialDesign:HintAssist.Hint="Mercancía"></ComboBox>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".5*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0" Content="Cantidad en unitarios: " FontSize="16" Margin="10, 20, 0, 0"/>
+            <TextBox Name="txt_quantity" Grid.Column="1" Margin="0, 20, 0, 10" Width="100" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left"  materialDesign:HintAssist.Hint="Cant."></TextBox>
+        </Grid>
+
+        <!-- CREATE BUTTON -->
+        <Grid Grid.Row="3" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Width="220" Height="40" Content="Aceptar"  HorizontalAlignment="Center" Click="Button_Click"></Button>
+        </Grid>
+        <!-- =============================== -->
+
+
+    </Grid>
+</Window>
