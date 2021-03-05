@@ -59,6 +59,53 @@ namespace Domain.Controllers
         }
 
 
+        public async Task<Dictionary<string, dynamic>> GetStoresCommoditiesWithStockMin(string token, int offset, int state)
+        {
+            Dictionary<string, dynamic> data;
+            StoreCommodityAPI storeCommodityAPI;
+
+            try
+            {
+                data = new Dictionary<string, dynamic>();
+                storeCommodityAPI = new StoreCommodityAPI();
+                Dictionary<string, dynamic> response = await storeCommodityAPI.GetStoreCommodityWithStockMin(token, offset, state);
+
+                if (response["ok"])
+                {
+                    Response dataResponse = JsonConvert.DeserializeObject<Response>(response["result"].Content);
+
+                    data.Add("ok", dataResponse.Ok);
+
+
+                    if (dataResponse.Ok)
+                    {
+                        StoreCommodityResponse storeCommodityListResponse = JsonConvert.DeserializeObject<StoreCommodityResponse>(response["result"].Content);
+                        data.Add("result", storeCommodityListResponse);
+                    }
+                    else
+                    {
+                        data.Add("result", dataResponse.Message);
+                    }
+
+                    return data;
+                }
+
+                return response;
+
+            }
+            catch (Exception error)
+            {
+                data = new Dictionary<string, dynamic>
+                {
+                    { "ok", false },
+                    { "result", error }
+                };
+
+                return data;
+            }
+        }
+
+
         public async Task<Dictionary<string, dynamic>> CreateStoreCommodity(StoreCommodityModel storeCommodity, string token)
         {
             Dictionary<string, dynamic> data;

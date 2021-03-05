@@ -94,7 +94,7 @@ namespace Presentation.UI.Order.StateOrder
                         else { purchaseOrdersList[i].PaidDate = "----"; }
 
                         purchaseOrdersList[i].StateColor = "Black";
-                        purchaseOrdersList[i].StateName = "RECIBIDO/PAGADO";
+                        purchaseOrdersList[i].StateName = "RECIBIDO - PAGADO";
                     }
 
                     purchaseOrderListBox.ItemsSource = purchaseOrdersList;

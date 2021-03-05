@@ -25,6 +25,8 @@ namespace Presentation.UI.Input
     public partial class AddInputForm : Window
     {
         private PurchaseOrder purchaseOrder;
+
+        private InputController inputController;
         private PurchaseOrderController purchaseOrderController;
 
         private List<CommodityModel> commodityList;
@@ -41,6 +43,7 @@ namespace Presentation.UI.Input
 
             this.purchaseOrder = purchaseOrder;
 
+            inputController = new InputController();
             purchaseOrderController = new PurchaseOrderController();
 
             commodityList = new List<CommodityModel>();
@@ -98,7 +101,7 @@ namespace Presentation.UI.Input
 
                 if (commodity != null)
                 {
-                    TransformCommodityForm transformCommodityForm = new TransformCommodityForm(commodity);
+                    TransformCommodityForm transformCommodityForm = new TransformCommodityForm(commodity, 0);
                     transformCommodityForm.ShowDialog();                        
 
                     commodityStoreListBox.Items.Refresh();
@@ -119,7 +122,7 @@ namespace Presentation.UI.Input
                 if (storeCommodity != null)
                 {
                     int index = commodityStoreListBox.Items.IndexOf(storeCommodity);
-                    EditAddInputForm editAddInputForm = new EditAddInputForm(index, storeCommodity);
+                    EditAddInputForm editAddInputForm = new EditAddInputForm(index, storeCommodity, 0);
                     editAddInputForm.ShowDialog();
 
                     commodityStoreListBox.Items.Refresh();
@@ -129,6 +132,54 @@ namespace Presentation.UI.Input
             {
                 MessageBox.Show(error.Message.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (input_date.Text.Trim() != "")
+                {                                 
+                    if (storeCommodityList.Count > 0)
+                    {
+                        DateTime inputDateTime = DateTime.ParseExact($"{input_date.Text}", "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+                        string convertInput = inputDateTime.ToString("yyyy-MM-dd HH:mm:ss");
+
+                        InputModel input = new InputModel();
+                        input.PurchaseOrderID = purchaseOrder.PurchaseOrderId;
+                        input.EmployeeId = UserData.getEmployee().EmployeeId;
+                        input.InputDate = convertInput;
+                        input.Notes = txt_message.Text;
+                        input.State = 1;
+
+                        var dataResponse = await inputController.CreateInput(input, storeCommodityList, UserData.getToken().TokenKey);
+
+                        if (dataResponse["ok"])
+                        {
+                            MessageBox.Show("La entrada se creó correctamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error: " + dataResponse["result"], "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }else
+                    {
+                        MessageBox.Show("Ingrese todas las mercancías de su órden de pedido", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                   
+                }
+                else
+                {
+                    MessageBox.Show("Ingrese una fecha válida !", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            catch(Exception error)
+            {
+                MessageBox.Show($"{error.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+           
+                     
         }
     }
 }

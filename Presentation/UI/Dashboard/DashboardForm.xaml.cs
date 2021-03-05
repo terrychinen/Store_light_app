@@ -26,6 +26,7 @@ using Presentation.UI.Order;
 using Presentation.UI.Order.StateOrder;
 using Presentation.UI.Input;
 using Presentation.UI.Output;
+using Presentation.UI.Stock_min;
 
 namespace Presentation.UI.Dashboard
 {
@@ -143,6 +144,8 @@ namespace Presentation.UI.Dashboard
 
 
 
+
+
         private async void Home_Click(object sender, RoutedEventArgs e)
         {
             if (!ValidateToken())
@@ -151,6 +154,7 @@ namespace Presentation.UI.Dashboard
                 UserData.setToken(refreshToken["result"]);
             }
 
+            stock_min_item.IsSelected = false;
             pending_order_item.IsSelected = false;
             purchase_order_item.IsSelected = false;
             commodity_store_item.IsSelected = false;
@@ -162,8 +166,6 @@ namespace Presentation.UI.Dashboard
             parent_frame.Navigate(homePage);
         }
 
-
-
         private async void CommodityStore_Click(object sender, RoutedEventArgs e)
          {
              if (!ValidateToken())
@@ -172,6 +174,7 @@ namespace Presentation.UI.Dashboard
                  UserData.setToken(refreshToken["result"]);
              }
 
+            stock_min_item.IsSelected = false;
             pending_order_item.IsSelected = false;
             purchase_order_item.IsSelected = false;
             home_item.IsSelected = false;
@@ -183,6 +186,30 @@ namespace Presentation.UI.Dashboard
             parent_frame.Navigate(commodityStorePage);
          }
 
+        private async void StockMin_Click(object sender, RoutedEventArgs e)
+        {
+            if (!ValidateToken())
+            {
+                var refreshToken = await tokenController.RefreshToken(UserData.getToken(), UserData.getEmployee().EmployeeId);
+                UserData.setToken(refreshToken["result"]);
+            }
+
+            commodity_store_item.IsSelected = false;
+            pending_order_item.IsSelected = false;
+            purchase_order_item.IsSelected = false;
+            home_item.IsSelected = false;
+            cleanOutput();
+            cleanSelectSubItems();
+            cleanInputOutput();
+
+            StockMinPage stockMin = new StockMinPage();
+            parent_frame.Navigate(stockMin);
+        }
+
+
+
+
+
 
         private async void PurchaseOrder_Click(object sender, RoutedEventArgs e)
         {
@@ -192,6 +219,7 @@ namespace Presentation.UI.Dashboard
                 UserData.setToken(refreshToken["result"]);
             }
 
+            stock_min_item.IsSelected = false;
             commodity_store_item.IsSelected = false;
             home_item.IsSelected = false;
             cleanOutput();
@@ -212,6 +240,7 @@ namespace Presentation.UI.Dashboard
                 UserData.setToken(refreshToken["result"]);
             }
 
+            stock_min_item.IsSelected = false;
             commodity_store_item.IsSelected = false;
             home_item.IsSelected = false;
             cleanOutput();
@@ -230,6 +259,7 @@ namespace Presentation.UI.Dashboard
                 UserData.setToken(refreshToken["result"]);
             }
 
+            stock_min_item.IsSelected = false;
             commodity_store_item.IsSelected = false;
             home_item.IsSelected = false;
             cleanOutput();
@@ -248,6 +278,7 @@ namespace Presentation.UI.Dashboard
                 UserData.setToken(refreshToken["result"]);
             }
 
+            stock_min_item.IsSelected = false;
             commodity_store_item.IsSelected = false;
             home_item.IsSelected = false;
             cleanOutput();
@@ -266,6 +297,7 @@ namespace Presentation.UI.Dashboard
                 UserData.setToken(refreshToken["result"]);
             }
 
+            stock_min_item.IsSelected = false;
             commodity_store_item.IsSelected = false;
             home_item.IsSelected = false;
             cleanOutput();
@@ -284,6 +316,7 @@ namespace Presentation.UI.Dashboard
                 UserData.setToken(refreshToken["result"]);
             }
 
+            stock_min_item.IsSelected = false;
             commodity_store_item.IsSelected = false;
             home_item.IsSelected = false;
             cleanOutput();
@@ -302,6 +335,7 @@ namespace Presentation.UI.Dashboard
                 UserData.setToken(refreshToken["result"]);
             }
 
+            stock_min_item.IsSelected = false;
             commodity_store_item.IsSelected = false;
             home_item.IsSelected = false;
             cleanOutput();
@@ -323,9 +357,10 @@ namespace Presentation.UI.Dashboard
                 UserData.setToken(refreshToken["result"]);
             }
 
+              stock_min_item.IsSelected = false;
               commodity_store_item.IsSelected = false;
               home_item.IsSelected = false;
-                cleanOutput();
+              cleanOutput();
               cleanSelectSubItems();
               cleanSelectOrderSubItems();
 
@@ -341,6 +376,7 @@ namespace Presentation.UI.Dashboard
                 UserData.setToken(refreshToken["result"]);
             }
 
+            stock_min_item.IsSelected = false;
             commodity_store_item.IsSelected = false;
             home_item.IsSelected = false;
             cleanOutput();
@@ -359,7 +395,8 @@ namespace Presentation.UI.Dashboard
                 UserData.setToken(refreshToken["result"]);
             }
 
-              commodity_store_item.IsSelected = false;
+            stock_min_item.IsSelected = false;
+            commodity_store_item.IsSelected = false;
               home_item.IsSelected = false;
                 cleanInputOutput();
               cleanSelectSubItems();
@@ -368,9 +405,6 @@ namespace Presentation.UI.Dashboard
              OutputPage outputPage = new OutputPage();
              parent_frame.Navigate(outputPage);
         }
-
-
-
 
 
 

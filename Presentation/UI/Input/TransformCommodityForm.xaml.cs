@@ -34,11 +34,14 @@ namespace Presentation.UI.Input
         StoreController storeController;
         CommodityController commodityController;
 
-        public TransformCommodityForm(CommodityModel commodity)
+        int verify;
+
+        public TransformCommodityForm(CommodityModel commodity, int verify)
         {
             InitializeComponent();
 
             this.commodity = commodity;
+            this.verify = verify;
 
             this.storeCommodity = new StoreCommodityModel();
             this.storeCommodity.CommodityId = commodity.CommodityId;
@@ -124,16 +127,32 @@ namespace Presentation.UI.Input
 
                     if (commodity != null)
                     {                 
-                        for(int i=0; i<AddInputForm.storeCommodityList.Count; i++)
+                        if(verify == 0)
                         {
-                            string commodityName = AddInputForm.storeCommodityList[i].CommodityName;
-                            string storeName = AddInputForm.storeCommodityList[i].StoreName;
-
-                            if (commodity.CommodityName == commodityName && store.Name == storeName)
+                            for (int i = 0; i < AddInputForm.storeCommodityList.Count; i++)
                             {
-                                check = 1;
-                            }                                                                                                                 
+                                string commodityName = AddInputForm.storeCommodityList[i].CommodityName;
+                                string storeName = AddInputForm.storeCommodityList[i].StoreName;
+
+                                if (commodity.CommodityName == commodityName && store.Name == storeName)
+                                {
+                                    check = 1;
+                                }
+                            }
+                        }else
+                        {
+                            for (int i = 0; i < UpdateInputForm.storeCommodityList.Count; i++)
+                            {
+                                string commodityName = UpdateInputForm.storeCommodityList[i].CommodityName;
+                                string storeName = UpdateInputForm.storeCommodityList[i].StoreName;
+
+                                if (commodity.CommodityName == commodityName && store.Name == storeName)
+                                {
+                                    check = 1;
+                                }
+                            }
                         }
+                       
 
                         if(check == 0)
                         {
@@ -148,8 +167,14 @@ namespace Presentation.UI.Input
                                 newStoreCommodity.StoreName = store.Name;
                                 newStoreCommodity.Stock = quantity;
 
-
-                                AddInputForm.storeCommodityList.Add(newStoreCommodity);
+                                if(verify == 0)
+                                {
+                                    AddInputForm.storeCommodityList.Add(newStoreCommodity);
+                                }else
+                                {
+                                    UpdateInputForm.visualStoreCommodityList.Add(newStoreCommodity);
+                                    UpdateInputForm.storeCommodityList.Add(newStoreCommodity);
+                                }                               
 
                                 this.Close();
                             }else

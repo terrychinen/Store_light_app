@@ -174,7 +174,7 @@ namespace Presentation.UI.Order
                         DateTime? cancelDateTime = null;
 
 
-                        if (order_date.Text != "")
+                        if (order_date.Text.Trim() != "")
                         {
                             if (waiting_date.Text.Trim() != "")
                             {

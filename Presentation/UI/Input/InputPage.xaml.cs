@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using Domain.Controllers;
 using Domain;
 using Domain.Models;
+using System.Globalization;
 
 
 namespace Presentation.UI.Input
@@ -30,6 +31,9 @@ namespace Presentation.UI.Input
         public InputPage()
         {
             InitializeComponent();
+
+            input_date.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+
             LoadInputs();
         }
 
@@ -44,6 +48,22 @@ namespace Presentation.UI.Input
                 if (dataResponse["ok"])
                 {
                     inputList = dataResponse["result"].InputList;
+                    for (int i = 0; i < inputList.Count; i++) {
+                        DateTime inputDate = DateTime.Parse(inputList[i].InputDate);
+                        inputList[i].InputDate = inputDate.ToString("dd/MM/yyyy HH:mm:ss");
+
+                        if(inputList[i].State == 1)
+                        {
+                            inputList[i].StateName = "Confirmado";
+                            inputList[i].StateColor = "Green";
+                        }
+                        else
+                        {
+                            inputList[i].StateName = "Anulado";
+                            inputList[i].StateColor = "Red";
+                        } 
+                    }
+                    
                     inputListBox.ItemsSource = inputList;
                 }
 
@@ -55,18 +75,32 @@ namespace Presentation.UI.Input
         }
 
 
-        private void CreateInput_Click(object sender, RoutedEventArgs e)
+        private void InputListBox_Click(object sender, MouseButtonEventArgs e)
         {
-           // CreateCategoryForm createCategoryForm = new CreateCategoryForm();
-           // createCategoryForm.ShowDialog();
-           // LoadCategories();
+            try
+            {
+                InputModel input = inputListBox.SelectedItem as InputModel;
+
+                if (input != null)
+                {
+                    UpdateInputForm updateInputForm = new UpdateInputForm(input);
+                    updateInputForm.ShowDialog();
+                    LoadInputs();
+                }
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
-        private void Search_TextChanged(object sender, TextChangedEventArgs e)
+
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-           /* string search = txt_search.Text.ToLower();
+            string search = txt_search.Text.ToLower();
 
             int radioActive = 1;
+
             bool rbId = rb_id.IsChecked.Value; // rbID=true (0)
             bool rbName = rb_name.IsChecked.Value; //rbName=true (1)
 
@@ -80,33 +114,81 @@ namespace Presentation.UI.Input
             }
 
 
-            var datatResponse = categoryController.SearchCategoriesAPI(search, radioActive, 1, UserData.getToken().TokenKey);
+            var datatResponse = inputController.SearchInputAPI(search, radioActive, 1, UserData.getToken().TokenKey);
 
             if (datatResponse["ok"])
             {
-                List<CategoryModel> categoryListFiltered = datatResponse["result"].CategoryList;
-                categoryListBox.ItemsSource = categoryListFiltered;
+                List<InputModel> inputListFiltered = datatResponse["result"].InputList;
+
+                for (int i = 0; i < inputListFiltered.Count; i++)
+                {
+                    DateTime inputDate = DateTime.Parse(inputList[i].InputDate);
+                    inputListFiltered[i].InputDate = inputDate.ToString("dd/MM/yyyy HH:mm:ss");
+
+                    if (inputListFiltered[i].State == 1)
+                    {
+                        inputListFiltered[i].StateName = "Confirmado";
+                        inputListFiltered[i].StateColor = "Green";
+                    }
+                    else
+                    {
+                        inputListFiltered[i].StateName = "Anulado";
+                        inputListFiltered[i].StateColor = "Red";
+                    }
+                }
+
+                inputListBox.ItemsSource = inputListFiltered;
             }
-*/
+
         }
 
-
-        private void InputListBox_Click(object sender, MouseButtonEventArgs e)
+        private void txt_search_TextChanged(object sender, TextChangedEventArgs e)
         {
-            try
-            {
-                InputModel input = inputListBox.SelectedItem as InputModel;
+            string search = txt_search.Text.ToLower();
 
-                if (input != null)
-                {
-                   // UpdateCategoryForm updateCategoryForm = new UpdateCategoryForm(category);
-                   // updateCategoryForm.ShowDialog();
-                   // LoadCategories();
-                }
-            }
-            catch (Exception error)
+            if(search.Length == 0)
             {
-                MessageBox.Show(error.Message.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                LoadInputs();
+            }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {         
+            if(input_date.Text.Trim() != "")
+            {
+                DateTime inputDateTime = DateTime.ParseExact($"{input_date.Text}", "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                string convertInput = inputDateTime.ToString("yyyy-MM-dd");
+
+                var datatResponse = inputController.SearchInputByDateAPI(convertInput, 1, UserData.getToken().TokenKey);
+
+                if (datatResponse["ok"])
+                {
+                    List<InputModel> inputListFiltered = datatResponse["result"].InputList;
+
+                    for (int i = 0; i < inputListFiltered.Count; i++)
+                    {
+                        DateTime inputDate = DateTime.Parse(inputList[i].InputDate);
+                        inputListFiltered[i].InputDate = inputDate.ToString("dd/MM/yyyy HH:mm:ss");
+
+                        if (inputListFiltered[i].State == 1)
+                        {
+                            inputListFiltered[i].StateName = "Confirmado";
+                            inputListFiltered[i].StateColor = "Green";
+                        }
+                        else
+                        {
+                            inputListFiltered[i].StateName = "Anulado";
+                            inputListFiltered[i].StateColor = "Red";
+                        }
+                    }
+
+                    inputListBox.ItemsSource = inputListFiltered;
+                }
+
+            }
+            else
+            {
+                LoadInputs();
             }
         }
     }

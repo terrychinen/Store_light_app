@@ -77,8 +77,7 @@ namespace DataAccess.Api
         }
 
 
-        public async Task<Dictionary<string, dynamic>> UpdateInput(int inputID, int orderID, int storeID, int commodityIDInput, int commodityIDProvider,
-            int employeeID, double quantity, string date, int state, string token)
+        public async Task<Dictionary<string, dynamic>> UpdateInput(int purchaseOrderID, string dataJson, string token)
         {
             Dictionary<string, dynamic> data;
 
@@ -86,13 +85,11 @@ namespace DataAccess.Api
             {
                 data = new Dictionary<string, dynamic>();
 
-                var url = Connection.CONNECTION + "/input/" + inputID;
+                var url = Connection.CONNECTION + "/input/" + purchaseOrderID;
                 var client = new RestClient(url);
 
                 var request = new RestRequest(Method.PUT);
-                request.AddHeader("token", token);
-                request.AddParameter("application/x-www-form-urlencoded", $"order_id={orderID}&store_id={storeID}&commodity_input={commodityIDInput}" +
-                    $"&commodity_provider={commodityIDProvider}&employee_id{employeeID}&quantity={quantity}&date={date}&state={state}", ParameterType.RequestBody);
+                request.AddParameter("application/json", dataJson, ParameterType.RequestBody);
 
                 IRestResponse response = await client.ExecuteAsync(request);
 
@@ -130,6 +127,75 @@ namespace DataAccess.Api
                 request.AddParameter("application/x-www-form-urlencoded", $"search={search}&search_by={searchBy}&state={state}", ParameterType.RequestBody);
 
                 IRestResponse response = client.Execute(request);
+
+                data.Add("ok", true);
+                data.Add("result", response);
+
+                return data;
+            }
+            catch (Exception error)
+            {
+                data = new Dictionary<string, dynamic>
+                {
+                    { "ok", false },
+                    { "result", error }
+                };
+
+                return data;
+            }
+        }
+
+
+        public Dictionary<string, dynamic> SearchInputByDate(string search, int state, string token)
+        {
+            Dictionary<string, dynamic> data;
+
+            try
+            {
+                data = new Dictionary<string, dynamic>();
+
+                var url = Connection.CONNECTION + "/input/search/bydate";
+                var client = new RestClient(url);
+
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("token", token);
+                request.AddParameter("application/x-www-form-urlencoded", $"search={search}&state={state}", ParameterType.RequestBody);
+
+                IRestResponse response = client.Execute(request);
+
+                data.Add("ok", true);
+                data.Add("result", response);
+
+                return data;
+            }
+            catch (Exception error)
+            {
+                data = new Dictionary<string, dynamic>
+                {
+                    { "ok", false },
+                    { "result", error }
+                };
+
+                return data;
+            }
+        }
+
+
+        public async Task<Dictionary<string, dynamic>> GetInputDetail(int purchaseOrderID, string token, int offset, int state)
+        {
+            Dictionary<string, dynamic> data;
+
+            try
+            {
+                data = new Dictionary<string, dynamic>();
+
+                var url = Connection.CONNECTION + $"/input/{purchaseOrderID}?offset=" + offset;
+                var client = new RestClient(url);
+
+                var request = new RestRequest(Method.GET);
+                request.AddHeader("token", token);
+
+                IRestResponse response = await client.ExecuteAsync(request);
 
                 data.Add("ok", true);
                 data.Add("result", response);

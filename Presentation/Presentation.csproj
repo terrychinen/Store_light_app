@@ -225,6 +225,9 @@
     <Compile Include="UI\SignIn\SignInForm.xaml.cs">
       <DependentUpon>SignInForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Stock_min\StockMinPage.xaml.cs">
+      <DependentUpon>StockMinPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Store\CreateStoreForm.xaml.cs">
       <DependentUpon>CreateStoreForm.xaml</DependentUpon>
     </Compile>
@@ -535,6 +538,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\SignIn\SignInForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Stock_min\StockMinPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

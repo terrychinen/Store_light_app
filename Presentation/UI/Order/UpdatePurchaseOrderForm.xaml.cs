@@ -342,7 +342,6 @@ namespace Presentation.UI.Order
                             if (expectedDateTime != null || expectedDateTime.HasValue)
                             {
                                 convertExpected = expectedDateTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
-                                state = 2;
                             }
                             else {
                                 convertExpected = "null";
@@ -353,11 +352,11 @@ namespace Presentation.UI.Order
                             {
                                 if (paidDateTime != null || paidDateTime.HasValue)
                                 {
-                                    state = 5;
+                                    state = 4;
                                 }
                                 else
                                 {
-                                    state = 3;
+                                    state = 2;
                                 }
                                 convertReceive = receiveDateTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
                             }
@@ -369,11 +368,11 @@ namespace Presentation.UI.Order
                             {
                                 if (receiveDateTime != null || receiveDateTime.HasValue)
                                 {
-                                    state = 5;
+                                    state = 4;
                                 }
                                 else
                                 {
-                                    state = 4;
+                                    state = 3;
                                 }
                                 convertPaid = paidDateTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
                             }
@@ -385,7 +384,7 @@ namespace Presentation.UI.Order
                             if (cancelDateTime != null || cancelDateTime.HasValue)
                             {
                                 convertCancel = cancelDateTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
-                                state = 6;
+                                state = 5;
                             }
                             else
                             {

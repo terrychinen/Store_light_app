@@ -24,9 +24,8 @@ namespace Presentation.UI.Commodity_Store
     public partial class Commodity_Store_Page : Page
     {
         StoreCommodityController storeCommodityController;
-
-
         List<StoreCommodityModel> storeCommodityList;
+
 
         public Commodity_Store_Page()
         {

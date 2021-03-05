@@ -5,20 +5,17 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Presentation.UI.Input"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="InputPage">
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.9*"></RowDefinition>
-            <!-- Title -->
-            <RowDefinition Height="*"></RowDefinition>
-            <!-- Search-->
+            <RowDefinition Height=".45*"></RowDefinition>
+            <RowDefinition Height=".8*"></RowDefinition>
+            <RowDefinition Height=".4*"></RowDefinition>
             <RowDefinition Height="4*"></RowDefinition>
-            <!-- ListBox -->
-            <RowDefinition Height="*"></RowDefinition>
-            <!-- Create Button -->
         </Grid.RowDefinitions>
 
 
@@ -32,28 +29,41 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="4*"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBox x:Name="txt_search" Grid.Column="0" Margin="0, 20, 0, 10" Width="400" Height="30" HorizontalAlignment="Center"  materialDesign:HintAssist.Hint="Buscar" TextChanged="Search_TextChanged"></TextBox>
+            <TextBox x:Name="txt_search" Grid.Column="0" Margin="0, 20, 0, 10" Width="400" Height="30" HorizontalAlignment="Center" TextChanged="txt_search_TextChanged"  materialDesign:HintAssist.Hint="Buscar"></TextBox>
             <RadioButton Content="ID" Name="rb_id" Grid.Column="1" Margin="50, 0, 0, 0"></RadioButton>
-            <RadioButton Content="Nombre" Name="rb_name" Grid.Column="2" IsChecked="True" Margin="50, 0, 0, 0"></RadioButton>
+            <RadioButton Content="Nota" Name="rb_name" Grid.Column="2" IsChecked="True" Margin="50, 0, 0, 0"></RadioButton>
+            <Button Grid.Column="3" Margin="120, 0, 0, 0"  Width="100" Height="40" Content="Buscar"  HorizontalAlignment="Left" Click="Button_Click"></Button>
+        </Grid>
+
+
+        <Grid Grid.Row="2" Margin="0, 0, 0, 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <DatePicker HorizontalAlignment="Center" Language="es-ES" Name="input_date"  Margin="200, 0, 0, 0" Grid.Column="0"  Width="200" Height="30"/>
+            <Button Grid.Column="3" Margin="70, 0, 0, 0"  Width="140" Height="35" Content="Buscar por fecha" Click="Button_Click_1"  HorizontalAlignment="Left"></Button>
         </Grid>
         <!-- ========= -->
 
 
         <!-- LISTBOX TEMPLATE -->
-        <Grid Grid.Row="2" Margin="0">
+        <Grid Grid.Row="3" Margin="0, 20, 0 ,0">
             <Grid.RowDefinitions>
-                <RowDefinition Height =".18*"></RowDefinition>
+                <RowDefinition Height =".15*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
 
 
             <!-- CABECERA DEL LISTBOX -->
-            <Grid Grid.Row="0" Margin="50, 0" Background="DarkGray">
+            <Grid Grid.Row="0" Margin="50, 0"  Background="DarkGray">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"></ColumnDefinition>
-                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="2*"></ColumnDefinition>
                     <ColumnDefinition Width="2*"></ColumnDefinition>
                     <ColumnDefinition Width="2*"></ColumnDefinition>
@@ -61,11 +71,10 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Grid.Column="0" Content="Pedido ID" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <Label Grid.Column="1" Content="Mercancía" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <Label Grid.Column="2" Content="Cantidad" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <Label Grid.Column="3" Content="Almacén" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <Label Grid.Column="4" Content="Fec. ingreso" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <Label Grid.Column="5" Content="Estado" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label Grid.Column="1" Content="Ingresado por" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label Grid.Column="2" Content="Fec. entrada" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label Grid.Column="3" Content="Nota" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label Grid.Column="4" Content="Estado" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Grid>
             <!-- ================================ -->
 
@@ -81,15 +90,13 @@
                                 <ColumnDefinition Width="2*"></ColumnDefinition>
                                 <ColumnDefinition Width="2*"></ColumnDefinition>
                                 <ColumnDefinition Width="2*"></ColumnDefinition>
-                                <ColumnDefinition Width="2*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="0" FontSize="16" Text="{Binding PurchaseOrderId}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-                            <TextBlock Grid.Column="1" FontSize="16" Text="{Binding CommodityId}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-                            <TextBlock Grid.Column="2" FontSize="16" Text="{Binding StoreId}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-                            <TextBlock Grid.Column="3" FontSize="16" Text="{Binding Quantity}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-                            <TextBlock Grid.Column="4" FontSize="16" Text="{Binding Date}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-                            <TextBlock Grid.Column="5" FontSize="16" Text="{Binding State}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Grid.Column="0" FontSize="16" Text="{Binding PurchaseOrderID}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Grid.Column="1" FontSize="16" Text="{Binding EmployeeName}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Grid.Column="2" FontSize="16" Text="{Binding InputDate}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Grid.Column="3" FontSize="16" Text="{Binding Notes}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Grid.Column="4" FontSize="16" Text="{Binding StateName}" Foreground="{Binding StateColor}"  FontWeight="Bold"  TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

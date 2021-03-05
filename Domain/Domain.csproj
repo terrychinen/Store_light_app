@@ -83,6 +83,7 @@
     <Compile Include="Controllers\StoreCommodityController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Controllers\TokenController.cs" />
+    <Compile Include="Models\InputDetailModel.cs" />
     <Compile Include="Models\Responses\AuthResponse.cs" />
     <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\Responses\CategoryResponse.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="Models\Responses\CommodityResponse.cs" />
     <Compile Include="Models\Responses\EmployeeResponse.cs" />
     <Compile Include="Models\Responses\EnvironmentResponse.cs" />
+    <Compile Include="Models\Responses\InputDetailResponse.cs" />
     <Compile Include="Models\Responses\InputResponse.cs" />
     <Compile Include="Models\Responses\OutputResponse.cs" />
     <Compile Include="Models\Responses\ProviderResponse.cs" />

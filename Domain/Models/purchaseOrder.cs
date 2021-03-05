@@ -24,6 +24,7 @@ namespace Domain.Models
         private string message;
         private int? updatedBy;        
         private int state;
+        private int stateInput;
 
         private string updatedName;
         private string stateName;
@@ -82,5 +83,8 @@ namespace Domain.Models
 
         [JsonProperty("waiting_date")]
         public string WaitingDate { get => waitingDate; set => waitingDate = value; }
+
+        [JsonProperty("state_input")]
+        public int StateInput { get => stateInput; set => stateInput = value; }
     }
 }

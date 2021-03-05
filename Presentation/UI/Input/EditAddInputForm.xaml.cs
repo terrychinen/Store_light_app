@@ -23,7 +23,7 @@ namespace Presentation.UI.Input
     /// </summary>
     public partial class EditAddInputForm : Window
     {
-        int index; 
+        int index;
 
         StoreCommodityModel storeCommodity;
         CommodityModel commodity;
@@ -36,11 +36,14 @@ namespace Presentation.UI.Input
         StoreController storeController;
         CommodityController commodityController;
 
-        public EditAddInputForm(int index, StoreCommodityModel storeCommodity)
+        int verify;
+
+        public EditAddInputForm(int index, StoreCommodityModel storeCommodity, int verify)
         {
             InitializeComponent();
 
             this.index = index;
+            this.verify = verify;
 
             this.storeCommodity = storeCommodity;
 
@@ -54,6 +57,10 @@ namespace Presentation.UI.Input
             this.storeCommodityController = new StoreCommodityController();
             this.storeController = new StoreController();
             this.commodityController = new CommodityController();
+
+            cb_commodity.DisplayMemberPath = "CommodityName";
+            cb_commodity.SelectedValuePath = "CommodityId";
+
 
             LoadStores();
             LoadCommodities();
@@ -101,18 +108,22 @@ namespace Presentation.UI.Input
                 storeCommodityList = dataResponse["result"].StoreCommodityList;
                 cb_commodity.ItemsSource = storeCommodityList;
 
-                cb_commodity.DisplayMemberPath = "CommodityName";
-                cb_commodity.SelectedValuePath = "CommodityId";
 
                 cb_commodity.SelectedIndex = 0;
                 cb_commodity.Text = "No hay datos";
+                //lb_stock.Content = "--";
                 for (int i = 0; i < storeCommodityList.Count; i++)
                 {
                     if (storeCommodityList[i].CommodityName == commodity.Name)
                     {
                         cb_commodity.SelectedIndex = i;
+                        //  lb_stock.Content = storeCommodityList[i].Stock;
                         break;
-                    }                    
+                    }
+                    else
+                    {
+                        //lb_stock.Content = "--";
+                    }
                 }
 
             }
@@ -131,16 +142,32 @@ namespace Presentation.UI.Input
 
                     if (storeCommodity != null)
                     {
-                        for (int i = 0; i < AddInputForm.storeCommodityList.Count; i++)
+                        if (verify == 0)
                         {
-                            string commodityName = AddInputForm.storeCommodityList[i].CommodityName;
-                            string storeName = AddInputForm.storeCommodityList[i].StoreName;
-
-                            if (storeCommodity.CommodityName == commodityName && store.Name == storeName)
+                            for (int i = 0; i < AddInputForm.storeCommodityList.Count; i++)
                             {
-                                check += 1;
+                                string commodityName = AddInputForm.storeCommodityList[i].CommodityName;
+                                string storeName = AddInputForm.storeCommodityList[i].StoreName;
+
+                                if (storeCommodity.CommodityName == commodityName && store.Name == storeName)
+                                {
+                                    check += 1;
+                                }
+                            }
+                        } else
+                        {
+                            for (int i = 0; i < UpdateInputForm.storeCommodityList.Count; i++)
+                            {
+                                string commodityName = UpdateInputForm.storeCommodityList[i].CommodityName;
+                                string storeName = UpdateInputForm.storeCommodityList[i].StoreName;
+
+                                if (storeCommodity.CommodityName == commodityName && store.Name == storeName)
+                                {
+                                    check += 1;
+                                }
                             }
                         }
+
 
                         if (check == 1 || check == 0)
                         {
@@ -155,7 +182,14 @@ namespace Presentation.UI.Input
                                 newStoreCommodity.StoreName = store.Name;
                                 newStoreCommodity.Stock = quantity;
 
-                                AddInputForm.storeCommodityList[index] = newStoreCommodity;
+                                if (verify == 0)
+                                {
+                                    AddInputForm.storeCommodityList[index] = newStoreCommodity;
+                                } else
+                                {
+                                    UpdateInputForm.storeCommodityList[index] = newStoreCommodity;
+                                    UpdateInputForm.visualStoreCommodityList[index] = newStoreCommodity;
+                                }
 
                                 this.Close();
                             }
@@ -195,6 +229,49 @@ namespace Presentation.UI.Input
             storeCommodity.StoreName = store.Name;
             LoadCommodities();
         }
-      
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (verify == 0)
+            {
+                AddInputForm.storeCommodityList.Remove(storeCommodity);
+            } else
+            {
+                UpdateInputForm.visualStoreCommodityList.Remove(storeCommodity);
+                UpdateInputForm.storeCommodityList[index].DeleteState = 1;
+            }
+            this.Close();
+        }
+
+        private void cb_commodity_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            /* StoreCommodityModel commoditySelect = cb_commodity.SelectedItem as StoreCommodityModel;
+             if(commoditySelect != null)
+             {
+                 string commodityName = commoditySelect.CommodityName;
+                 string[] commodityNameCut = commodityName.Split(' ');
+
+                 var dataResponse = storeCommodityController.SearchCommoditiesByStoreID(commodityNameCut[0], storeCommodity.StoreId, UserData.getToken().TokenKey, 0, 1);
+
+                 if (dataResponse["ok"])
+                 {
+                     storeCommodityList = dataResponse["result"].StoreCommodityList;
+
+                     lb_stock.Content = "--";
+                     for (int i = 0; i < storeCommodityList.Count; i++)
+                     {
+                         if (storeCommodityList[i].CommodityName == commodity.Name)
+                         {
+                             lb_stock.Content = storeCommodityList[i].Stock;
+                             break;
+                         }
+                         else
+                         {
+                             lb_stock.Content = "--";
+                         }
+                     }
+
+                 }*/
+         }                
     }
 }

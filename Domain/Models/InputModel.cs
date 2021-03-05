@@ -10,15 +10,18 @@ namespace Domain.Models
 {
     public class InputModel
     {
-        private int inputID;
         private int purchaseOrderID;
         private int commodityId;        
         private int storeId;
         private int employeeId;
+        private string employeeName;
         private double quantity;
-        private DateTime inputDate;
+        private string inputDate;
         private string notes;
         private int state;
+
+        private string stateName;
+        private string stateColor;
 
         [JsonProperty("purchase_order_id")]
         public int PurchaseOrderID { get => purchaseOrderID; set => purchaseOrderID = value; }
@@ -34,13 +37,16 @@ namespace Domain.Models
         public double Quantity { get => quantity; set => quantity = value; }
 
         [JsonProperty("input_date")]
-        public DateTime InputDate { get => inputDate; set => inputDate = value; }
+        public string InputDate { get => inputDate; set => inputDate = value; }
 
 
         public int State { get => state; set => state = value; }
         public string Notes { get => notes; set => notes = value; }
 
-        [JsonProperty("input_id")]
-        public int InputID { get => inputID; set => inputID = value; }
+
+        [JsonProperty("employee_name")]
+        public string EmployeeName { get => employeeName; set => employeeName = value; }
+        public string StateName { get => stateName; set => stateName = value; }
+        public string StateColor { get => stateColor; set => stateColor = value; }
     }
 }

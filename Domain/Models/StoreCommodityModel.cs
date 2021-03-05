@@ -20,6 +20,8 @@ namespace Domain.Models
         bool selectedStore; 
         string stateString;
 
+        int deleteState;
+
         [JsonProperty("store_id")]
         public int StoreId { get => storeId; set => storeId = value; }
 
@@ -45,6 +47,6 @@ namespace Domain.Models
 
         [JsonProperty("stock_min")]
         public double StockMin { get => stockMin; set => stockMin = value; }
-
+        public int DeleteState { get => deleteState; set => deleteState = value; }
     }
 }

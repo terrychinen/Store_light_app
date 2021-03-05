@@ -140,3 +140,5 @@ C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Input\TransformCom
 C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Input\TransformCommodityForm.baml
 C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Input\EditAddInputForm.g.cs
 C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Input\EditAddInputForm.baml
+C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Stock_min\StockMinPage.g.cs
+C:\Users\Tery\source\repos\StoreApp\Presentation\obj\Debug\UI\Stock_min\StockMinPage.baml

@@ -36,6 +36,13 @@
                     </ListViewItem>
 
 
+                    <ListViewItem Name="stock_min_item" Selected="StockMin_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="STOCK MIN" Foreground="White" VerticalAlignment="Center" Margin="10" />
+                        </StackPanel>
+                    </ListViewItem>
+
+
                 </ListView>
 
 
